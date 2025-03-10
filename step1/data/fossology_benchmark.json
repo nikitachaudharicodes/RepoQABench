@@ -1,0 +1,295 @@
+{
+    "repository": {
+        "repo_name": "fossology/fossology",
+        "description": "FOSSology is an open source license compliance software system and toolkit.  As a toolkit you can run license, copyright and export control scans from the command line.  As a system, a database and web ui are provided to give you a compliance workflow. License, copyright and export scanners are tools used in the workflow.",
+        "language": "HTML",
+        "stars": 836,
+        "forks": 452,
+        "contributors_url": "https://api.github.com/repos/fossology/fossology/contributors",
+        "license": "GNU General Public License v2.0",
+        "open_issues": 439,
+        "created_at": "2014-01-13T11:22:57Z",
+        "updated_at": "2025-03-08T04:18:18Z"
+    },
+    "qa_pairs": [
+        {
+            "repo": "fossology",
+            "issue_number": 2983,
+            "issue_title": "Design :  improper design in \"schedule agent\" page",
+            "issue_body": "# UI/UX Design Issues in the Additional Analysis Page\n\n## Description\nThe current design of the **\"Select an uploaded file for additional analysis\"** page has several UI/UX problems that affect usability.\n\n## Issues Identified\n\n### 1. Dropdown & Input Alignment\n- The \"Select the upload to analyze\" dropdown appears misaligned and cut off.\n- It is difficult to differentiate between selectable options.\n\n### 2. design \n- no proper gap  provided between all \n\n\n## Suggested Fixes\n- Improve **dropdown positioning** and increase width for clarity.\n- Group related **checkboxes with proper indentation** for readability.\n- Increase **spacing between form elements** for better UI hierarchy.\n- Use **consistent button styles** to make the \"Analyze\" button more prominent.\n\n## Screenshot\n\n![Image](https://github.com/user-attachments/assets/83331d5e-9df6-4ba6-a869-2234224a747c)",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2983/comments",
+            "created_at": "2025-03-04T20:24:30Z",
+            "labels": [],
+            "comments": [
+                {
+                    "author": "shaheemazmalmmd",
+                    "comment": "@Chayan8837 : We know that there are some design issues as the UI itself is very old. Thus, we have created a Design project. \n\nAlso i think someone had already worked on alignment issue and created a PR. "
+                }
+            ]
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2982,
+            "issue_title": "Bug:Duplicate Tag Creation Shows Incorrect Success Message",
+            "issue_body": "## Issue Summary\nWhen attempting to create a duplicate tag, the function `CreateTag()` does not insert the tag (as expected), but it incorrectly returns a success message instead of an error.\n\n## Steps to Reproduce\n1. Create a tag with any name, e.g., `TestTag`\n2. Try creating the same tag again with the same name\n3. Observe that the function does **not** insert a duplicate but still shows a success message\n\n## Expected Behavior\n- If a tag with the same name already exists, the function should return `\"Tag already exists.\"`\n\n## Actual Behavior\n- The function does **not** insert the tag (correct behavior)  \n- **Incorrectly returns a success message** instead of reporting the duplicate\n\n## Suggested Fix\nModify `CreateTag()` to properly check for existing tags and return the correct error message before attempting insertion.\n\n### Potential Fix Code:\n```php\n$sql = \"SELECT 1 FROM tag WHERE tag = '\" . pg_escape_string($tag_name) . \"' LIMIT 1;\";\n$result = pg_query($PG_CONN, $sql);\nif (pg_num_rows($result) > 0) {\n    pg_free_result($result);\n    return _(\"Tag already exists.\");\n}\n\n\n",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2982/comments",
+            "created_at": "2025-03-04T16:35:53Z",
+            "labels": [],
+            "comments": [
+                {
+                    "author": "Chayan8837",
+                    "comment": "@shaheemazmalmmd  , check the issue once\n"
+                },
+                {
+                    "author": "shaheemazmalmmd",
+                    "comment": "Chayan8837 : tags are very rarely used and they can be duplicate as well .. I would recommend to choose a issue from good first issues and work on it."
+                }
+            ]
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2977,
+            "issue_title": "Feat:Missing Parent Folder Indication in Moving Folder Feature",
+            "issue_body": "# Missing Parent Folder Indication in Moving Folder Feature\n\n## Description\nThe current implementation of the folder-moving feature lacks a clear indication of the parent folder when selecting a folder inside another folder. This can lead to users mistakenly moving content into the same folder or an unintended location.\n\n## Current Behavior\n- The sidebar lists the folder structure but does not highlight the currently selected folder.\n- The selection box shows folders for moving content but does not indicate the parent folder of the selected item.\n- Users can unintentionally move items into the same folder without any warning.\n\n## Expected Behavior\n- The sidebar should highlight the currently selected folder to provide better navigation.\n- The selection box should indicate the parent folder of the selected item.\n- A warning or restriction should be added to prevent moving content into the same folder.\n\n\n\n![Image](https://github.com/user-attachments/assets/5a829c08-727e-4050-8bbe-cce0bb60e7cc)\n\n\n## Steps to Reproduce\n1. Open the move folder feature.\n2. Select a folder inside another folder from the selection box.\n3. Notice that there is no clear indication of the parent folder.\n4. Attempt to move content and observe that it can be moved into the same folder without warning.\n\n## Suggested Fix\n- Highlight the currently selected folder in the sidebar.\n- Display the parent folder in the selection box.\n- Add a validation check to prevent moving a folder into itself.\n\nThis enhancement will improve usability and prevent unintentional errors.\n",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2977/comments",
+            "created_at": "2025-03-03T19:05:48Z",
+            "labels": [],
+            "comments": [
+                {
+                    "author": "Chayan8837",
+                    "comment": "Add a min-width to the selection box.it will be better \nand if anybody want to move all folder inside that parent folder , along with the parent folder ,then there is problem , no selection possible to the parent folder"
+                }
+            ]
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2974,
+            "issue_title": "Docker Build Fails: fo-postinstall Command Exit Code 1",
+            "issue_body": "I encountered an issue while building Fossology using Docker. The build fails at fo-postinstall with the following error:\n\n![Image](https://github.com/user-attachments/assets/d84351cf-4c5c-4f36-aa75-724b766609f8)",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2974/comments",
+            "created_at": "2025-03-01T21:09:02Z",
+            "labels": [],
+            "comments": [
+                {
+                    "author": "Chayan8837",
+                    "comment": "may be , scheduler is not working properly , \n "
+                }
+            ]
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2965,
+            "issue_title": "Dropdown Width and Visibility Issue in \"Schedule an Analysis\" Page (#uploadToAnalyze)",
+            "issue_body": "## Description \n\nOn the \"**Schedule an Analysis**\" page, the dropdown for \"**2. Select the upload to analyze**\" is too small and does not display the available options properly.\n\n\n## Steps to Reproduce:\n\n1. Go to fossology server\n2. Then Jobs->schedule Agents\n\n## Issues Observed:\n\n1. The width of the \"**Select the upload to analyze**\" dropdown is much smaller, making it difficult to read or select options.\n2. The options inside the dropdown are not fully visible, preventing users from easily choosing an upload.\n\n## Screenshots:\n\n![Image](https://github.com/user-attachments/assets/122b138a-4310-4dab-af27-e8d71bfb76f4)\n\n## Expected Behavior:\n\n   - The **upload selection** dropdown should have the comparable width as the **Software Repository** dropdown for UI consistency.\n   - The dropdown options should be clearly visible and accessible.\n\n## Versions:\n\n- Operating System (lsb_release -a):Linux Ubuntu\n",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2965/comments",
+            "created_at": "2025-02-18T21:38:45Z",
+            "labels": [],
+            "comments": [
+                {
+                    "author": "sakshammishra112",
+                    "comment": "I have worked on the fix.\n"
+                },
+                {
+                    "author": "shaheemazmalmmd",
+                    "comment": "@sakshammishra112 : I see that the UI breaks only when there is no upload in fossology if there us a upload then it should not behave like that. also when there is no upload no user will schedule the jobs."
+                }
+            ]
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2943,
+            "issue_title": "Enhancement: Close Button on One-Shot Monk Analysis Page after analysis is performed to revert back to original form",
+            "issue_body": " Addition of a close button  to the One-Shot Monk Analysis page to enhance usability. This button will allow users to return to the original upload form seamlessly, improving the overall workflow and providing a more intuitive user experience.\n\n\n## How to Reproduce\n\n    Access the Fossology Server.\n    Navigate to \"Upload\" -> \"One-Shot Monk Analysis\" ,\n    Upload a file and click on Analyze .  \n    Observation : No method to go back to the form  even on reload , you  need to re-navigate .\n\n\n##Versions\n\nLast commit id on master:\nOperating System (lsb_release -a): Ubuntu (Linux)\n\nCC - @shaheemazmalmmd @Kaushl2208 @GMishx\n\n\n\n",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2943/comments",
+            "created_at": "2025-01-27T15:27:41Z",
+            "labels": [],
+            "comments": [
+                {
+                    "author": "shaheemazmalmmd",
+                    "comment": "@Zapper9982 : oneshot analysis page itself is not used by many. Issue is not relevant."
+                }
+            ]
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2935,
+            "issue_title": "Enhancement: Displaying all the folders at once while creating the folders to facilitate the users.",
+            "issue_body": "## Description\n\nWhile creating new folders, the user is not displayed the list of folders he/she had created in the past. This is a cumbersome process for the user as the user can repeat creating another folder in the same parent folder with the same folder name. The only way the user can view the list of folders present is while deleting a folder or moving/copying a folder. \n\n## How to Reproduce\n1. Go onto the fossology server\n2. Organise -> Folders -> Create\n3. The view is bland without displaying the list of folders the user has already created.\n\n\n## Screenshots\n\n![Image](https://github.com/user-attachments/assets/4dcffe45-c020-4853-a853-ea75c6b583a6)\n\n\n## Versions\n\n    Last commit id on master:\n    Operating System (lsb_release -a): Ubuntu (Linux)\n\nCC - @shaheemazmalmmd @Kaushl2208 @GMishx\n\n",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2935/comments",
+            "created_at": "2025-01-24T12:07:56Z",
+            "labels": [],
+            "comments": []
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2911,
+            "issue_title": "New published image fossology/fossology:scanner doesnt work",
+            "issue_body": "<!-- SPDX-FileCopyrightText: \u00a9 Fossology contributors\r\n\r\n     SPDX-License-Identifier: GPL-2.0-only\r\n-->\r\n\r\n<!-- Before filling this issue, please read the Wiki (https://github.com/fossology/fossology/wiki)\r\nand search if the bug do not already exists in the issues (https://github.com/fossology/fossology/issues). -->\r\n\r\n### Description\r\n\r\nLatest fossology/fossology:scanner has a problem, it needs ScanDeps module in python env.\r\n\r\n#### How to reproduce\r\n\r\nFor a bug: Describe the bug and list the steps you used when the issue occurred.\r\nall have same errors, just sharing one of the command.\r\n```\r\ndocker run --rm --name \"fossologyscanner\" \\\r\n            -t -w \"/opt/repo\" \\\r\n            -v ${PWD}:/opt/repo \\\r\n            fossology/fossology:scanner \\\r\n            \"/bin/fossologyscanner\" repo nomos ojo\r\n```\r\n\r\n#### Screenshots\r\n\r\nIf applicable, add screenshots to help explain your problem.\r\n\r\n### Versions\r\n\r\n* Last commit id on master:\r\nContainer version\r\nindex digest: sha256:4cc8cee4c0219f9e55b615f599fa0d08a7108b5288d764d934ad5223e233cfd5\r\nmanifest digest: sha256:f56bf3f73e60384640fccd4ec9d6d029028392cf76ba641d5df48f7f63151cdf\r\n### Logs\r\n\r\nAny logs (if any) generated in\r\n```\r\nTraceback (most recent call last):\r\n  File \"/bin/fossologyscanner\", line 24, in <module>\r\n    from ScanDeps.Parsers import Parser, PythonParser\r\nModuleNotFoundError: No module named 'ScanDeps'\r\n```\r\nit works with older version;\r\n`fossology/fossology:scanner@sha256:8269d1f37b65f01421d9a6eb53002e320c5ee8e2c84c8caca8039cbbfd8b1105\r\n`",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2911/comments",
+            "created_at": "2025-01-10T09:37:22Z",
+            "labels": [],
+            "comments": [
+                {
+                    "author": "kemalgoekhan",
+                    "comment": "@GMishx do you have any idea? "
+                },
+                {
+                    "author": "MarcelReiter",
+                    "comment": "I believe i've got the same issue.\n\nMy github action - a minimal version of the [the github actions sample](https://github.com/fossology/fossology/blob/master/utils/automation/.github-workflow.yml) - fails to run:\n\n**Stacktrace**\n```\nTraceback (most recent call last):\n  File \"/bin/fossologyscanner\", line 24, in <module>\n    from ScanDeps.Parsers import Parser, PythonParser\nModuleNotFoundError: No module named 'ScanDeps'\nError: Process completed with exit code 1.\n```\n\n**Github Actions Yaml**\n```\nname: Check diff for license with Fossology\n\non:\n  push:\n    branches:\n      - me/fossology\n\njobs:\n  check-license:\n    name: Check license\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout this repository\n        uses: actions/checkout@v3\n\n      - name: Set up QEMU\n        uses: docker/setup-qemu-action@v3\n\n      - name: Run Scanners\n        run: |\n          docker run --rm --name \"fossologyscanner\" -w \"/opt/repo\" -v ${PWD}:/opt/repo \\\n            -e GITHUB_TOKEN=${{ github.token }} \\\n            -e GITHUB_PULL_REQUEST=${{ github.event.number }} \\\n            -e GITHUB_REPOSITORY=${{ github.repository }} \\\n            -e GITHUB_API=${{ github.api_url }} \\\n            -e GITHUB_REPO_URL=${{ github.repositoryUrl }} \\\n            -e GITHUB_REPO_OWNER=${{ github.repository_owner }} \\\n            -e GITHUB_ACTIONS \\\n            fossology/fossology:scanner \"/bin/fossologyscanner\" nomos ojo\n```\n\nPlease note: This is my first try at using Fossology, so i might have done something wrong entirely"
+                },
+                {
+                    "author": "GMishx",
+                    "comment": "I believe this issue is due to  #2811\n\n@Kaushl2208 @rajuljha can you please help?"
+                },
+                {
+                    "author": "kemalgoekhan",
+                    "comment": "it's fixed. thanks guys/"
+                }
+            ]
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2906,
+            "issue_title": "Internal Server Error(500): When Clicking \"Upload\" with No File Selected",
+            "issue_body": "## Description:\r\nWhen attempting to upload a file, clicking the \"Upload\" button without selecting a file results in an internal server error. This is unexpected behavior, as the application should ideally validate the input(as in other cases upload file from server, URL, or VCS).\r\n## Steps to Reproduce:\r\n- Go to the Upload -> From file\r\n- Click the Upload button (present at the bottom) without selecting any file.\r\n- Observe the blank white screen.\r\n- Apache logs can we seen under-> /var/log/apache2/error.log\r\n\r\n[Screencast from 07-01-25 12:54:01 AM IST.webm](https://github.com/user-attachments/assets/6091cf3b-1f4a-4564-962a-d6bdc7ccc9ba)\r\n\r\n\r\n\r\n",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2906/comments",
+            "created_at": "2025-01-06T19:26:35Z",
+            "labels": [],
+            "comments": [
+                {
+                    "author": "golu7059",
+                    "comment": "can I work on this issue ?\r\n"
+                }
+            ]
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2879,
+            "issue_title": "Minor UI Bug: Show Button Doesn't Appear After Hiding Folder Navigation",
+            "issue_body": "There is a minor UI bug in the folder navigation functionality. When the folder navigation is hidden, the \"Show\" button does not appear, making it impossible to bring back the folder navigation without refreshing the page or taking other unintended actions.\r\n\r\n### Steps to Reproduce:\r\n- Navigate to the browse page.\r\n- Click the \"X\" button (located on top left side of the table) to hide the folder navigation.\r\n- Observe that no button appears, and there is no way to bring back the folder navigation.\r\n\r\n![Screenshot from 2024-12-19 10-23-10](https://github.com/user-attachments/assets/b1e3290d-297b-48ed-89ac-590229a22bf0)\r\n![Screenshot from 2024-12-19 10-23-17](https://github.com/user-attachments/assets/29a5a3d2-bf9e-4e2a-8138-267944a1a2a7)\r\n\r\n\r\n",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2879/comments",
+            "created_at": "2024-12-19T06:52:58Z",
+            "labels": [],
+            "comments": [
+                {
+                    "author": "AdityaBhate",
+                    "comment": "@abhishekrj02 can you provide the exact URL where this is happening? I cant seem to replicate it\r\n\r\nCan I help with this issue"
+                },
+                {
+                    "author": "riya9142",
+                    "comment": "Could you point me to the file or component where this logic is implemented? I'd like to review the code and propose a fix."
+                },
+                {
+                    "author": "abhishekrj02",
+                    "comment": "Hey @AdityaBhate @riya9142 , I have fixed the issue and raised a pr for it."
+                },
+                {
+                    "author": "dakshmehta007",
+                    "comment": "> Hey @AdityaBhate @riya9142 , I have fixed the issue and raised a pr for it.\r\n\r\nThen why is this issue still open?"
+                }
+            ]
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2872,
+            "issue_title": "Decision Importer Agent Fails Due to Missing pfile Hash in Database",
+            "issue_body": "<!-- SPDX-FileCopyrightText: \u00a9 Fossology contributors\r\n\r\n     SPDX-License-Identifier: GPL-2.0-only\r\n-->\r\n\r\n<!-- Before filling this issue, please read the Wiki (https://github.com/fossology/fossology/wiki)\r\nand search if the bug do not already exists in the issues (https://github.com/fossology/fossology/issues). -->\r\n\r\n### Description\r\n\r\nWhen using the FOSSology dump feature to import decisions from one server to another, the `decisionimporter` agent fails completely due to a missing `pfile` with a specific hash in the database. The agent does not skip problematic files, leading to the complete failure of the job and no decisions being imported.\r\n\r\n#### How to reproduce\r\n\r\n- Export decisions from Server A using the dump feature.\r\n- Attempt to import these decisions on Server B using the same feature.\r\n- Observe the failure of the `decisionimporter` agent when processing an upload containing missing `pfile` hashes.\r\n\r\n#### Screenshots\r\n\r\n![Screenshot from 2024-11-26 12-14-29](https://github.com/user-attachments/assets/4d255531-c9bf-495c-86ba-379d52d5260f)\r\n\r\n\r\n",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2872/comments",
+            "created_at": "2024-11-26T06:52:32Z",
+            "labels": [],
+            "comments": []
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2861,
+            "issue_title": "New License Added to licenseRef.json Not Detected During File Scanning",
+            "issue_body": "Description\r\nI added new license information to licenseRef.json following the existing format and restarted the Fossology repository. In the Admin section under License Admin, the newly added license is visible and selectable. However, when scanning code files that include this new license information, the scanner fails to detect the license.\r\n\r\nHow to reproduce\r\nOpen licenseRef.json and add a new license entry following the existing format.\r\nRestart the Fossology repository to apply the changes.\r\nNavigate to Admin > License Admin and verify that the new license appears in the selection list.\r\nPerform a scan on code files that contain the new license information.\r\nObserve that the scanner does not detect the newly added license.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2861/comments",
+            "created_at": "2024-11-03T01:30:37Z",
+            "labels": [
+                "question"
+            ],
+            "comments": [
+                {
+                    "author": "ritankarsaha",
+                    "comment": "@YovM I guess  double-checking the newly added license entry and ensuring  the format matches the existing licenses.\r\nAlso Checking  the regex or match field and Ensuring it correctly captures the license text in scanned files can be a possible solution to this problem.\r\n"
+                },
+                {
+                    "author": "shaheemazmalmmd",
+                    "comment": "@YovM : Adding the license in licenseref.json will give you a match only if the license added and license identified have match over 65% using monk. other agents doesn't work with only adding a license.\r\n\r\nex: for NOMOS you one have to add the license snippets to identify a license in future."
+                }
+            ]
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2855,
+            "issue_title": "number. Of items processed is zero even though there are scanoss results",
+            "issue_body": "<!-- SPDX-FileCopyrightText: \u00a9 Fossology contributors\r\n\r\n     SPDX-License-Identifier: GPL-2.0-only\r\n-->\r\n\r\n<!-- Before filling this issue, please read the Wiki (https://github.com/fossology/fossology/wiki)\r\nand search if the bug do not already exists in the issues (https://github.com/fossology/fossology/issues). -->\r\n\r\n### Description\r\n\r\nnumber. Of items processed is zero even though there are scanoss results in a upload.\r\n\r\nit will confuse fossology users as most of them will look in to processed item count to identify if there are any findings.\r\n\r\n#### How to reproduce\r\n\r\n* Upload any package and select scanOSS agent for scanning.\r\n\r\n#### Screenshots\r\n\r\n![screenShot144](https://github.com/user-attachments/assets/bedecc70-f2c4-4f6e-a0c6-1a7c2ee0d158)\r\n\r\n",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2855/comments",
+            "created_at": "2024-10-15T08:30:37Z",
+            "labels": [
+                "bug"
+            ],
+            "comments": [
+                {
+                    "author": "yours7himanshu",
+                    "comment": "I think i can solve this issue"
+                },
+                {
+                    "author": "Vaibhavsahu2810",
+                    "comment": "I've been troubleshooting this issue . Here\u2019s a summary of the steps I've taken so far:\r\n\r\nInitial Logging in src/scanoss/agent/snippet_scan.c and src/scanoss/agent/main.c: I added detailed logs to verify that scanning is completed properly.  both snippet_scan.c and main.c appear to perform scanning as expected, indicating these components are functioning correctly.\r\n\r\nI next verified whether agent_scanoss was correctly adding jobs to the jobqueue in database. However, as shown in the second image, the jobqueue table doesnot have proper data.\r\n![image](https://github.com/user-attachments/assets/aba1501d-d54e-40e9-a665-1391471e3f67)\r\n\r\nAfter further investigation, I found that the AgentAdd function was missing in src/scanoss/ui/agent-scanoss.php. This function is essential as it calls doAgentAdd, which is responsible for adding scan information to the job queue table. I went ahead and implemented the missing AgentAdd function to call doAgentAdd as required.\r\n![image](https://github.com/user-attachments/assets/7668b44c-9580-4e4b-bd83-d605f109165b)\r\n\r\nDespite adding the AgentAdd function, the issue persists.\r\n\r\n@shaheemazmalmmd  Could you please advise if there might be additional steps or specific configurations I'm missing that could resolve this issue?\r\n"
+                },
+                {
+                    "author": "abhishekrj02",
+                    "comment": "I was investigating the issue and have made some progress. After going through the logs,\r\n![Screenshot from 2024-11-17 00-50-42](https://github.com/user-attachments/assets/d8343015-4518-497e-bd7a-47b9679cd147)\r\nI think it is stuck somewhere.\r\n@shaheemazmalmmd Please guide me through furthur checkpoints.\r\n"
+                },
+                {
+                    "author": "SalmanDeveloperz",
+                    "comment": "Hi, Could you please confirm if this issue is still open?"
+                },
+                {
+                    "author": "shaheemazmalmmd",
+                    "comment": "> Hi, Could you please confirm if this issue is still open?\r\n\r\nIssue is fixed."
+                }
+            ]
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2841,
+            "issue_title": "Creation of rule form moves to page 2 if exceeds 1-",
+            "issue_body": "<!-- SPDX-FileCopyrightText: \u00a9 Fossology contributors\r\n\r\n     SPDX-License-Identifier: GPL-2.0-only\r\n-->\r\n\r\n### Description\r\n\r\nif the rule count exceeds, the creation form moves to new page which is, confusing.\r\n\r\nknown issue from : https://github.com/fossology/fossology/pull/2782\r\n\r\n#### How to reproduce\r\n\r\n* Create over 10 rules for compatibility agent. ",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2841/comments",
+            "created_at": "2024-09-30T06:11:12Z",
+            "labels": [
+                "bug"
+            ],
+            "comments": [
+                {
+                    "author": "Vaibhavsahu2810",
+                    "comment": "@shaheemazmalmmd By modifying the pagination settings, I\u2019ve ensured that the creation form remains on the same page even when more rules are added, providing a smoother and less confusing user experience. Please let me know if further adjustments are needed.\r\nThank you!"
+                }
+            ]
+        },
+        {
+            "repo": "fossology",
+            "issue_number": 2835,
+            "issue_title": "Database error : Could not receive data from client: Connection reset by peer",
+            "issue_body": "<!-- SPDX-FileCopyrightText: \u00a9 Fossology contributors\r\n\r\n     SPDX-License-Identifier: GPL-2.0-only\r\n-->\r\n\r\n<!-- Before filling this issue, please read the Wiki (https://github.com/fossology/fossology/wiki)\r\nand search if the bug do not already exists in the issues (https://github.com/fossology/fossology/issues). -->\r\n\r\n### Description\r\n\r\nHi , we are getting exceptions at fossology apps due to database error : Could not receive data from client: Connection reset by peer. \r\n\r\nin the PostgreSQL log means that the client end of the connection has vanished without properly closing the database session.\r\n\r\ncan someone please suggest.\r\n\r\n#### How to reproduce\r\n\r\nFor a bug: Describe the bug and list the steps you used when the issue occurred.\r\n\r\nFor an enhancement or new feature: Describe your needs/expected results.\r\n\r\n#### Screenshots\r\n\r\nIf applicable, add screenshots to help explain your problem.\r\n\r\n### Versions\r\n\r\n* Last commit id on master:\r\n* Operating System (lsb_release -a):\r\n\r\n### Logs\r\n\r\nAny logs (if any) generated in\r\n\r\n#### FOSSology logs\r\n\r\nLogs generated under /var/log/fossology/fossology.log\r\n\r\n#### Apache logs\r\n\r\nLogs generated under /var/log/apache2/error.log\r\n\r\n#### Job logs\r\n\r\nLogs generated under Geeky Scan Details (Job history => click on agent's job id)\r\n\r\n",
+            "comments_url": "https://api.github.com/repos/fossology/fossology/issues/2835/comments",
+            "created_at": "2024-09-19T08:21:37Z",
+            "labels": [
+                "question"
+            ],
+            "comments": [
+                {
+                    "author": "shaheemazmalmmd",
+                    "comment": "@rahulkumartandf Usually this type of issue will happen because if network issues or running Max Connections or because of the server load."
+                },
+                {
+                    "author": "shaheemazmalmmd",
+                    "comment": "Closing as there is no response from user since last 3 months."
+                }
+            ]
+        }
+    ]
+}
