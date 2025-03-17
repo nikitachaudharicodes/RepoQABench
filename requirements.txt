@@ -1,4 +1,5 @@
-requests
 pandas
 transformers
-python-dotenv
+requests>=2.25.0
+beautifulsoup4>=4.9.3
+python-dotenv>=0.19.0
