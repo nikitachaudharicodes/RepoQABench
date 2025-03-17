@@ -8,12 +8,12 @@
 
 Structure of RepoQABench
 
-Field---------------------_Description
-Repository Name------Name of the Repo
-Programming Language-------python, java, c, etc
-Question-------------dev-level repo-wide query
-Golden Answer(Text & Code)------natual lang explanation + extracted relevant code snippet
-Supporting COntext -----retrieved files, issue discussions
-License-----mit, apache, bsd, etc
+Field                        Description
+Repository Name              Name of the Repo
+Programming Language         python, java, c, etc
+Question                     dev-level repo-wide query
+Golden Answer(Text & Code)   natural lang explanation + extracted relevant code snippet
+Supporting COntext           retrieved files, issue discussions
+License                      mit, apache, bsd, etc
 
 
