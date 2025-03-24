@@ -1,0 +1,126 @@
+{
+  "repo_name": "pandas-dev_pandas",
+  "issue_id": "38519",
+  "issue_description": "# BUG: Augmented arithmetic assignments will modify original series starting version 1.1.4\n\n- [x] I have checked that this issue has not already been reported.\r\n\r\n- [x] I have confirmed this bug exists on the latest version of pandas.\r\n\r\n- [ ] (optional) I have confirmed this bug exists on the master branch of pandas.\r\n\r\n---\r\n\r\n#### Code Sample, a copy-pastable example\r\n\r\n```python\r\nimport pandas as pd\r\n\r\ns = pd.Series([1, 2, 3])\r\ns1 = s.iloc[1:]\r\ns1 -= 4\r\ns\r\n\r\n# output\r\n# 0    1\r\n# 1   -2\r\n# 2   -1\r\n# dtype: int64\r\n\r\ns = pd.Series([1, 2, 3])\r\ns1 = s.iloc[1:]\r\ns1 = s1 - 4\r\ns\r\n\r\n# output\r\n# 0    1\r\n# 1    2\r\n# 2    3\r\n# dtype: int64\r\n\r\n```\r\n\r\n#### Problem description\r\n\r\nStarting with version `1.1.4` when applying either of `+=`, `-=`, `*=` or `/=` operators on a series `s1` that was sliced from original series `s`, the change propagates to original series `s`. When using normal assignment operators `s1 = s1 - 4` the problem is not present, which leads to inconsistent behavior.\r\n#### Output of ``pd.show_versions()``\r\n\r\n<details>\r\n\r\nINSTALLED VERSIONS\r\n------------------\r\ncommit           : 67a3d4241ab84419856b84fc3ebc9abcbe66c6b3\r\npython           : 3.7.9.final.0\r\npython-bits      : 64\r\nOS               : Windows\r\nOS-release       : 10\r\nVersion          : 10.0.18362\r\nmachine          : AMD64\r\nprocessor        : Intel64 Family 6 Model 158 Stepping 13, GenuineIntel\r\nbyteorder        : little\r\nLC_ALL           : None\r\nLANG             : None\r\nLOCALE           : None.None\r\n\r\npandas           : 1.1.4\r\nnumpy            : 1.17.2\r\npytz             : 2020.4\r\ndateutil         : 2.8.0\r\npip              : 20.3.3\r\nsetuptools       : 51.0.0.post20201207\r\nCython           : 0.28.5\r\npytest           : 3.8.1\r\nhypothesis       : None\r\nsphinx           : None\r\nblosc            : None\r\nfeather          : None\r\nxlsxwriter       : None\r\nlxml.etree       : None\r\nhtml5lib         : None\r\npymysql          : None\r\npsycopg2         : None\r\njinja2           : 2.11.2\r\nIPython          : 7.19.0\r\npandas_datareader: None\r\nbs4              : None\r\nbottleneck       : None\r\nfsspec           : None\r\nfastparquet      : None\r\ngcsfs            : None\r\nmatplotlib       : 3.3.3\r\nnumexpr          : None\r\nodfpy            : None\r\nopenpyxl         : None\r\npandas_gbq       : None\r\npyarrow          : None\r\npytables         : None\r\npyxlsb           : None\r\ns3fs             : None\r\nscipy            : 1.5.4\r\nsqlalchemy       : None\r\ntables           : None\r\ntabulate         : None\r\nxarray           : None\r\nxlrd             : None\r\nxlwt             : None\r\nnumba            : None\r\n\r\n</details>\r\n",
+  "issue_comments": [
+    {
+      "id": 746150265,
+      "user": "simonjayhawkins",
+      "body": "Thanks @nikita-ivanov for the report.\r\n\r\n> Starting with version `1.1.4` when applying either of `+=`, `-=`, `*=` or `/=` operators on a series `s1` that was sliced from original series `s`, the change propagates to original series `s`.\r\n\r\nThis was changed in [d8c8cbb90544b77e5da1daa7274eba7bef3257b9] REGR: inplace Series op not actually operating inplace (#37508) to fix a regression for DataFrame behaviour.\r\n\r\nIt looks like is also corrected a long standing bug/inconsistency with the series behaviour.\r\n\r\ncc @jbrockmendel "
+    },
+    {
+      "id": 746215598,
+      "user": "nikita-ivanov",
+      "body": "@simonjayhawkins thanks for the update. Do I see it correctly that the future behavior would the same as it is now for `-=` (and similar operations)? More precisely,\r\n```python\r\ns = pd.Series([1, 2, 3])\r\ns1 = s.iloc[1:]\r\ns1 -= 4\r\ns\r\n\r\n# output\r\n# 0    1\r\n# 1   -2\r\n# 2   -1\r\n# dtype: int64\r\n\r\ns = pd.Series([1, 2, 3])\r\ns1 = s.iloc[1:]\r\ns1 = s1 - 4\r\ns\r\n\r\n# output\r\n# 0    1\r\n# 1   -2\r\n# 2   -1\r\n# dtype: int64\r\n```"
+    },
+    {
+      "id": 746282032,
+      "user": "simonjayhawkins",
+      "body": "for the `s1 = s1 - 4` case, the expected output remains as \r\n\r\n```\r\n# 0    1\r\n# 1    2\r\n# 2    3\r\n# dtype: int64\r\n```\r\n\r\n> When using normal assignment operators `s1 = s1 - 4` the problem is not present, which leads to inconsistent behavior.\r\n\r\nin Python, the `a = a+1` is not __always__ equivalent to `a+=1`.\r\n\r\nUnder the hood, Python calls 'special methods' for the various syntactical constructs. in this case `__add__` and `__iadd__`\r\n\r\nif the object, in this case `a`, implements `__iadd__`, that will be called. In the case of mutable sequences, `a` will change in place. However, when `a` does not implement `__iadd__`, the expression `a+=1` has the same effect as \r\n`a = a+1`. The expression `a+1` will be evaluated first, producing a new object, which is then bound to `a`. In other words, the object bound to `a` may or may not change, depending on whether `a` implements `__iadd__`\r\n\r\nIn general, for mutable sequences, it is common for `__iadd__` to be implemented and that `+=` happens inplace. For immutable sequences, clearly there is no way for that to happen.\r\n\r\nA pandas Series is a mutable sequence that implements `__iadd__`\r\n"
+    },
+    {
+      "id": 746289136,
+      "user": "nikita-ivanov",
+      "body": "@simonjayhawkins thanks for clarifications. My concern is that prior to `1.1.4` the behavior was the same for both cases. And I did not find change of behavior information in the release notes. However, this change can cause some bugs (the case for me). I shall switch to `s1 = s1 - 4`, but it might be worthwhile to mention new behavior in the release notes."
+    },
+    {
+      "id": 746293128,
+      "user": "simonjayhawkins",
+      "body": "@nikita-ivanov I agree that a long standing behaviour has been changed without adequate notice.\r\n\r\nWe will await comment from @jbrockmendel for the way forward here.\r\n\r\nI am reluctant to add a regression tag here as I think the new behaviour is more correct and we are not currently planning any more releases in the 1.1.x series."
+    },
+    {
+      "id": 746630890,
+      "user": "jbrockmendel",
+      "body": "> I am reluctant to add a regression tag here as I think the new behaviour is more correct\r\n\r\nAgreed.\r\n\r\n"
+    },
+    {
+      "id": 774693178,
+      "user": "MarcoGorelli",
+      "body": "> > I am reluctant to add a regression tag here as I think the new behaviour is more correct\r\n> \r\n> Agreed.\r\n\r\nSo, should the release notes be clarified, or can this be closed? @jbrockmendel "
+    },
+    {
+      "id": 774791771,
+      "user": "jbrockmendel",
+      "body": "If someone wants to flesh out a release note i wont object"
+    },
+    {
+      "id": 1282412668,
+      "user": "SophiaTangHart",
+      "body": "I'd like to take it and clarify on the release note. I'd like to let you know that this is my first time contributing."
+    },
+    {
+      "id": 1282463179,
+      "user": "MarcoGorelli",
+      "body": "Sure, go ahead - here's the contributing guide https://pandas.pydata.org/docs/dev/development/contributing_docstring.html , please do ask (here or on Slack) if anything's not clear"
+    },
+    {
+      "id": 1284021461,
+      "user": "SophiaTangHart",
+      "body": "@MarcoGorelli, Thank you. I'm reading the contributing guide. \r\nI'm also new to Slack. How do I join Pandas Slack group? Do I refer to version 1.1.4 #38519 if I need clarification? Do I need to address certain people? Thanks!"
+    },
+    {
+      "id": 1284152416,
+      "user": "MarcoGorelli",
+      "body": "Hey - for Slack: https://pandas.pydata.org/docs/dev/development/community.html?highlight=slack#community-slack\r\n\r\nI'd suggest just rewording\r\n\r\nhttps://github.com/pandas-dev/pandas/blob/ac648eeaf5c27ab957e8cd284eb7e49a45232f00/doc/source/whatsnew/v1.1.4.rst#L34\r\n\r\n, e.g. to\r\n```\r\nFixed regression in inplace arithmetic operation (e.g. `+=`) on a Series not updating the parent DataFrame/Series\r\n```"
+    },
+    {
+      "id": 1284297461,
+      "user": "SophiaTangHart",
+      "body": "@MarcoGorelli, thank you for directing me to join Slack. And thank you for your suggestion. \r\n\r\nI'm not able to open \r\n\r\n - Fixed regression in inplace arithmetic operation on a Series not updating the parent DataFrame (:issue:`36373`) \r\n\r\nto reword it. How can I access the docstring? Do I need to do it through my GitHut account? Thank you."
+    },
+    {
+      "id": 1284368010,
+      "user": "MarcoGorelli",
+      "body": "> Do I need to do it through my GitHut account?\r\n\r\nYeah you'll need to fork the repo, clone it, checkout a new branch, stage, commit, push, open a pull request - if you read through https://pandas.pydata.org/docs/dev/development/contributing.html it should all be explained, else we're available on Slack to help out"
+    },
+    {
+      "id": 1284865608,
+      "user": "SophiaTangHart",
+      "body": "take"
+    },
+    {
+      "id": 1404304429,
+      "user": "kathleenhang",
+      "body": "@SophiaTangHart Hi there, do you mind if I take the issue since it seems to be inactive for some time?"
+    },
+    {
+      "id": 1404312731,
+      "user": "SophiaTangHart",
+      "body": "Sure. Sorry for taking a while. I've unassigned myself. Thanks."
+    },
+    {
+      "id": 1404320512,
+      "user": "kathleenhang",
+      "body": "take"
+    }
+  ],
+  "text_context": "# BUG: Augmented arithmetic assignments will modify original series starting version 1.1.4\n\n- [x] I have checked that this issue has not already been reported.\r\n\r\n- [x] I have confirmed this bug exists on the latest version of pandas.\r\n\r\n- [ ] (optional) I have confirmed this bug exists on the master branch of pandas.\r\n\r\n---\r\n\r\n#### Code Sample, a copy-pastable example\r\n\r\n```python\r\nimport pandas as pd\r\n\r\ns = pd.Series([1, 2, 3])\r\ns1 = s.iloc[1:]\r\ns1 -= 4\r\ns\r\n\r\n# output\r\n# 0    1\r\n# 1   -2\r\n# 2   -1\r\n# dtype: int64\r\n\r\ns = pd.Series([1, 2, 3])\r\ns1 = s.iloc[1:]\r\ns1 = s1 - 4\r\ns\r\n\r\n# output\r\n# 0    1\r\n# 1    2\r\n# 2    3\r\n# dtype: int64\r\n\r\n```\r\n\r\n#### Problem description\r\n\r\nStarting with version `1.1.4` when applying either of `+=`, `-=`, `*=` or `/=` operators on a series `s1` that was sliced from original series `s`, the change propagates to original series `s`. When using normal assignment operators `s1 = s1 - 4` the problem is not present, which leads to inconsistent behavior.\r\n#### Output of ``pd.show_versions()``\r\n\r\n<details>\r\n\r\nINSTALLED VERSIONS\r\n------------------\r\ncommit           : 67a3d4241ab84419856b84fc3ebc9abcbe66c6b3\r\npython           : 3.7.9.final.0\r\npython-bits      : 64\r\nOS               : Windows\r\nOS-release       : 10\r\nVersion          : 10.0.18362\r\nmachine          : AMD64\r\nprocessor        : Intel64 Family 6 Model 158 Stepping 13, GenuineIntel\r\nbyteorder        : little\r\nLC_ALL           : None\r\nLANG             : None\r\nLOCALE           : None.None\r\n\r\npandas           : 1.1.4\r\nnumpy            : 1.17.2\r\npytz             : 2020.4\r\ndateutil         : 2.8.0\r\npip              : 20.3.3\r\nsetuptools       : 51.0.0.post20201207\r\nCython           : 0.28.5\r\npytest           : 3.8.1\r\nhypothesis       : None\r\nsphinx           : None\r\nblosc            : None\r\nfeather          : None\r\nxlsxwriter       : None\r\nlxml.etree       : None\r\nhtml5lib         : None\r\npymysql          : None\r\npsycopg2         : None\r\njinja2           : 2.11.2\r\nIPython          : 7.19.0\r\npandas_datareader: None\r\nbs4              : None\r\nbottleneck       : None\r\nfsspec           : None\r\nfastparquet      : None\r\ngcsfs            : None\r\nmatplotlib       : 3.3.3\r\nnumexpr          : None\r\nodfpy            : None\r\nopenpyxl         : None\r\npandas_gbq       : None\r\npyarrow          : None\r\npytables         : None\r\npyxlsb           : None\r\ns3fs             : None\r\nscipy            : 1.5.4\r\nsqlalchemy       : None\r\ntables           : None\r\ntabulate         : None\r\nxarray           : None\r\nxlrd             : None\r\nxlwt             : None\r\nnumba            : None\r\n\r\n</details>\r\n\n\nThanks @nikita-ivanov for the report.\r\n\r\n> Starting with version `1.1.4` when applying either of `+=`, `-=`, `*=` or `/=` operators on a series `s1` that was sliced from original series `s`, the change propagates to original series `s`.\r\n\r\nThis was changed in [d8c8cbb90544b77e5da1daa7274eba7bef3257b9] REGR: inplace Series op not actually operating inplace (#37508) to fix a regression for DataFrame behaviour.\r\n\r\nIt looks like is also corrected a long standing bug/inconsistency with the series behaviour.\r\n\r\ncc @jbrockmendel \n\n@simonjayhawkins thanks for the update. Do I see it correctly that the future behavior would the same as it is now for `-=` (and similar operations)? More precisely,\r\n```python\r\ns = pd.Series([1, 2, 3])\r\ns1 = s.iloc[1:]\r\ns1 -= 4\r\ns\r\n\r\n# output\r\n# 0    1\r\n# 1   -2\r\n# 2   -1\r\n# dtype: int64\r\n\r\ns = pd.Series([1, 2, 3])\r\ns1 = s.iloc[1:]\r\ns1 = s1 - 4\r\ns\r\n\r\n# output\r\n# 0    1\r\n# 1   -2\r\n# 2   -1\r\n# dtype: int64\r\n```\n\nfor the `s1 = s1 - 4` case, the expected output remains as \r\n\r\n```\r\n# 0    1\r\n# 1    2\r\n# 2    3\r\n# dtype: int64\r\n```\r\n\r\n> When using normal assignment operators `s1 = s1 - 4` the problem is not present, which leads to inconsistent behavior.\r\n\r\nin Python, the `a = a+1` is not __always__ equivalent to `a+=1`.\r\n\r\nUnder the hood, Python calls 'special methods' for the various syntactical constructs. in this case `__add__` and `__iadd__`\r\n\r\nif the object, in this case `a`, implements `__iadd__`, that will be called. In the case of mutable sequences, `a` will change in place. However, when `a` does not implement `__iadd__`, the expression `a+=1` has the same effect as \r\n`a = a+1`. The expression `a+1` will be evaluated first, producing a new object, which is then bound to `a`. In other words, the object bound to `a` may or may not change, depending on whether `a` implements `__iadd__`\r\n\r\nIn general, for mutable sequences, it is common for `__iadd__` to be implemented and that `+=` happens inplace. For immutable sequences, clearly there is no way for that to happen.\r\n\r\nA pandas Series is a mutable sequence that implements `__iadd__`\r\n\n\n@simonjayhawkins thanks for clarifications. My concern is that prior to `1.1.4` the behavior was the same for both cases. And I did not find change of behavior information in the release notes. However, this change can cause some bugs (the case for me). I shall switch to `s1 = s1 - 4`, but it might be worthwhile to mention new behavior in the release notes.\n\n@nikita-ivanov I agree that a long standing behaviour has been changed without adequate notice.\r\n\r\nWe will await comment from @jbrockmendel for the way forward here.\r\n\r\nI am reluctant to add a regression tag here as I think the new behaviour is more correct and we are not currently planning any more releases in the 1.1.x series.\n\n> I am reluctant to add a regression tag here as I think the new behaviour is more correct\r\n\r\nAgreed.\r\n\r\n\n\n> > I am reluctant to add a regression tag here as I think the new behaviour is more correct\r\n> \r\n> Agreed.\r\n\r\nSo, should the release notes be clarified, or can this be closed? @jbrockmendel \n\nIf someone wants to flesh out a release note i wont object\n\nI'd like to take it and clarify on the release note. I'd like to let you know that this is my first time contributing.\n\nSure, go ahead - here's the contributing guide https://pandas.pydata.org/docs/dev/development/contributing_docstring.html , please do ask (here or on Slack) if anything's not clear\n\n@MarcoGorelli, Thank you. I'm reading the contributing guide. \r\nI'm also new to Slack. How do I join Pandas Slack group? Do I refer to version 1.1.4 #38519 if I need clarification? Do I need to address certain people? Thanks!\n\nHey - for Slack: https://pandas.pydata.org/docs/dev/development/community.html?highlight=slack#community-slack\r\n\r\nI'd suggest just rewording\r\n\r\nhttps://github.com/pandas-dev/pandas/blob/ac648eeaf5c27ab957e8cd284eb7e49a45232f00/doc/source/whatsnew/v1.1.4.rst#L34\r\n\r\n, e.g. to\r\n```\r\nFixed regression in inplace arithmetic operation (e.g. `+=`) on a Series not updating the parent DataFrame/Series\r\n```\n\n@MarcoGorelli, thank you for directing me to join Slack. And thank you for your suggestion. \r\n\r\nI'm not able to open \r\n\r\n - Fixed regression in inplace arithmetic operation on a Series not updating the parent DataFrame (:issue:`36373`) \r\n\r\nto reword it. How can I access the docstring? Do I need to do it through my GitHut account? Thank you.\n\n> Do I need to do it through my GitHut account?\r\n\r\nYeah you'll need to fork the repo, clone it, checkout a new branch, stage, commit, push, open a pull request - if you read through https://pandas.pydata.org/docs/dev/development/contributing.html it should all be explained, else we're available on Slack to help out\n\ntake\n\n@SophiaTangHart Hi there, do you mind if I take the issue since it seems to be inactive for some time?\n\nSure. Sorry for taking a while. I've unassigned myself. Thanks.\n\ntake",
+  "pr_link": "https://github.com/pandas-dev/pandas/pull/50981",
+  "code_context": [],
+  "questions": [
+    "@simonjayhawkins thanks for the update. Do I see it correctly that the future behavior would the same as it is now for `-=` (and similar operations)? More precisely,\r\n```python\r\ns = pd.Series([1, 2, 3])\r\ns1 = s.iloc[1:]\r\ns1 -= 4\r\ns\r\n\r\n# output\r\n# 0    1\r\n# 1   -2\r\n# 2   -1\r\n# dtype: int64\r\n\r\ns = pd.Series([1, 2, 3])\r\ns1 = s.iloc[1:]\r\ns1 = s1 - 4\r\ns\r\n\r\n# output\r\n# 0    1\r\n# 1   -2\r\n# 2   -1\r\n# dtype: int64\r\n```",
+    "@MarcoGorelli, Thank you. I'm reading the contributing guide. \r\nI'm also new to Slack. How do I join Pandas Slack group? Do I refer to version 1.1.4 #38519 if I need clarification? Do I need to address certain people? Thanks!",
+    "Hey - for Slack: https://pandas.pydata.org/docs/dev/development/community.html?highlight=slack#community-slack\r\n\r\nI'd suggest just rewording\r\n\r\nhttps://github.com/pandas-dev/pandas/blob/ac648eeaf5c27ab957e8cd284eb7e49a45232f00/doc/source/whatsnew/v1.1.4.rst#L34\r\n\r\n, e.g. to\r\n```\r\nFixed regression in inplace arithmetic operation (e.g. `+=`) on a Series not updating the parent DataFrame/Series\r\n```",
+    "@MarcoGorelli, thank you for directing me to join Slack. And thank you for your suggestion. \r\n\r\nI'm not able to open \r\n\r\n - Fixed regression in inplace arithmetic operation on a Series not updating the parent DataFrame (:issue:`36373`) \r\n\r\nto reword it. How can I access the docstring? Do I need to do it through my GitHut account? Thank you."
+  ],
+  "golden_answers": [
+    "for the `s1 = s1 - 4` case, the expected output remains as \r\n\r\n```\r\n# 0    1\r\n# 1    2\r\n# 2    3\r\n# dtype: int64\r\n```\r\n\r\n> When using normal assignment operators `s1 = s1 - 4` the problem is not present, which leads to inconsistent behavior.\r\n\r\nin Python, the `a = a+1` is not __always__ equivalent to `a+=1`.\r\n\r\nUnder the hood, Python calls 'special methods' for the various syntactical constructs. in this case `__add__` and `__iadd__`\r\n\r\nif the object, in this case `a`, implements `__iadd__`, that will be called. In the case of mutable sequences, `a` will change in place. However, when `a` does not implement `__iadd__`, the expression `a+=1` has the same effect as \r\n`a = a+1`. The expression `a+1` will be evaluated first, producing a new object, which is then bound to `a`. In other words, the object bound to `a` may or may not change, depending on whether `a` implements `__iadd__`\r\n\r\nIn general, for mutable sequences, it is common for `__iadd__` to be implemented and that `+=` happens inplace. For immutable sequences, clearly there is no way for that to happen.\r\n\r\nA pandas Series is a mutable sequence that implements `__iadd__`",
+    "Hey - for Slack: https://pandas.pydata.org/docs/dev/development/community.html?highlight=slack#community-slack\r\n\r\nI'd suggest just rewording\r\n\r\nhttps://github.com/pandas-dev/pandas/blob/ac648eeaf5c27ab957e8cd284eb7e49a45232f00/doc/source/whatsnew/v1.1.4.rst#L34\r\n\r\n, e.g. to\r\n```\r\nFixed regression in inplace arithmetic operation (e.g. `+=`) on a Series not updating the parent DataFrame/Series\r\n```",
+    "@MarcoGorelli, thank you for directing me to join Slack. And thank you for your suggestion. \r\n\r\nI'm not able to open \r\n\r\n - Fixed regression in inplace arithmetic operation on a Series not updating the parent DataFrame (:issue:`36373`) \r\n\r\nto reword it. How can I access the docstring? Do I need to do it through my GitHut account? Thank you.",
+    "> Do I need to do it through my GitHut account?\r\n\r\nYeah you'll need to fork the repo, clone it, checkout a new branch, stage, commit, push, open a pull request - if you read through https://pandas.pydata.org/docs/dev/development/contributing.html it should all be explained, else we're available on Slack to help out"
+  ],
+  "questions_generated": [
+    "What is the main issue reported in pandas version 1.1.4 regarding augmented arithmetic assignments on sliced Series?",
+    "How does the behavior of augmented arithmetic assignments differ from normal assignments in the reported issue?",
+    "What was the reasoning behind the change leading to this issue, as indicated in the commit history?",
+    "What version of pandas introduced the bug related to augmented arithmetic assignments on Series slices?",
+    "What are the implications of the bug on data manipulation tasks in pandas?"
+  ],
+  "golden_answers_generated": [
+    "In pandas version 1.1.4, when applying augmented arithmetic assignments like '+=', '-=', '*=', or '/=' on a Series 's1' that is sliced from an original Series 's', the changes affect the original Series 's'. This behavior is inconsistent with the use of normal assignment operators, where a similar operation does not propagate changes to the original Series.",
+    "The behavior differs in that augmented arithmetic assignments modify the original Series from which the slice was taken, whereas normal assignment operations do not. For example, using 's1 -= 4' modifies both 's1' and the original Series 's', while 's1 = s1 - 4' only modifies 's1', leaving 's' unchanged.",
+    "The change was introduced in commit 'd8c8cbb90544b77e5da1daa7274eba7bef3257b9' to fix a regression related to inplace operations for DataFrames. This commit aimed to ensure that inplace operations actually modify the data inplace, but it inadvertently affected the behavior of Series slices with augmented arithmetic assignments.",
+    "The bug was introduced in pandas version 1.1.4. Prior versions did not exhibit this behavior where changes to sliced Series using augmented arithmetic assignments propagate to the original Series.",
+    "The bug can lead to unexpected side effects during data manipulation tasks where slices of a Series are used. Users expecting isolated changes to slices may inadvertently alter the original data, leading to potential data integrity issues and incorrect results in data analysis workflows."
+  ]
+}

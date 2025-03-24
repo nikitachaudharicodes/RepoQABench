@@ -292,7 +292,7 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(description='Extract and generate Q&A pairs from GitHub issue data for RepoQABench')
-    parser.add_argument('input', help='JSON file or directory to process')
+    parser.add_argument('--input', help='JSON file or directory to process')
     parser.add_argument('--api-key', help='OpenAI API key for generating QA pairs')
     parser.add_argument('--num-pairs', type=int, default=5, help='Number of QA pairs to generate per file')
     

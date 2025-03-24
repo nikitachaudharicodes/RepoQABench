@@ -240,7 +240,7 @@ def main():
     import os
     
     parser = argparse.ArgumentParser(description='Scrape GitHub issues into JSON files')
-    parser.add_argument('url', help='GitHub issue URL to scrape')
+    parser.add_argument('--url', help='GitHub issue URL to scrape')
     parser.add_argument('--pr', help='GitHub PR URL to associate with this issue (optional)')
     parser.add_argument('--token', help='GitHub API token (override environment variable)')
     
