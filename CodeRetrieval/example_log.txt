@@ -1,0 +1,58 @@
+Using device: cuda
+Loaded 24 issues
+Loading file embeddings from code_embeddings_fossology_FOSSologyUI/file_embeddings.json...
+Loaded 148 file embeddings
+Loading function embeddings from code_embeddings_fossology_FOSSologyUI/function_embeddings.json...
+Loaded 286 function embeddings
+Loading class embeddings from code_embeddings_fossology_FOSSologyUI/class_embeddings.json...
+Loaded 0 class embeddings
+Total embeddings loaded: 434
+================================================================================
+ISSUE #253: Improvement : Dark Mode Switch Delay
+================================================================================
+Description: <!-- Before filling this issue, please read the wiki (https://github.com/fossology/FOSSologyUI/wiki)
+and search if the bug do not already exists in the issues (https://github.com/fossology/FOSSologyUI/issues). -->
+
+### Description
+
+When we are switching from dark mode to light mode and vice ver...
+
+EXTRACTED CODE CONTEXT:
+- Functions mentioned: ['capture', 'issues', 'wiki']
+- Classes mentioned: ['Light', 'Windows', 'Before', 'Describe', 'I', 'Switch', 'Can', 'UI', 'DarkMode', 'Repeatedly', 'Notice', 'Improvement', 'Mode', 'OS', 'Scroll', 'Bottom', 'Browser', 'FossologyUI', 'Versions', 'Video', 'Page', 'FOSSologyUI', 'Last', 'You', 'Description', 'Go', 'Chrome', 'How', 'When', 'Dark', 'Fixed', 'Issue', 'Delay']
+- Files mentioned: []
+- Inline code refs: []
+- Code blocks: 0
+
+SEARCH QUERY: Improvement : Dark Mode Switch Delay Functions: capture, issues, wiki Classes: Light, Windows, Before, Describe, I, Switch, Can, UI, DarkMode, Repeate...
+
+SEARCHING FOR RELEVANT CODE...
+
+TOP 5 RELEVANT CODE SNIPPETS:
+
+1. FUNCTION: ValidateForm
+   File: src/pages/Admin/Users/Edit/token_space.jsx
+   Similarity: 0.9819
+
+2. FILE: Unknown
+   File: Unknown
+   Similarity: 0.9817
+
+3. FUNCTION: AccessLevel
+   File: src/components/Upload/CommonFields/AccessLevel/index.jsx
+   Similarity: 0.9814
+
+4. FUNCTION: Image
+   File: src/components/Widgets/Image/index.jsx
+   Similarity: 0.9812
+
+5. FUNCTION: LicenseDecider
+   File: src/components/Upload/CommonFields/LicenseDecider/index.jsx
+   Similarity: 0.9811
+
+MOST RELEVANT FILE: .storybook/main.js
+Similarity: 0.9817
+
+MOST RELEVANT FUNCTION: ValidateForm
+In file: src/pages/Admin/Users/Edit/token_space.jsx
+Similarity: 0.9819
