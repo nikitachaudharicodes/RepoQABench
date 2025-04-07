@@ -1,0 +1,14 @@
+repo = {
+    "https://github.com/processing/p5.js-web-editor",
+    "https://github.com/processing/p5.js-website",
+    "https://github.com/connieliu0/p5.js-showcase",
+    "https://github.com/processing/p5.js",
+    "https://github.com/jina-ai/GSoC",
+    "https://github.com/pandas-dev/pandas",
+    "https://github.com/numpy/numpy",
+    "https://github.com/facebookresearch/faiss",
+    "https://github.com/fossology/fossology"
+}
+
+
+webdev gsoc links = "https://github.com/idontknowjs/gsoc-web-projects#2-apache-foundation"

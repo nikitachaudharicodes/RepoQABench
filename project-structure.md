@@ -44,3 +44,22 @@ how do we identify golden answers?
 - most upvoted/agreed comment -> count replies or reactions
 - combination of comments -> merge multiple relevant responses
 - ai generated answer(optional) (if no good answer exists, generate one using gpt-4)
+
+
+
+
+----------------
+
+Data to Scrape:
+
+A. Repository Metadata (Basic info)
+
+repo_id: Unique identifier (from GitHub API)
+name: Repository name
+owner: Organization or individual maintaining it
+stars: Popularity indicator
+forks: Number of forks
+contributors: Number of active contributors
+primary_language: The main language used
+license: Legal usage constraints
+created_at, updated_at: Timestamps for tracking changes

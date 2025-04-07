@@ -17,3 +17,45 @@ Supporting COntext           retrieved files, issue discussions
 License                      mit, apache, bsd, etc
 
 
+
+Example Usage:
+
+github_issue_scraper.py
+python src/scraping/github_issue_scraper.py \
+  --url https://github.com/pandas-dev/pandas/issues/13852 \
+  --output_dir data/github_issues \
+  --token $GITHUB_TOKEN
+
+
+
+Folder structure:
+repoqabench/
+├── data/                    ← Raw and processed JSON files
+│   ├── github_issues/       ← All scraped GitHub issue files
+│   ├── qa_pairs/            ← Generated QA pairs (per issue or repo)
+│   ├── embeddings/          ← File, function, class embeddings
+│   ├── retrieval_outputs/   ← Top-k retrieval results
+│   └── llm_outputs/         ← Model completions (e.g., CQ7B_output.json)
+
+├── src/                     ← All Python source code
+│   ├── scraping/            ← GitHub issue/PR scrapers (JSON only)
+│   │   └── github_issue_scraper.py
+│   ├── generation/          ← QA and LLM output generation
+│   │   ├── qa_extractor.py
+│   │   └── model_wrappers/
+│   │       ├── CodeQwen7B.py
+│   │       └── DeepSeekCoder.py
+│   ├── retrieval/           ← Code retrieval logic
+│   │   ├── create_embedding.py
+│   │   └── json_code_retrieval.py
+│   ├── evaluation/          ← Metric scripts (to be added)
+│   │   └── evaluate_retrieval.py
+│   └── utils/               ← Shared utilities
+│       ├── file_io.py
+│       └── prompts.py
+
+├── notebooks/               ← Optional: Analysis, demo notebooks
+
+├── README.md                ← Overview, setup, usage instructions
+├── requirements.txt         ← Python dependencies
+└── .env / .gitignore        ← API keys & exclusions
