@@ -1,0 +1,34 @@
+[
+    {
+      "repo_name": "scrapy",
+      "repo_url": "https://github.com/scrapy/scrapy"
+    },
+    {
+      "repo_name": "pandas",
+      "repo_url": "https://github.com/pandas-dev/pandas"
+    },
+    {
+      "repo_name": "matplotlib",
+      "repo_url": "https://github.com/matplotlib/matplotlib"
+    },
+    {
+      "repo_name": "scipy",
+      "repo_url": "https://github.com/scipy/scipy"
+    },
+    {
+      "repo_name": "astropy",
+      "repo_url": "https://github.com/astropy/astropy"
+    },
+    {
+      "repo_name": "statsmodels",
+      "repo_url": "https://github.com/statsmodels/statsmodels"
+    },
+    {
+      "repo_name": "scikit-learn",
+      "repo_url": "https://github.com/scikit-learn/scikit-learn"
+    },
+    {
+      "repo_name": "fastapi",
+      "repo_url": "https://github.com/fastapi/fastapi"
+    }
+  ]
