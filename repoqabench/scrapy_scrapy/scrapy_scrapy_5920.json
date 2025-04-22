@@ -1,0 +1,100 @@
+{
+  "repo_name": "scrapy_scrapy",
+  "issue_id": "5920",
+  "issue_description": "# Remove docs for other projects from the Scrapy docs\n\nWe have some auto* statements for things from other projects, like itemadapter in https://github.com/scrapy/scrapy/blob/92f86fab062d179fd68590f1be6a24ca13ec33b6/docs/topics/items.rst?plain=1#L404 and parsel in https://github.com/scrapy/scrapy/blob/92f86fab062d179fd68590f1be6a24ca13ec33b6/docs/topics/selectors.rst#L1037.\r\n\r\nWe should find these and remove them, instead linking to the other projects docs and maybe adding some explanations locally.",
+  "issue_comments": [
+    {
+      "id": 1537185499,
+      "user": "amedina1570",
+      "body": "I would like to contribute to this issue. Is anybody working with it?"
+    },
+    {
+      "id": 1537790044,
+      "user": "Gallaecio",
+      "body": "@amedina1570 Please go ahead"
+    },
+    {
+      "id": 1556032687,
+      "user": "whendo",
+      "body": "@amedina1570 I'd be willing to pitch in if you're not done already"
+    },
+    {
+      "id": 1556042946,
+      "user": "amedina1570",
+      "body": "> @amedina1570 I'd be willing to pitch in if you're not done already\r\n\r\nI could really use some help trying to generate some examples for these external libraries for further reference, for example: parsel.xpathfuncs.set_xpathfunc I don't fully understand it and the output is completely unexpected. "
+    },
+    {
+      "id": 1609583016,
+      "user": "wRAR",
+      "body": "@amedina1570 what output do you mean? Also, that function is documented at https://parsel.readthedocs.io/en/latest/usage.html#parsel.xpathfuncs.set_xpathfunc and I don't think you need to add examples to solve this issue."
+    },
+    {
+      "id": 1707982034,
+      "user": "pjparties",
+      "body": "is there any help required for this issue? I would like to contribute x"
+    },
+    {
+      "id": 1708078266,
+      "user": "wRAR",
+      "body": "@ParthJuneja I think you can just go ahead"
+    },
+    {
+      "id": 1758009958,
+      "user": "ghostp13409",
+      "body": "Hey @wRAR @amedina1570,\r\nI would love to contribute. is there any help still required?"
+    },
+    {
+      "id": 1761792301,
+      "user": "wRAR",
+      "body": "@ghostp13409 there is a promising PR for this so I wouldn't recommend to duplicate effort for now."
+    },
+    {
+      "id": 1857314201,
+      "user": "dwk601",
+      "body": "I would like to contribute."
+    },
+    {
+      "id": 1857436529,
+      "user": "wRAR",
+      "body": "@dwk601 sure, go ahead. Please note that there are old incomplete PRs for this, you can reuse some of the work there."
+    },
+    {
+      "id": 1947812491,
+      "user": "hitansupanda",
+      "body": "Hey @wRAR @amedina1570 ,\r\nI would like to contribute is there any thing I can do? "
+    },
+    {
+      "id": 1947964537,
+      "user": "Gallaecio",
+      "body": "@hitansupanda I suspect https://github.com/scrapy/scrapy/pull/6223 will solve this. “The third time is the charm”."
+    }
+  ],
+  "text_context": "# Remove docs for other projects from the Scrapy docs\n\nWe have some auto* statements for things from other projects, like itemadapter in https://github.com/scrapy/scrapy/blob/92f86fab062d179fd68590f1be6a24ca13ec33b6/docs/topics/items.rst?plain=1#L404 and parsel in https://github.com/scrapy/scrapy/blob/92f86fab062d179fd68590f1be6a24ca13ec33b6/docs/topics/selectors.rst#L1037.\r\n\r\nWe should find these and remove them, instead linking to the other projects docs and maybe adding some explanations locally.\n\nI would like to contribute to this issue. Is anybody working with it?\n\n@amedina1570 Please go ahead\n\n@amedina1570 I'd be willing to pitch in if you're not done already\n\n> @amedina1570 I'd be willing to pitch in if you're not done already\r\n\r\nI could really use some help trying to generate some examples for these external libraries for further reference, for example: parsel.xpathfuncs.set_xpathfunc I don't fully understand it and the output is completely unexpected. \n\n@amedina1570 what output do you mean? Also, that function is documented at https://parsel.readthedocs.io/en/latest/usage.html#parsel.xpathfuncs.set_xpathfunc and I don't think you need to add examples to solve this issue.\n\nis there any help required for this issue? I would like to contribute x\n\n@ParthJuneja I think you can just go ahead\n\nHey @wRAR @amedina1570,\r\nI would love to contribute. is there any help still required?\n\n@ghostp13409 there is a promising PR for this so I wouldn't recommend to duplicate effort for now.\n\nI would like to contribute.\n\n@dwk601 sure, go ahead. Please note that there are old incomplete PRs for this, you can reuse some of the work there.\n\nHey @wRAR @amedina1570 ,\r\nI would like to contribute is there any thing I can do? \n\n@hitansupanda I suspect https://github.com/scrapy/scrapy/pull/6223 will solve this. “The third time is the charm”.",
+  "pr_link": "https://github.com/scrapy/scrapy/pull/6037",
+  "code_context": [
+    {
+      "filename": "scrapy/addons.py",
+      "content": "import logging\nfrom typing import TYPE_CHECKING, Any, List\n\nfrom scrapy.exceptions import NotConfigured\nfrom scrapy.settings import Settings\nfrom scrapy.utils.conf import build_component_list\nfrom scrapy.utils.misc import create_instance, load_object\n\nif TYPE_CHECKING:\n    from scrapy.crawler import Crawler\n\nlogger = logging.getLogger(__name__)\n\n\nclass AddonManager:\n    \"\"\"This class facilitates loading and storing :ref:`topics-addons`.\"\"\"\n\n    def __init__(self, crawler: \"Crawler\") -> None:\n        self.crawler: \"Crawler\" = crawler\n        self.addons: List[Any] = []\n\n    def load_settings(self, settings: Settings) -> None:\n        \"\"\"Load add-ons and configurations from a settings object.\n\n        This will load the add-on for every add-on path in the\n        ``ADDONS`` setting and execute their ``update_settings`` methods.\n\n        :param settings: The :class:`~scrapy.settings.Settings` object from \\\n            which to read the add-on configuration\n        :type settings: :class:`~scrapy.settings.Settings`\n        \"\"\"\n        for clspath in build_component_list(settings[\"ADDONS\"]):\n            try:\n                addoncls = load_object(clspath)\n                addon = create_instance(\n                    addoncls, settings=settings, crawler=self.crawler\n                )\n                addon.update_settings(settings)\n                self.addons.append(addon)\n            except NotConfigured as e:\n                if e.args:\n                    logger.warning(\n                        \"Disabled %(clspath)s: %(eargs)s\",\n                        {\"clspath\": clspath, \"eargs\": e.args[0]},\n                        extra={\"crawler\": self.crawler},\n                    )\n        logger.info(\n            \"Enabled addons:\\n%(addons)s\",\n            {\n                \"addons\": self.addons,\n            },\n            extra={\"crawler\": self.crawler},\n        )\n"
+    },
+    {
+      "filename": "tests/test_addons.py",
+      "content": "import itertools\nimport unittest\nfrom typing import Any, Dict\nfrom unittest.mock import patch\n\nfrom scrapy import Spider\nfrom scrapy.crawler import Crawler, CrawlerRunner\nfrom scrapy.exceptions import NotConfigured\nfrom scrapy.settings import BaseSettings, Settings\nfrom scrapy.utils.test import get_crawler\n\n\nclass SimpleAddon:\n    def update_settings(self, settings):\n        pass\n\n\ndef get_addon_cls(config: Dict[str, Any]) -> type:\n    class AddonWithConfig:\n        def update_settings(self, settings: BaseSettings):\n            settings.update(config, priority=\"addon\")\n\n    return AddonWithConfig\n\n\nclass CreateInstanceAddon:\n    def __init__(self, crawler: Crawler) -> None:\n        super().__init__()\n        self.crawler = crawler\n        self.config = crawler.settings.getdict(\"MYADDON\")\n\n    @classmethod\n    def from_crawler(cls, crawler: Crawler):\n        return cls(crawler)\n\n    def update_settings(self, settings):\n        settings.update(self.config, \"addon\")\n\n\nclass AddonTest(unittest.TestCase):\n    def test_update_settings(self):\n        settings = BaseSettings()\n        settings.set(\"KEY1\", \"default\", priority=\"default\")\n        settings.set(\"KEY2\", \"project\", priority=\"project\")\n        addon_config = {\"KEY1\": \"addon\", \"KEY2\": \"addon\", \"KEY3\": \"addon\"}\n        testaddon = get_addon_cls(addon_config)()\n        testaddon.update_settings(settings)\n        self.assertEqual(settings[\"KEY1\"], \"addon\")\n        self.assertEqual(settings[\"KEY2\"], \"project\")\n        self.assertEqual(settings[\"KEY3\"], \"addon\")\n\n\nclass AddonManagerTest(unittest.TestCase):\n    def test_load_settings(self):\n        settings_dict = {\n            \"ADDONS\": {\"tests.test_addons.SimpleAddon\": 0},\n        }\n        crawler = get_crawler(settings_dict=settings_dict)\n        manager = crawler.addons\n        self.assertIsInstance(manager.addons[0], SimpleAddon)\n\n    def test_notconfigured(self):\n        class NotConfiguredAddon:\n            def update_settings(self, settings):\n                raise NotConfigured()\n\n        settings_dict = {\n            \"ADDONS\": {NotConfiguredAddon: 0},\n        }\n        crawler = get_crawler(settings_dict=settings_dict)\n        manager = crawler.addons\n        self.assertFalse(manager.addons)\n\n    def test_load_settings_order(self):\n        # Get three addons with different settings\n        addonlist = []\n        for i in range(3):\n            addon = get_addon_cls({\"KEY1\": i})\n            addon.number = i\n            addonlist.append(addon)\n        # Test for every possible ordering\n        for ordered_addons in itertools.permutations(addonlist):\n            expected_order = [a.number for a in ordered_addons]\n            settings = {\"ADDONS\": {a: i for i, a in enumerate(ordered_addons)}}\n            crawler = get_crawler(settings_dict=settings)\n            manager = crawler.addons\n            self.assertEqual([a.number for a in manager.addons], expected_order)\n            self.assertEqual(crawler.settings.getint(\"KEY1\"), expected_order[-1])\n\n    def test_create_instance(self):\n        settings_dict = {\n            \"ADDONS\": {\"tests.test_addons.CreateInstanceAddon\": 0},\n            \"MYADDON\": {\"MYADDON_KEY\": \"val\"},\n        }\n        crawler = get_crawler(settings_dict=settings_dict)\n        manager = crawler.addons\n        self.assertIsInstance(manager.addons[0], CreateInstanceAddon)\n        self.assertEqual(crawler.settings.get(\"MYADDON_KEY\"), \"val\")\n\n    def test_settings_priority(self):\n        config = {\n            \"KEY\": 15,  # priority=addon\n        }\n        settings_dict = {\n            \"ADDONS\": {get_addon_cls(config): 1},\n        }\n        crawler = get_crawler(settings_dict=settings_dict)\n        self.assertEqual(crawler.settings.getint(\"KEY\"), 15)\n\n        settings = Settings(settings_dict)\n        settings.set(\"KEY\", 0, priority=\"default\")\n        runner = CrawlerRunner(settings)\n        crawler = runner.create_crawler(Spider)\n        self.assertEqual(crawler.settings.getint(\"KEY\"), 15)\n\n        settings_dict = {\n            \"KEY\": 20,  # priority=project\n            \"ADDONS\": {get_addon_cls(config): 1},\n        }\n        settings = Settings(settings_dict)\n        settings.set(\"KEY\", 0, priority=\"default\")\n        runner = CrawlerRunner(settings)\n        crawler = runner.create_crawler(Spider)\n        self.assertEqual(crawler.settings.getint(\"KEY\"), 20)\n\n    def test_fallback_workflow(self):\n        FALLBACK_SETTING = \"MY_FALLBACK_DOWNLOAD_HANDLER\"\n\n        class AddonWithFallback:\n            def update_settings(self, settings):\n                if not settings.get(FALLBACK_SETTING):\n                    settings.set(\n                        FALLBACK_SETTING,\n                        settings.getwithbase(\"DOWNLOAD_HANDLERS\")[\"https\"],\n                        \"addon\",\n                    )\n                settings[\"DOWNLOAD_HANDLERS\"][\"https\"] = \"AddonHandler\"\n\n        settings_dict = {\n            \"ADDONS\": {AddonWithFallback: 1},\n        }\n        crawler = get_crawler(settings_dict=settings_dict)\n        self.assertEqual(\n            crawler.settings.getwithbase(\"DOWNLOAD_HANDLERS\")[\"https\"], \"AddonHandler\"\n        )\n        self.assertEqual(\n            crawler.settings.get(FALLBACK_SETTING),\n            \"scrapy.core.downloader.handlers.http.HTTPDownloadHandler\",\n        )\n\n        settings_dict = {\n            \"ADDONS\": {AddonWithFallback: 1},\n            \"DOWNLOAD_HANDLERS\": {\"https\": \"UserHandler\"},\n        }\n        crawler = get_crawler(settings_dict=settings_dict)\n        self.assertEqual(\n            crawler.settings.getwithbase(\"DOWNLOAD_HANDLERS\")[\"https\"], \"AddonHandler\"\n        )\n        self.assertEqual(crawler.settings.get(FALLBACK_SETTING), \"UserHandler\")\n\n    def test_logging_message(self):\n        class LoggedAddon:\n            def update_settings(self, settings):\n                pass\n\n        with patch(\"scrapy.addons.logger\") as logger_mock:\n            with patch(\"scrapy.addons.create_instance\") as create_instance_mock:\n                settings_dict = {\n                    \"ADDONS\": {LoggedAddon: 1},\n                }\n                addon = LoggedAddon()\n                create_instance_mock.return_value = addon\n                crawler = get_crawler(settings_dict=settings_dict)\n                logger_mock.info.assert_called_once_with(\n                    \"Enabled addons:\\n%(addons)s\",\n                    {\"addons\": [addon]},\n                    extra={\"crawler\": crawler},\n                )\n"
+    }
+  ],
+  "questions": [],
+  "golden_answers": [],
+  "questions_generated": [
+    "What is the main objective of the issue 'Remove docs for other projects from the Scrapy docs'?",
+    "Why might it be beneficial to remove references to other projects' documentation from Scrapy's docs and instead link to them?",
+    "What challenges did the contributors face in addressing the issue, according to the discussion context?",
+    "What is the role of the `AddonManager` class in the Scrapy codebase, and how does it relate to the issue discussed?",
+    "How did the community respond to the request for contributions on this issue, and what does this indicate about collaborative open-source development?"
+  ],
+  "golden_answers_generated": [
+    "The main objective of the issue is to identify and remove `auto*` statements in the Scrapy documentation that reference components from other projects, such as `itemadapter` and `parsel`. Instead of including these statements, the documentation should link to the respective projects' documentation and possibly provide local explanations.",
+    "Linking to other projects' documentation instead of duplicating content in Scrapy's docs ensures that the most up-to-date and accurate information is available to users. It reduces the maintenance burden on the Scrapy project and avoids potential inconsistencies or outdated content, as the original project maintainers are responsible for their own documentation.",
+    "Contributors faced challenges in understanding and providing examples for certain functions, such as `parsel.xpathfuncs.set_xpathfunc`, with the output being unexpected. This indicates a need for clearer explanations or examples for these external libraries within the Scrapy documentation.",
+    "The `AddonManager` class in Scrapy is responsible for loading and managing add-ons specified in the `ADDONS` setting. It ensures each add-on is initialized and its settings are updated. While not directly related to the issue of removing external project documentation, understanding how Scrapy manages extensions and configurations could inform decisions on how to document similar processes for external libraries.",
+    "The community actively responded to the request for contributions, with several individuals expressing interest in helping and coordinating efforts to avoid duplication. This indicates a collaborative spirit in open-source development, where contributors are willing to assist and share information, ensuring efficient and collective progress towards resolving issues."
+  ]
+}

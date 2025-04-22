@@ -187,6 +187,7 @@ class GitHubIssueScraper:
             # Parse the GitHub URL
             owner, repo, issue_id = self.parse_github_url(issue_url)
             repo_name = f"{owner}_{repo}"
+            os.makedirs(f"repoqabench/{repo_name}", exist_ok=True)
             
             # Get issue data
             issue_data = self.get_issue_data(owner, repo, issue_id)
@@ -222,7 +223,7 @@ class GitHubIssueScraper:
             
             # Write to JSON file
             output_filename = f"{repo_name}_{issue_id}.json"
-            output_path = os.path.join("repoqabench", output_filename)
+            output_path = os.path.join(f"repoqabench/{repo_name}", output_filename)
             
             with open(output_path, 'w', encoding='utf-8') as f:
                 json.dump(output_data, f, indent=2, ensure_ascii=False)
