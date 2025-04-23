@@ -6,7 +6,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
-from datasets import load_metric
+from evaluate import load as load_metric
 
 # Define supported generative models
 SUPPORTED_MODELS = {
