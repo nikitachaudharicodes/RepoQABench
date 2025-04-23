@@ -95,31 +95,32 @@ def evaluate_model_on_jsons(path, model_key):
 
 
 def compute_metrics(df):
-    # Prepare predictions & references for SQuAD metric
-    preds_dict = [
-        {"id": str(i), "prediction_text": pred}
-        for i, pred in enumerate(df['predicted'].fillna(""))
-    ]
-    refs = [
-        {"id": str(i), "answers": {"text": [g], "answer_start": [0]}}
-        for i, g in enumerate(df['gold'].fillna(""))
-    ]
+    # SQuAD metrics
+    preds_dict = [{"id": str(i), "prediction_text": pred}
+                  for i, pred in enumerate(df['predicted'].fillna(""))]
+    refs = [{"id": str(i), "answers": {"text": [g], "answer_start": [0]}}
+            for i, g in enumerate(df['gold'].fillna(""))]
     squad = squad_metric.compute(predictions=preds_dict, references=refs)
 
+    # ROUGE-L
     rouge = rouge_metric.compute(
         predictions=df['predicted'].fillna("").tolist(),
         references=df['gold'].fillna("").tolist()
     )
-    bleu = bleu_metric.compute(
-        predictions=df['predicted'].fillna("").tolist(),
-        references=df['gold'].fillna("").tolist()
-    )
+
+    # BLEU: tokenized inputs; catch zero-division
+    pred_tokens = [p.split() if p else [] for p in df['predicted'].fillna("")]
+    ref_tokens = [[g.split()] for g in df['gold'].fillna("")]
+    try:
+        bleu_score = bleu_metric.compute(predictions=pred_tokens, references=ref_tokens).get('bleu', 0.0)
+    except ZeroDivisionError:
+        bleu_score = 0.0
 
     return {
-        'EM': squad['exact_match'],
-        'F1': squad['f1'],
+        'EM': squad.get('exact_match', 0.0),
+        'F1': squad.get('f1', 0.0),
         'ROUGE-L': rouge.get('rougeL', 0.0),
-        'BLEU': bleu.get('bleu', 0.0)
+        'BLEU': bleu_score
     }
 
 
@@ -145,7 +146,6 @@ def main():
     ms_df = pd.DataFrame(metrics_summary)
     ms_df.to_csv('results_ex/metrics_summary.csv', index=False)
 
-    # Plot
     ax = ms_df.set_index('model').plot(kind='bar', figsize=(10,5), ylim=(0,100))
     ax.set_ylabel('Score (%)')
     ax.set_title('QA Metrics by Model')
