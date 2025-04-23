@@ -1,0 +1,115 @@
+{
+  "repo_name": "oppia_oppia",
+  "issue_id": "15529",
+  "issue_description": "# Add to play later button is not available for exploration in mobile devices\n\n<!--\n  - Thanks for taking the time to report a bug in the Oppia project.\n  - Before filing a new issue, please do a quick search to check that it hasn't\n  - already been filed on the [issue tracker](https://github.com/oppia/oppia/issues)._\n  -->\n\n**Describe the bug**\nAdd to play later button is not available for exploration in mobile devices\n\n**To Reproduce**\nSteps to reproduce the behavior:\n 1. Go to https://www.oppiatestserver.org/community-library\n 2. No add to play later button is available for mobile devices\n\n**Observed behavior**\nAdd to play later button is not available\n\n**Expected behavior**\nAdd to play later button should be available for exploration cards\n\n**Possible steps to fix this issue**\n1. Make sure you have cloned and installed Oppia and can run the dev server.\n2. Navigate to the div on line 47 in `core/templates/components/summary-tile/collection-summary-tile.component.html` to find the mobile UI for the cards\n3. Add the play later icon to the card (clicking on the icon should execute a function similar to `addToLearnerPlaylist` function defined in `core/templates/pages/learner-dashboard-page/learner-dashboard-icons.component.ts`)\n\n**Screenshots / Videos**\n![Screenshot from 2022-06-05 13-22-39](https://user-images.githubusercontent.com/86483059/172041163-d9296a99-9001-4178-9a93-de3951167c95.png)\n\n\n\n**Desktop (please complete the following information; delete this section if the issue does not arise on desktop):**\n - OS: Ubuntu 21\n - Browser: Chrome\n - Browser-version: [e.g. 22]\n\n**Smartphone (please complete the following information; delete this section if the issue does not arise on smartphones):**\n - Device: [e.g. iPhone6]\n - OS: [e.g. iOS8.1]\n - Browser: [e.g. stock browser, safari]\n - Browser-version: [e.g. 22]\n\n**Additional context**\nAdd any other context about the problem here.\n",
+  "issue_comments": [
+    {
+      "id": 1147423356,
+      "user": "vojtechjelinek",
+      "body": "@aks681 @kevintab95 Is this expected? If yes, please assign this to someone."
+    },
+    {
+      "id": 1153000601,
+      "user": "vojtechjelinek",
+      "body": "@aks681 @kevintab95 Any update?"
+    },
+    {
+      "id": 1264872202,
+      "user": "galanggg",
+      "body": "Hi @vojtechjelinek , can you assign me to this issue? I will work on this issue. Thanks!"
+    },
+    {
+      "id": 1265089565,
+      "user": "vojtechjelinek",
+      "body": "@galanggg Done."
+    },
+    {
+      "id": 1268462218,
+      "user": "Lawful2002",
+      "body": "@galanggg Also please make sure to address this issue: https://github.com/oppia/oppia/issues/15372, while making a PR. Thanks!"
+    },
+    {
+      "id": 1288076048,
+      "user": "Lawful2002",
+      "body": "@galanggg Any updates?\n"
+    },
+    {
+      "id": 1335765025,
+      "user": "TheoOliveira",
+      "body": "@Lawful2002 can you assign these to me? Since i am working with #15371 . I can see this one and  #15372 as well and make on the same PR"
+    },
+    {
+      "id": 1336110613,
+      "user": "seanlip",
+      "body": "@TheoOliveira I've added you. Thanks!"
+    },
+    {
+      "id": 1336508650,
+      "user": "TheoOliveira",
+      "body": "Seems this was fixed on  [here](https://github.com/oppia/oppia/pull/12932) . Close this?\r\n\r\nNevermind. On exploration that doesn't show still. "
+    },
+    {
+      "id": 1350250133,
+      "user": "TheoOliveira",
+      "body": "One question over implementation. Should I recreate the function on the domain `learner-dashboard-ids-backend-api.service.ts` or should just re-used for this context as well?\r\n\r\n\r\nI mean i need these functions as mentioned @ShivamJhaa but I just want to know what's your way to do things, if I just copy and re-used or keep using the same function on this particular different context. In this case the correct file `exploration-summary-tile.component.html`"
+    },
+    {
+      "id": 1356111088,
+      "user": "seanlip",
+      "body": "In general please don't recreate functions, it makes things hard to maintain. Better to find a way to reuse things if possible (cf. DRY principle)."
+    },
+    {
+      "id": 1356350702,
+      "user": "TheoOliveira",
+      "body": "So change renaming to a more general function  for both and change the folder to fit a more general purpose? \n\n⁣Obter o TypeApp para Android ​\n\nEm 17 de dez de 2022 05:01, em 05:01, Sean Lip ***@***.***> escreveu:\n>In general please don't recreate functions, it makes things hard to\n>maintain. Better to find a way to reuse things if possible.\n>\n>-- \n>Reply to this email directly or view it on GitHub:\n>https://github.com/oppia/oppia/issues/15529#issuecomment-1356111088\n>You are receiving this because you were mentioned.\n>\n>Message ID: ***@***.***>\n"
+    },
+    {
+      "id": 1356486748,
+      "user": "seanlip",
+      "body": "I'm afraid I'll need to see the actual implementation to comment (it's hard to tell if we're on the same page without seeing the full solution approach in the code), but in general please do try to avoid redefining the same function in multiple places. Thanks!"
+    },
+    {
+      "id": 1375269969,
+      "user": "Shivang6",
+      "body": "Hi, I would like to work on this issue can I get assigned to that @seanlip "
+    },
+    {
+      "id": 1375379211,
+      "user": "seanlip",
+      "body": "@Shivang6 Per the guidance at https://github.com/oppia/oppia/wiki/Contributing-code-to-Oppia#choosing-a-good-first-issue, please provide an explanation of what your PR will do. If it looks good, we can assign you to this issue.\r\n\r\nPlease also follow the other instructions on that wiki page if you have not yet done so. Thanks!"
+    },
+    {
+      "id": 1375379761,
+      "user": "seanlip",
+      "body": "Also, just to confirm: @TheoOliveira are you still working on this?"
+    },
+    {
+      "id": 1375981337,
+      "user": "TheoOliveira",
+      "body": "I was trying to mix with other issues i was checking but I guess i wil try\nto pass this one since there is a need to rewrite stuff and i am not really\nfamiliar with angular to do the way it's done today. I will focus the other\nones assigned to me. thnkas\n\nEm seg., 9 de jan. de 2023 às 07:13, Sean Lip ***@***.***>\nescreveu:\n\n> Also, just to confirm: @TheoOliveira <https://github.com/TheoOliveira>\n> are you still working on this?\n>\n> —\n> Reply to this email directly, view it on GitHub\n> <https://github.com/oppia/oppia/issues/15529#issuecomment-1375379761>, or\n> unsubscribe\n> <https://github.com/notifications/unsubscribe-auth/AC3EJV6BVBT4Q3WEUECWS53WRPQENANCNFSM5X4VRMVA>\n> .\n> You are receiving this because you were mentioned.Message ID:\n> ***@***.***>\n>\n\n\n-- \nTheo Oliveira\n\n\nFrontend & Blockchain | ReactJS | NextJS | Wordpress | Solidity\n55(011)947882886  |  ***@***.***\nWebsite:  www.theooliveira.netlify.app\n   <https://www.linkedin.com/in/theooliveira/>\n***@***.***>  ***@***.***>\n"
+    },
+    {
+      "id": 1377402423,
+      "user": "Shivang6",
+      "body": "Thanks @TheoOliveira I will try to fix it ASAP.\r\n"
+    },
+    {
+      "id": 1380563398,
+      "user": "Utt977",
+      "body": "could you please assign me this issue"
+    },
+    {
+      "id": 1416999587,
+      "user": "SubhamB2003",
+      "body": "Hey is this issue still open?\r\nI want to work on this issue"
+    }
+  ],
+  "text_context": "# Add to play later button is not available for exploration in mobile devices\n\n<!--\n  - Thanks for taking the time to report a bug in the Oppia project.\n  - Before filing a new issue, please do a quick search to check that it hasn't\n  - already been filed on the [issue tracker](https://github.com/oppia/oppia/issues)._\n  -->\n\n**Describe the bug**\nAdd to play later button is not available for exploration in mobile devices\n\n**To Reproduce**\nSteps to reproduce the behavior:\n 1. Go to https://www.oppiatestserver.org/community-library\n 2. No add to play later button is available for mobile devices\n\n**Observed behavior**\nAdd to play later button is not available\n\n**Expected behavior**\nAdd to play later button should be available for exploration cards\n\n**Possible steps to fix this issue**\n1. Make sure you have cloned and installed Oppia and can run the dev server.\n2. Navigate to the div on line 47 in `core/templates/components/summary-tile/collection-summary-tile.component.html` to find the mobile UI for the cards\n3. Add the play later icon to the card (clicking on the icon should execute a function similar to `addToLearnerPlaylist` function defined in `core/templates/pages/learner-dashboard-page/learner-dashboard-icons.component.ts`)\n\n**Screenshots / Videos**\n![Screenshot from 2022-06-05 13-22-39](https://user-images.githubusercontent.com/86483059/172041163-d9296a99-9001-4178-9a93-de3951167c95.png)\n\n\n\n**Desktop (please complete the following information; delete this section if the issue does not arise on desktop):**\n - OS: Ubuntu 21\n - Browser: Chrome\n - Browser-version: [e.g. 22]\n\n**Smartphone (please complete the following information; delete this section if the issue does not arise on smartphones):**\n - Device: [e.g. iPhone6]\n - OS: [e.g. iOS8.1]\n - Browser: [e.g. stock browser, safari]\n - Browser-version: [e.g. 22]\n\n**Additional context**\nAdd any other context about the problem here.\n\n\n@aks681 @kevintab95 Is this expected? If yes, please assign this to someone.\n\n@aks681 @kevintab95 Any update?\n\nHi @vojtechjelinek , can you assign me to this issue? I will work on this issue. Thanks!\n\n@galanggg Done.\n\n@galanggg Also please make sure to address this issue: https://github.com/oppia/oppia/issues/15372, while making a PR. Thanks!\n\n@galanggg Any updates?\n\n\n@Lawful2002 can you assign these to me? Since i am working with #15371 . I can see this one and  #15372 as well and make on the same PR\n\n@TheoOliveira I've added you. Thanks!\n\nSeems this was fixed on  [here](https://github.com/oppia/oppia/pull/12932) . Close this?\r\n\r\nNevermind. On exploration that doesn't show still. \n\nOne question over implementation. Should I recreate the function on the domain `learner-dashboard-ids-backend-api.service.ts` or should just re-used for this context as well?\r\n\r\n\r\nI mean i need these functions as mentioned @ShivamJhaa but I just want to know what's your way to do things, if I just copy and re-used or keep using the same function on this particular different context. In this case the correct file `exploration-summary-tile.component.html`\n\nIn general please don't recreate functions, it makes things hard to maintain. Better to find a way to reuse things if possible (cf. DRY principle).\n\nSo change renaming to a more general function  for both and change the folder to fit a more general purpose? \n\n⁣Obter o TypeApp para Android ​\n\nEm 17 de dez de 2022 05:01, em 05:01, Sean Lip ***@***.***> escreveu:\n>In general please don't recreate functions, it makes things hard to\n>maintain. Better to find a way to reuse things if possible.\n>\n>-- \n>Reply to this email directly or view it on GitHub:\n>https://github.com/oppia/oppia/issues/15529#issuecomment-1356111088\n>You are receiving this because you were mentioned.\n>\n>Message ID: ***@***.***>\n\n\nI'm afraid I'll need to see the actual implementation to comment (it's hard to tell if we're on the same page without seeing the full solution approach in the code), but in general please do try to avoid redefining the same function in multiple places. Thanks!\n\nHi, I would like to work on this issue can I get assigned to that @seanlip \n\n@Shivang6 Per the guidance at https://github.com/oppia/oppia/wiki/Contributing-code-to-Oppia#choosing-a-good-first-issue, please provide an explanation of what your PR will do. If it looks good, we can assign you to this issue.\r\n\r\nPlease also follow the other instructions on that wiki page if you have not yet done so. Thanks!\n\nAlso, just to confirm: @TheoOliveira are you still working on this?\n\nI was trying to mix with other issues i was checking but I guess i wil try\nto pass this one since there is a need to rewrite stuff and i am not really\nfamiliar with angular to do the way it's done today. I will focus the other\nones assigned to me. thnkas\n\nEm seg., 9 de jan. de 2023 às 07:13, Sean Lip ***@***.***>\nescreveu:\n\n> Also, just to confirm: @TheoOliveira <https://github.com/TheoOliveira>\n> are you still working on this?\n>\n> —\n> Reply to this email directly, view it on GitHub\n> <https://github.com/oppia/oppia/issues/15529#issuecomment-1375379761>, or\n> unsubscribe\n> <https://github.com/notifications/unsubscribe-auth/AC3EJV6BVBT4Q3WEUECWS53WRPQENANCNFSM5X4VRMVA>\n> .\n> You are receiving this because you were mentioned.Message ID:\n> ***@***.***>\n>\n\n\n-- \nTheo Oliveira\n\n\nFrontend & Blockchain | ReactJS | NextJS | Wordpress | Solidity\n55(011)947882886  |  ***@***.***\nWebsite:  www.theooliveira.netlify.app\n   <https://www.linkedin.com/in/theooliveira/>\n***@***.***>  ***@***.***>\n\n\nThanks @TheoOliveira I will try to fix it ASAP.\r\n\n\ncould you please assign me this issue\n\nHey is this issue still open?\r\nI want to work on this issue",
+  "pr_link": "https://github.com/oppia/oppia/pull/12932",
+  "code_context": [
+    {
+      "filename": "core/templates/pages/learner-dashboard-page/learner-dashboard-icons.component.html",
+      "content": "<i class=\"oppia-learner-dashboard-icon far fa-clock protractor-test-add-to-playlist-btn\"\n   *ngIf=\"isAddToPlaylistIconShown\"\n   [hidden]=\"!(canActivityBeAddedToLearnerPlaylist(activityId) && !isContainerNarrow)\" (click)=\"addToLearnerPlaylist(activityId, activityType)\"\n   (mouseenter)=\"setHoverState(true)\" (mouseleave)=\"setHoverState(false)\"\n   aria-hidden=\"true\"\n   ngbTooltip=\"{{ 'I18N_LIBRARY_ADD_TO_LEARNER_PLAYLIST' | translate }}\"\n   container=\"body\"\n   placement=\"left\">\n</i>\n<div *ngIf=\"canActivityBeAddedToLearnerPlaylist(activityId) && isContainerNarrow\">\n  <div class=\"dropdown oppia-learner-dashboard-icon\" ngbDropdown>\n    <ul class=\" dropdown-menu dropdown-menu-right\">\n      <li ngbDropdownItem (click)=\"addToLearnerPlaylist(activityId, activityType)\">\n        <a [innerHTML]=\"'I18N_LIBRARY_ADD_TO_LEARNER_PLAYLIST' | translate\"></a>\n      </li>\n    </ul>\n    <i class=\"fas fa-ellipsis-v\" ngbDropdownToggle data-toggle=\"dropdown\"></i>\n  </div>\n</div>\n<i class=\"oppia-learner-dashboard-icon far fa-clock\"\n   *ngIf=\"belongsToLearnerPlaylist()\"\n   (click)=\"removeFromLearnerPlaylist(activityId, activityTitle, activityType)\"\n   aria-hidden=\"true\"\n   (mouseleave)=\"enablePlaylistTooltip()\"\n   ngbTooltip=\"{{ 'I18N_LIBRARY_ACTIVITY_IN_LEARNER_PLAYLIST' | translate }}\"\n   container=\"body\"\n   placement=\"left\">\n</i>\n<i class=\"oppia-learner-dashboard-icon far fa-check-circle\"\n   *ngIf=\"belongsToCompletedActivities()\"\n   aria-hidden=\"true\"\n   ngbTooltip=\"{{ 'I18N_LIBRARY_ACTIVITY_COMPLETED_ICON' | translate }}\"\n   container=\"body\"\n   placement=\"left\">\n</i>\n<i class=\"oppia-learner-dashboard-icon fas fa-spinner\"\n   *ngIf=\"belongsToIncompleteActivities()\"\n   aria-hidden=\"true\"\n   ngbTooltip=\"{{ 'I18N_LIBRARY_INCOMPLETE_ACTIVITY_ICON' | translate }}\"\n   container=\"body\"\n   tooltipClass=\"library-incomplete-activity-tooltip\"\n   placement=\"left\">\n</i>\n<style>\n  .library-incomplete-activity-tooltip .tooltip-inner {\n    max-width: none;\n    white-space: nowrap;\n  }\n</style>\n"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "repo_name": "scikit-learn_scikit-learn",
+  "issue_id": "14452",
+  "issue_description": "# Parameter documentation for linear models\n\nThe documentation for the `alphas` parameter for `RidgeCV` lacks the default value that is defined in constructor of parent class and may be hard to guess. Also it is said to be a Numpy array, while list/ tuple also can be passed (the default value is a tuple).\r\n\r\nSome more linear models also lack default value documentation, e.g. alpha and fit_intercept fo RidgeClassifier, so I can also fix them too.",
+  "issue_comments": [
+    {
+      "id": 514384164,
+      "user": "amueller",
+      "body": "Feel free to send a PR!"
+    },
+    {
+      "id": 514391065,
+      "user": "arpanchowdhry",
+      "body": "@alexitkes Hi Alex, I would like to help. Let me know if you would like to divide and conquer this task or you are going to improve the documentation for all the models that you listed?"
+    },
+    {
+      "id": 514459588,
+      "user": "alexitkes",
+      "body": "Already done much for Ridge, RidgeCV and RidgeClassifier.\r\n@arpanchowdhry Well, documentation for Lasso, ElasticNet and ElasticNetCV also seems to lack default parameter values."
+    },
+    {
+      "id": 514484085,
+      "user": "arpanchowdhry",
+      "body": "@alexitkes Thanks. Let me take a look at these three models. Also since this is my first issue, I will take a look at your changes for guidance. "
+    },
+    {
+      "id": 515108390,
+      "user": "vinidixit",
+      "body": "@alexitkes Hi Alex! Are you still looking for help? I'm interested for contributing in this issue."
+    },
+    {
+      "id": 515166062,
+      "user": "alexitkes",
+      "body": "@vinidixit Sure, there is still some work to do. For example, default values for some parameters of `PassiveAggressiveClassifier` and `PassiveAggressiveRegressor` are not documented and default value for `PassiveAggressiveClassifier.fit_intercept` is documented to be False while actually set to True."
+    },
+    {
+      "id": 515762938,
+      "user": "qdeffense",
+      "body": "@alexitkes  It seems like there is also some work to do on Least Angle Regression, I'll would like to work on that if you're not already working on it"
+    },
+    {
+      "id": 516010197,
+      "user": "shahules786",
+      "body": "@alexitkes I have done the documentation and made a PR.please check and reply.Thank you."
+    },
+    {
+      "id": 517481659,
+      "user": "iamgauravg",
+      "body": "I would like to help if any aspect is still open. Please let me know. This is my first attempt."
+    },
+    {
+      "id": 517600703,
+      "user": "vinidixit",
+      "body": "> PassiveAggressiveClassifier\r\n\r\n@alexitkes Hello Alex! I've updated documentation of fit_intercept to True and have submitted the changes. Please let me know if this is the way it's done? Please guide me, as it's my first commit.\r\nThanks!"
+    },
+    {
+      "id": 517703051,
+      "user": "alexitkes",
+      "body": "@vinidixit Well, after committing the changes you should open a pull request by pressing the `pull request` button at top of the screen. When writing the description of the changes you propose, refer to this issue by writing somewhat like \"as mentioned in #14452\" in the changes description to make the link to your request appear among comments to this issue."
+    },
+    {
+      "id": 517709195,
+      "user": "rth",
+      "body": "Let's put a hold on this, and wait a bit new PRs until the right way of formatting docstrings is decided in https://github.com/scikit-learn/scikit-learn/pull/12356"
+    },
+    {
+      "id": 581398992,
+      "user": "smritisingh26",
+      "body": "Hi there! I can see that there’s been a lot of activity on this issue, but it’s still open so I’d love to know if there’s some work that is yet to be done! "
+    },
+    {
+      "id": 588128738,
+      "user": "AntonPeniaziev",
+      "body": "Hi, is there is still some work to do on this issue?"
+    },
+    {
+      "id": 588295950,
+      "user": "jeremiedbb",
+      "body": "There's a more general issue regarding the default values of all estimators: #15761\r\nThere's still some work to be done there :)\r\n\r\nClosing this issue since it's included in #15761"
+    }
+  ],
+  "text_context": "# Parameter documentation for linear models\n\nThe documentation for the `alphas` parameter for `RidgeCV` lacks the default value that is defined in constructor of parent class and may be hard to guess. Also it is said to be a Numpy array, while list/ tuple also can be passed (the default value is a tuple).\r\n\r\nSome more linear models also lack default value documentation, e.g. alpha and fit_intercept fo RidgeClassifier, so I can also fix them too.\n\nFeel free to send a PR!\n\n@alexitkes Hi Alex, I would like to help. Let me know if you would like to divide and conquer this task or you are going to improve the documentation for all the models that you listed?\n\nAlready done much for Ridge, RidgeCV and RidgeClassifier.\r\n@arpanchowdhry Well, documentation for Lasso, ElasticNet and ElasticNetCV also seems to lack default parameter values.\n\n@alexitkes Thanks. Let me take a look at these three models. Also since this is my first issue, I will take a look at your changes for guidance. \n\n@alexitkes Hi Alex! Are you still looking for help? I'm interested for contributing in this issue.\n\n@vinidixit Sure, there is still some work to do. For example, default values for some parameters of `PassiveAggressiveClassifier` and `PassiveAggressiveRegressor` are not documented and default value for `PassiveAggressiveClassifier.fit_intercept` is documented to be False while actually set to True.\n\n@alexitkes  It seems like there is also some work to do on Least Angle Regression, I'll would like to work on that if you're not already working on it\n\n@alexitkes I have done the documentation and made a PR.please check and reply.Thank you.\n\nI would like to help if any aspect is still open. Please let me know. This is my first attempt.\n\n> PassiveAggressiveClassifier\r\n\r\n@alexitkes Hello Alex! I've updated documentation of fit_intercept to True and have submitted the changes. Please let me know if this is the way it's done? Please guide me, as it's my first commit.\r\nThanks!\n\n@vinidixit Well, after committing the changes you should open a pull request by pressing the `pull request` button at top of the screen. When writing the description of the changes you propose, refer to this issue by writing somewhat like \"as mentioned in #14452\" in the changes description to make the link to your request appear among comments to this issue.\n\nLet's put a hold on this, and wait a bit new PRs until the right way of formatting docstrings is decided in https://github.com/scikit-learn/scikit-learn/pull/12356\n\nHi there! I can see that there’s been a lot of activity on this issue, but it’s still open so I’d love to know if there’s some work that is yet to be done! \n\nHi, is there is still some work to do on this issue?\n\nThere's a more general issue regarding the default values of all estimators: #15761\r\nThere's still some work to be done there :)\r\n\r\nClosing this issue since it's included in #15761",
+  "pr_link": "https://github.com/scikit-learn/scikit-learn/pull/12356",
+  "code_context": []
+}

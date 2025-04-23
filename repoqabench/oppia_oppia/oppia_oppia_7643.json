@@ -263,5 +263,31 @@
       "filename": "extensions/interactions/ImageClickInput/directives/oppia-response-image-click-input.directive.ts",
       "content": "// Copyright 2019 The Oppia Authors. All Rights Reserved.\n//\n// Licensed under the Apache License, Version 2.0 (the \"License\");\n// you may not use this file except in compliance with the License.\n// You may obtain a copy of the License at\n//\n//      http://www.apache.org/licenses/LICENSE-2.0\n//\n// Unless required by applicable law or agreed to in writing, software\n// distributed under the License is distributed on an \"AS-IS\" BASIS,\n// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n// See the License for the specific language governing permissions and\n// limitations under the License.\n\n/**\n * @fileoverview Directive for the ImageClickInput response.\n *\n * IMPORTANT NOTE: The naming convention for customization args that are passed\n * into the directive is: the name of the parameter, followed by 'With',\n * followed by the name of the arg.\n */\n\nrequire('services/html-escaper.service.ts');\n\nangular.module('oppia').directive('oppiaResponseImageClickInput', [\n  function() {\n    return {\n      restrict: 'E',\n      scope: {},\n      bindToController: {},\n      template: require('./image-click-input-response.directive.html'),\n      controllerAs: '$ctrl',\n      controller: [\n        '$attrs', 'HtmlEscaperService',\n        function($attrs, HtmlEscaperService) {\n          var ctrl = this;\n          ctrl.$onInit = function() {\n            var _answer = HtmlEscaperService.escapedJsonToObj($attrs.answer);\n            ctrl.clickRegionLabel = '(Clicks on ' + (\n              _answer.clickedRegions.length > 0 ?\n                '\\'' + _answer.clickedRegions[0] + '\\'' : 'image') + ')';\n          };\n        }\n      ]\n    };\n  }\n]);\n"
     }
+  ],
+  "questions": [
+    "OK, then I think the original description may be unclear. Could you please split it into the parts that (a) can be done now, and (b) need to be done only after #8472 is resolved? (At the moment, it looks like everything blocks on #8472 which I understand isn't the case based on your last comment.)"
+  ],
+  "golden_answers": [
+    "@seanlip I have created #8630 for all of the directives and kept this issue for the extensions.\r\n\r\n@ahv15 How is the work going on `extensions/rich_text_components`"
+  ],
+  "questions_generated": [
+    "What is the primary purpose of replacing `templateUrl` with `template` in the oppia_oppia repository?",
+    "What specific changes need to be made to the directive files in the oppia_oppia repository according to the issue?",
+    "How does the issue suggest handling directives when they are migrated to Angular 8?",
+    "What is the potential problem mentioned in the issue when replacing `templateUrl` with `template`, and what is causing it?",
+    "What are the steps outlined in the issue for replacing `templateUrl` with `template`?",
+    "What resources are provided in the issue to help with the transition from `templateUrl` to `template`?",
+    "Who in the oppia_oppia repository is currently assigned to work on the `extensions/objects` and `extensions/rich_text_components` subfolders?",
+    "What is blocking the progress of the issue, according to the discussion context?"
+  ],
+  "golden_answers_generated": [
+    "The primary purpose of replacing `templateUrl` with `template` is to improve the latency and bandwidth of directive loading. By using webpack to insert HTML templates into generated bundles, Angular does not need to retrieve the HTML via an AJAX request, leading to faster load times.",
+    "The specific changes include replacing `templateUrl: UrlInterpolationService.getDirectiveTemplateUrl('somePath')` with `template: require('somePath')` and removing the `UrlInterpolationService` if it is no longer needed. Additionally, the `require('domain/utilities/url-interpolation.service.ts');` import should be removed from the file.",
+    "When the directive is migrated to Angular 8, the issue suggests replacing `template: require('somePath')` with `templateUrl: 'somePath'` and using the `@ngtools/webpack` package to manage the templates.",
+    "The potential problem mentioned is the error: 'Trying to get the Angular injector before bootstrapping the corresponding Angular module.' This occurs because some directives use services that have already been migrated to Angular 8. The directives load much faster with `template`, leading to them being initialized before Angular 8 is fully bootstrapped.",
+    "The steps include: 1) Replacing `templateUrl: UrlInterpolationService.someFunction('someUrl')` with `template: require('someUrl')` in one of the extensions subfolders, and 2) Removing `UrlInterpolationService` from the directive and its associated import if it is no longer needed.",
+    "The issue provides several resources, including blog posts and tutorials on Angular directives with webpack, differences between AngularJS `template` vs `templateUrl`, and the transition from `angular2-template-loader` to `ngtools/webpack`.",
+    "Rohitkatlaa is assigned to work on the `extensions/objects` subfolder, and sseth99 is assigned to the `extensions/rich_text_components` subfolder.",
+    "The progress of the issue is blocked by the ongoing work on the Angular 8 migration. Once all services have been migrated to Angular 8, work can resume on this issue."
   ]
 }

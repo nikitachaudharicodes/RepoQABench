@@ -121,5 +121,35 @@
       "filename": "core/templates/pages/participation-playbook/playbook.component.css",
       "content": "/*\n  NOTE to developers: We generate RTL CSS from this file in the webpack\n  compilation, here are sme additional rules that can be added to the CSS files:\n  https://rtlcss.com/learn/usage-guide/control-directives .\n*/\n.playbook .oppia-static-content ul {\n  justify-content: center;\n  padding: 0;\n}\n.playbook .participation h2:not(:first-child) {\n  margin-top: 2.5em;\n}\n.playbook .oppia-teach-tab-content {\n  padding-bottom: 7%;\n}\n.playbook .oppia-teach-button {\n  display: block;\n  margin: 0 auto 0 auto;\n}\n.playbook .oppia-publication-instructions-container {\n  margin-left: 25px;\n}\n.playbook .oppia-about-buttons-container {\n  display: flex;\n  justify-content: space-evenly;\n  text-align: center;\n}\n.playbook .btn.oppia-about-button {\n  background-color: rgba(0, 0, 0, 0.3);\n  color: rgba(255, 255, 255, 1.0);\n  font-weight: 500;\n  letter-spacing: 0.7px;\n  margin: 0 auto 4%;\n  max-width: 80%;\n  min-width: 40%;\n  padding: 10px 30px;\n  text-transform: uppercase;\n}\n.playbook .btn.oppia-about-button:hover {\n  background-color: #fff;\n  color: #009688;\n}\n.playbook .oppia-about-extra-info {\n  background-color: #009788;\n  color: #fff;\n  height: 160px;\n  width: 100%;\n}\n\n.playbook .oppia-about-extra-container {\n  position: relative;\n  top: 50px;\n  width: 100%;\n}\n\n.playbook .oppia-static-extra-content {\n  margin: 0 auto;\n}\n\n.playbook .oppia-about-extra-container h3 {\n  color: #fff;\n  text-align: center;\n}\n\n@media(max-width: 1000px) {\n  .playbook .oppia-about-buttons-container {\n    flex-direction: column;\n  }\n  .playbook .btn.oppia-about-button {\n    min-width: 80%;\n  }\n}\n\n@media only screen and (min-width: 1400px) {\n  .playbook .oppia-about-extra-info {\n    height: 245px;\n  }\n}\n\n@media(max-width: 700px) {\n  .playbook .oppia-about-extra-container {\n    margin-bottom: -10px;\n  }\n}\n@media(max-width: 440px) {\n  .playbook .oppia-about-extra-container {\n    margin-bottom: 30px;\n  }\n}\n"
     }
+  ],
+  "questions": [
+    "Hey @jnvtnguyen \r\nCould you assign this to me so that I can start working on it?",
+    "@seanlip \r\nI've attached the screenshot here. Could you please let me know if it looks okay to you?\r\n![image](https://github.com/user-attachments/assets/52b27ba2-4da4-4855-9432-d87abccdb070)",
+    "Thanks -- I think both of these are close enough, but @uday-kiran-001 commented first, so I'll assign this to him.\r\n\r\nUday, when making a PR, please make the background colour of the buttons a bit darker (see @jnvtnguyen's image) and reduce the whitespace above and below them). Thanks! (Also, when will you be able to make a PR?)",
+    "Hi @seanlip, I’m Uday. Can you finalize this work by looking into the below screenshot before I make a PR?\n\n![Image](https://github.com/user-attachments/assets/ad2bec9f-d6ec-4a58-a621-5004c5c0c3e7)"
+  ],
+  "golden_answers": [
+    "@seanlip \r\nI've attached the screenshot here. Could you please let me know if it looks okay to you?\r\n![image](https://github.com/user-attachments/assets/52b27ba2-4da4-4855-9432-d87abccdb070)",
+    "@mannika763 Please follow the screenshot that @jnvtnguyen shared in an [earlier comment](https://github.com/oppia/oppia/issues/20497#issuecomment-2266754103).",
+    "Hi @seanlip, I’m Uday. Can you finalize this work by looking into the below screenshot before I make a PR?\n\n![Image](https://github.com/user-attachments/assets/ad2bec9f-d6ec-4a58-a621-5004c5c0c3e7)",
+    "@seanlip  Could you please help me why (Frontend Karma tests / frontend-karma-tests (ubuntu-22.04, 2)) has failed in this [PR](https://github.com/oppia/oppia/pull/21021)? I'm unable it figure it out."
+  ],
+  "questions_generated": [
+    "What is the main issue with the buttons on the creator guidelines page in the oppia_oppia repository?",
+    "Which section of the CSS code might need modification to address the button visibility issue on the creator guidelines page?",
+    "What steps should a developer take before addressing the button visibility issue according to the issue description?",
+    "How does the oppia_oppia repository suggest handling the installation and command execution on Windows using VSCode?",
+    "What are the expected formatting changes for the buttons as per the issue description?",
+    "How should the developer demonstrate their fix for the button visibility issue in the oppia_oppia repository?",
+    "What might be a reason for the make command not being recognized in the VSCode terminal, and how can it be resolved?"
+  ],
+  "golden_answers_generated": [
+    "The 'Create an Exploration' and 'Browse our Explorations' buttons on the creator guidelines page are hard to see and find. They lack proper button formatting such as borders, contrasting colors, and clear visibility.",
+    "The CSS class .btn.oppia-about-button in the playbook.component.css file might need modification. Adjusting properties like background-color, color, borders, and padding could enhance button visibility and contrast.",
+    "Before addressing the issue, a developer should identify which PR caused the problem by following the steps outlined in the oppia wiki. They must then comment on the issue with the PR link or the commit hash where the bug was first observed. Additionally, they should provide details of their planned approach to fix the issue.",
+    "The repository suggests using WSL (Windows Subsystem for Linux) to run make commands on Windows using VSCode, as Powershell might not recognize 'make' as a command.",
+    "The buttons should be easier to see with proper formatting, including borders and contrasting colors to stand out better against the page background.",
+    "The developer needs to show a demo of the fix working correctly on their local machine and ensure that the changes are aligned with the repository's contribution guidelines.",
+    "The make command might not be recognized because Powershell is being used as the terminal, which does not support Unix-based commands by default. Switching to WSL or installing make in the Windows environment can resolve this issue."
   ]
 }

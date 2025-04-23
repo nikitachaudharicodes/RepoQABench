@@ -1,0 +1,65 @@
+{
+  "repo_name": "scrapy_scrapy",
+  "issue_id": "2374",
+  "issue_description": "# DepthMiddleware docs should mention request.meta['depth']\n\nrequest.meta['depth'] is set by DepthMiddleware, but its [docs](https://doc.scrapy.org/en/latest/topics/spider-middleware.html?#module-scrapy.spidermiddlewares.depth) don't mention that. I think it'd be nice to add this information.",
+  "issue_comments": [
+    {
+      "id": 267549032,
+      "user": "arush0311",
+      "body": "Can i take this?"
+    },
+    {
+      "id": 267566432,
+      "user": "kmike",
+      "body": "@arush0311 yes, help is appreciated!"
+    },
+    {
+      "id": 298025382,
+      "user": "arush0311",
+      "body": "sure go ahead."
+    },
+    {
+      "id": 321278078,
+      "user": "amrx101",
+      "body": "Is this closed or up for grabs?"
+    },
+    {
+      "id": 321307871,
+      "user": "redapple",
+      "body": "@amrx101 , I believe it's still up for grabs. Have a look at the previous https://github.com/scrapy/scrapy/pull/2455"
+    },
+    {
+      "id": 332840095,
+      "user": "krishamehta",
+      "body": "Is it still up? Would like to help\r\n"
+    },
+    {
+      "id": 334590559,
+      "user": "djunzu",
+      "body": "@krishamehta , still up, go for it! :)"
+    },
+    {
+      "id": 335072555,
+      "user": "krishamehta",
+      "body": "Will start working on this!"
+    },
+    {
+      "id": 336910584,
+      "user": "pranjalverma",
+      "body": "I would like to take this if this is still up. This is my first ever open source contribution, can anyone guide me? How exactly do I edit the docs? I really don't wanna mess this up. Much appreciated."
+    },
+    {
+      "id": 338416957,
+      "user": "ghost",
+      "body": "Still open? I'd like to take a crack at this"
+    },
+    {
+      "id": 338417460,
+      "user": "krishamehta",
+      "body": "I have started working on this\r\nBut since im new at open source , its taking a bit longer "
+    }
+  ],
+  "text_context": "# DepthMiddleware docs should mention request.meta['depth']\n\nrequest.meta['depth'] is set by DepthMiddleware, but its [docs](https://doc.scrapy.org/en/latest/topics/spider-middleware.html?#module-scrapy.spidermiddlewares.depth) don't mention that. I think it'd be nice to add this information.\n\nCan i take this?\n\n@arush0311 yes, help is appreciated!\n\nsure go ahead.\n\nIs this closed or up for grabs?\n\n@amrx101 , I believe it's still up for grabs. Have a look at the previous https://github.com/scrapy/scrapy/pull/2455\n\nIs it still up? Would like to help\r\n\n\n@krishamehta , still up, go for it! :)\n\nWill start working on this!\n\nI would like to take this if this is still up. This is my first ever open source contribution, can anyone guide me? How exactly do I edit the docs? I really don't wanna mess this up. Much appreciated.\n\nStill open? I'd like to take a crack at this\n\nI have started working on this\r\nBut since im new at open source , its taking a bit longer ",
+  "pr_link": "https://github.com/scrapy/scrapy/pull/2455",
+  "code_context": []
+}

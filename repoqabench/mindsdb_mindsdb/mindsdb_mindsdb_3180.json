@@ -71,5 +71,29 @@
   ],
   "text_context": "# Tutorial to Predict the Rating of Cars\n\n## Task Description\r\nCreate a predictor to predict the rating of cars based on their technical specification.\r\n\r\nUse the `CARS_1.csv` dataset available at https://www.kaggle.com/datasets/tr1gg3rtrash/cars-2022-dataset.\r\n\r\n## :loudspeaker: Additional rewards :trophy:\r\n\r\nEach tutorial brings :three: points and entry into the draw for a  :point_down: :\r\n\r\n-  :computer:  [Razer Blade 15 Laptop](https://www.razer.com/hard-bundles/Razer-Blade-15-Bundle-V5-Essential/RZHB-220912-11)\r\n- :headphones:  10 cool audio gadgets \r\n- :shirt: :bear: MindsDB Swag\r\n:information_source: For more info check out https://mindsdb.com/hacktoberfest/ :point_left: \n\nHello, can I work on this issue?\r\n\n\nHello, can I please be assigned to also work on this issue? Thank you.\n\nHey can I work on this issue? Pls assign me to this @ZoranPandovski \n\nThis tutorial is already assigned.\r\nPlease have a look at the [Hacktoberfest issues here](https://github.com/mindsdb/mindsdb/issues) or come up with a tutorial you would like to create. Thanks.\n\n> \r\n\r\nWhere do I come up with a tutorial I would like to create? @martyna-mindsdb \n\n@dhaneshragu\r\nYou can look up the [datasets available at Kaggle](https://www.kaggle.com/datasets) to get some ideas for a tutorial.\n\nhello @martyna-mindsdb, in which format can I submit the tutorial for this predicting rating car using mindsdb?\r\nArticle or video?\n\nHi @StarTrooper08,\r\nAny format is welcome. Usually, our tutorials are articles.\n\nHello @martyna-mindsdb my article is ready where can I submit it?\r\nhttps://atharva08.hashnode.dev/predicting-the-rating-of-cars-using-mindsdb\n\nI've to submit the pull request link in the form right?\n\nBut for the article should I add issue link in the form?\r\n\n\n@StarTrooper08\r\nPlease create a PR to submit your article. Thanks!\n\nhttps://github.com/mindsdb/mindsdb/pull/3430\r\n\r\n@martyna-mindsdb I've created PR for the same",
   "pr_link": "https://github.com/mindsdb/mindsdb/pull/3430",
-  "code_context": []
+  "code_context": [],
+  "questions": [
+    "Hello, can I please be assigned to also work on this issue? Thank you.",
+    "Hey can I work on this issue? Pls assign me to this @ZoranPandovski",
+    "> \r\n\r\nWhere do I come up with a tutorial I would like to create? @martyna-mindsdb"
+  ],
+  "golden_answers": [
+    "This tutorial is already assigned.\r\nPlease have a look at the [Hacktoberfest issues here](https://github.com/mindsdb/mindsdb/issues) or come up with a tutorial you would like to create. Thanks.",
+    "This tutorial is already assigned.\r\nPlease have a look at the [Hacktoberfest issues here](https://github.com/mindsdb/mindsdb/issues) or come up with a tutorial you would like to create. Thanks.",
+    "@dhaneshragu\r\nYou can look up the [datasets available at Kaggle](https://www.kaggle.com/datasets) to get some ideas for a tutorial."
+  ],
+  "questions_generated": [
+    "What is the main objective of the tutorial mentioned in the issue?",
+    "Which dataset is recommended for use in the tutorial to predict car ratings?",
+    "What are the incentives for creating a tutorial as described in the issue?",
+    "If someone wants to contribute a tutorial, what is one way they can get ideas for it?",
+    "What is the expected format for submitting a tutorial, and where should it be submitted?"
+  ],
+  "golden_answers_generated": [
+    "The main objective of the tutorial is to create a predictor to predict the rating of cars based on their technical specifications using the 'CARS_1.csv' dataset from Kaggle.",
+    "The recommended dataset for use in the tutorial is 'CARS_1.csv', which is available at https://www.kaggle.com/datasets/tr1gg3rtrash/cars-2022-dataset.",
+    "Each tutorial brings three points and entry into a draw for various rewards, including a Razer Blade 15 Laptop, 10 cool audio gadgets, and MindsDB Swag.",
+    "One way to get ideas for creating a tutorial is by looking up datasets available at Kaggle to find suitable topics or data for a new tutorial.",
+    "Tutorials can be submitted in any format, but they are usually articles. The submission should be made by creating a pull request in the mindsdb repository."
+  ]
 }

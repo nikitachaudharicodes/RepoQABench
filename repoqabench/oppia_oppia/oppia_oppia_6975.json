@@ -273,5 +273,45 @@
       "filename": "extensions/interactions/Continue/directives/continue-interaction.directive.html",
       "content": "<md-button ng-if=\"$ctrl.isInEditorMode\" class=\"oppia-learner-confirm-button\">\n  <[$ctrl.buttonText]>\n  <i class=\"fas fa-arrow-right\" style=\"font-size: 19px; padding-top: 1.5px;\"></i>\n</md-button>\n"
     }
+  ],
+  "questions": [
+    "@YashJipkate, Can you please assign services and domain directories of this issue?",
+    "Hello @DubeySandeep \r\nCan you assign me to the **domain** directory, as my starter issue.?",
+    "Hello @DubeySandeep, I would like to work on one of the directories that have not been assigned yet, either Domains or Services,, as my first issue. Can you please assign me?",
+    "@DubeySandeep  This is my first time contributing to a project so I am not familiar with the GitHub etiquette. I have a few questions that are very beginner level, I am afraid. For example, I was looking at /oppia/core/domain as the directory to work on the renaming. But now I see these are all Python files, not .ts files as described above. Am I in the wrong directory?  I can imagine this is not the right place to ask such questions so please let me know if I need to raise this somewhere else.",
+    "@Jethet, Your question is specific to this issue so I think you are in the right place. In general,[ Gitter](https://gitter.im/oppia/oppia-chat) is a better place for asking questions/help.\r\n\r\n >  Am I in the wrong directory?\r\n\r\nYou should look into [oppia/core/templates/dev/head/domain](https://github.com/oppia/oppia/tree/develop/core/templates/dev/head/domain). Thanks for raising this question I've updated the issue description so that other contributors don't face a similar issue.",
+    "Thanks, @DubeySandeep , I never would have found that! To be certain I do not mess up, one example: under /domain/classifier I will change the name of the file \r\nAnswerClassificationResultObjectFactory.ts to\r\nanswer-classification-result-object-factory.FUNCTIONALITY.ts\r\nBut what is the functionality? I see 'ObjectFactory' as part of many file names but it is not a functionality as stated in the naming convention.",
+    "Hello @DubeySandeep, I have aligned the first 12 folders in the folder oppia/core/templates/dev/head/ with the file naming convention. It might be a good idea for me to make a pull request so that you can check if these changes are correct, to prevent structural mistakes when I continue working on this issue.\r\nIf you agree, then could you explain how to make a preliminary pull request for you to check?\r\n\r\nAlso, what is your preference in general for making pull requests? There are about 26 folders with files in /domain. Making one pull request for all of this may not be such a good idea. It is a huge amount of changes."
+  ],
+  "golden_answers": [
+    "Hi @sauram, I think you haven't signed the CLA yet, would you mind following the instructions provided in the [wiki page](https://github.com/oppia/oppia/wiki/Contributing-code-to-Oppia#setting-things-up) first?",
+    "Hi @sauram, I think you haven't signed the CLA yet, would you mind following the instructions provided in the [wiki page](https://github.com/oppia/oppia/wiki/Contributing-code-to-Oppia#setting-things-up) first?",
+    "Hi @Jethet, I've assigned you to `/domain` part of this issue, you can go ahead and start working on it.",
+    "@Jethet, Your question is specific to this issue so I think you are in the right place. In general,[ Gitter](https://gitter.im/oppia/oppia-chat) is a better place for asking questions/help.\r\n\r\n >  Am I in the wrong directory?\r\n\r\nYou should look into [oppia/core/templates/dev/head/domain](https://github.com/oppia/oppia/tree/develop/core/templates/dev/head/domain). Thanks for raising this question I've updated the issue description so that other contributors don't face a similar issue.",
+    "Thanks, @DubeySandeep , I never would have found that! To be certain I do not mess up, one example: under /domain/classifier I will change the name of the file \r\nAnswerClassificationResultObjectFactory.ts to\r\nanswer-classification-result-object-factory.FUNCTIONALITY.ts\r\nBut what is the functionality? I see 'ObjectFactory' as part of many file names but it is not a functionality as stated in the naming convention.",
+    "> Making one pull request for all of this may not be such a good idea. It is a huge amount of changes.\r\n\r\n@Jethet You can create multiple PRs if you like, I'm fine with either as It's more of a mechanical change. (I would prefer to have multiple PRs for the `/domain` part.)\r\n\r\nWhatever you do make sure to add an explanation in the PR thread.",
+    "> Making one pull request for all of this may not be such a good idea. It is a huge amount of changes.\r\n\r\n@Jethet You can create multiple PRs if you like, I'm fine with either as It's more of a mechanical change. (I would prefer to have multiple PRs for the `/domain` part.)\r\n\r\nWhatever you do make sure to add an explanation in the PR thread."
+  ],
+  "questions_generated": [
+    "What naming convention should be applied to directive files in the Oppia repository?",
+    "How should HTML files that serve as templates for directives be named according to the new convention?",
+    "What are the key components of the Oppia repository that require the new naming convention to be applied?",
+    "How should service files be named under the new Oppia naming convention?",
+    "What is the purpose of specifying a naming convention for constants in the Oppia repository?",
+    "How should spec files be named according to the new convention in the Oppia repository?",
+    "What changes are required for the 'base_components/' directory in relation to the new naming convention?",
+    "Why is it important to ignore certain file suffixes when checking for RTE component validity?",
+    "What rationale is given for using kebab-case in the new naming convention for multi-word functionality names?"
+  ],
+  "golden_answers_generated": [
+    "Directive files in the Oppia repository should follow the naming convention where the file name ends with '.directive.ts'. The filename is divided into three parts: the functionality name, the type of functionality, and the file extension. For example, if a directive is named 'stateResponses', the file should be named 'state-responses.directive.ts'.",
+    "HTML files that are served by directive files and appear in the 'templateUrl' of the directive must have their names ending with '.directive.html'. For example, if a directive's template is called 'progress nav', the file would be named 'progress-nav.directive.html'.",
+    "The key components of the Oppia repository that require the new naming convention include the directories: 'services/', 'extensions/', 'domain/', 'expressions/', 'directives/', and 'base_components/'. These directories should have their files renamed according to the specified naming patterns.",
+    "Service files in the Oppia repository should have their names ending with '.service.ts'. The filename is divided into three parts: the functionality name, the type of functionality, and the file extension. For example, if a service is named 'ExplorationDataService', the file should be named 'exploration-data.service.ts'.",
+    "The purpose of specifying a naming convention for constants is to ensure that all constants of a page are contained within a single file, named 'name-of-the-page.constants.ts'. This organization helps in maintaining consistency and makes it easier to locate and update constants. Any new constant should be added to this file, which should then be required in the files that use the constant.",
+    "Spec files should have a filename divided into four parts: the functionality name, the type of functionality, the word 'spec', and the file extension. The different parts of the filename are joined by periods, and the first part should use kebab-case if it contains multiple words.",
+    "The 'base_components/' directory requires that all files within it adopt the new naming convention, which involves renaming files according to their type, such as '.directive.ts', '.controller.ts', '.service.ts', etc., and following the kebab-case format for multi-word functionality names.",
+    "It is important to ignore certain file suffixes, such as '.pyc' and '.DS_Store', when checking for RTE component validity because these files are not relevant to the functionality and can contain automatically generated or system-specific content that should not affect component validity checks.",
+    "The rationale for using kebab-case in the new naming convention for multi-word functionality names is to ensure consistency and readability. Kebab-case makes it easier to distinguish between different parts of a filename and adheres to common JavaScript and TypeScript file naming practices."
   ]
 }

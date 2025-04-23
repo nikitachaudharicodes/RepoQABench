@@ -1,0 +1,75 @@
+{
+  "repo_name": "mindsdb_mindsdb",
+  "issue_id": "3180",
+  "issue_description": "# Tutorial to Predict the Rating of Cars\n\n## Task Description\r\nCreate a predictor to predict the rating of cars based on their technical specification.\r\n\r\nUse the `CARS_1.csv` dataset available at https://www.kaggle.com/datasets/tr1gg3rtrash/cars-2022-dataset.\r\n\r\n## :loudspeaker: Additional rewards :trophy:\r\n\r\nEach tutorial brings :three: points and entry into the draw for a  :point_down: :\r\n\r\n-  :computer:  [Razer Blade 15 Laptop](https://www.razer.com/hard-bundles/Razer-Blade-15-Bundle-V5-Essential/RZHB-220912-11)\r\n- :headphones:  10 cool audio gadgets \r\n- :shirt: :bear: MindsDB Swag\r\n:information_source: For more info check out https://mindsdb.com/hacktoberfest/ :point_left: ",
+  "issue_comments": [
+    {
+      "id": 1271447085,
+      "user": "StarTrooper08",
+      "body": "Hello, can I work on this issue?\r\n"
+    },
+    {
+      "id": 1272336903,
+      "user": "NkemDev",
+      "body": "Hello, can I please be assigned to also work on this issue? Thank you."
+    },
+    {
+      "id": 1272362102,
+      "user": "dhaneshragu",
+      "body": "Hey can I work on this issue? Pls assign me to this @ZoranPandovski "
+    },
+    {
+      "id": 1272366414,
+      "user": "martyna-mindsdb",
+      "body": "This tutorial is already assigned.\r\nPlease have a look at the [Hacktoberfest issues here](https://github.com/mindsdb/mindsdb/issues) or come up with a tutorial you would like to create. Thanks."
+    },
+    {
+      "id": 1272369308,
+      "user": "dhaneshragu",
+      "body": "> \r\n\r\nWhere do I come up with a tutorial I would like to create? @martyna-mindsdb "
+    },
+    {
+      "id": 1272390952,
+      "user": "martyna-mindsdb",
+      "body": "@dhaneshragu\r\nYou can look up the [datasets available at Kaggle](https://www.kaggle.com/datasets) to get some ideas for a tutorial."
+    },
+    {
+      "id": 1272555065,
+      "user": "StarTrooper08",
+      "body": "hello @martyna-mindsdb, in which format can I submit the tutorial for this predicting rating car using mindsdb?\r\nArticle or video?"
+    },
+    {
+      "id": 1272577190,
+      "user": "martyna-mindsdb",
+      "body": "Hi @StarTrooper08,\r\nAny format is welcome. Usually, our tutorials are articles."
+    },
+    {
+      "id": 1279098044,
+      "user": "StarTrooper08",
+      "body": "Hello @martyna-mindsdb my article is ready where can I submit it?\r\nhttps://atharva08.hashnode.dev/predicting-the-rating-of-cars-using-mindsdb"
+    },
+    {
+      "id": 1279100364,
+      "user": "StarTrooper08",
+      "body": "I've to submit the pull request link in the form right?"
+    },
+    {
+      "id": 1279105839,
+      "user": "StarTrooper08",
+      "body": "But for the article should I add issue link in the form?\r\n"
+    },
+    {
+      "id": 1279416274,
+      "user": "martyna-mindsdb",
+      "body": "@StarTrooper08\r\nPlease create a PR to submit your article. Thanks!"
+    },
+    {
+      "id": 1279939952,
+      "user": "StarTrooper08",
+      "body": "https://github.com/mindsdb/mindsdb/pull/3430\r\n\r\n@martyna-mindsdb I've created PR for the same"
+    }
+  ],
+  "text_context": "# Tutorial to Predict the Rating of Cars\n\n## Task Description\r\nCreate a predictor to predict the rating of cars based on their technical specification.\r\n\r\nUse the `CARS_1.csv` dataset available at https://www.kaggle.com/datasets/tr1gg3rtrash/cars-2022-dataset.\r\n\r\n## :loudspeaker: Additional rewards :trophy:\r\n\r\nEach tutorial brings :three: points and entry into the draw for a  :point_down: :\r\n\r\n-  :computer:  [Razer Blade 15 Laptop](https://www.razer.com/hard-bundles/Razer-Blade-15-Bundle-V5-Essential/RZHB-220912-11)\r\n- :headphones:  10 cool audio gadgets \r\n- :shirt: :bear: MindsDB Swag\r\n:information_source: For more info check out https://mindsdb.com/hacktoberfest/ :point_left: \n\nHello, can I work on this issue?\r\n\n\nHello, can I please be assigned to also work on this issue? Thank you.\n\nHey can I work on this issue? Pls assign me to this @ZoranPandovski \n\nThis tutorial is already assigned.\r\nPlease have a look at the [Hacktoberfest issues here](https://github.com/mindsdb/mindsdb/issues) or come up with a tutorial you would like to create. Thanks.\n\n> \r\n\r\nWhere do I come up with a tutorial I would like to create? @martyna-mindsdb \n\n@dhaneshragu\r\nYou can look up the [datasets available at Kaggle](https://www.kaggle.com/datasets) to get some ideas for a tutorial.\n\nhello @martyna-mindsdb, in which format can I submit the tutorial for this predicting rating car using mindsdb?\r\nArticle or video?\n\nHi @StarTrooper08,\r\nAny format is welcome. Usually, our tutorials are articles.\n\nHello @martyna-mindsdb my article is ready where can I submit it?\r\nhttps://atharva08.hashnode.dev/predicting-the-rating-of-cars-using-mindsdb\n\nI've to submit the pull request link in the form right?\n\nBut for the article should I add issue link in the form?\r\n\n\n@StarTrooper08\r\nPlease create a PR to submit your article. Thanks!\n\nhttps://github.com/mindsdb/mindsdb/pull/3430\r\n\r\n@martyna-mindsdb I've created PR for the same",
+  "pr_link": "https://github.com/mindsdb/mindsdb/pull/3430",
+  "code_context": []
+}

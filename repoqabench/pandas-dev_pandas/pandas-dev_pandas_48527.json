@@ -110,5 +110,31 @@
       "filename": "doc/source/_static/css/pandas.css",
       "content": "/* Override some aspects of the pydata-sphinx-theme */\n\n:root {\n  /* Use softer blue from bootstrap's default info color */\n  --pst-color-info: 23, 162, 184;\n}\n\n/* Main index page overview cards */\n\n.intro-card {\n  background: #fff;\n  border-radius: 0;\n  padding: 30px 10px 20px 10px;\n  margin: 10px 0px;\n}\n\n.intro-card p.card-text {\n  margin: 0px;\n}\n\n.intro-card .card-img-top {\n  margin: 10px;\n  height: 52px;\n}\n\n.intro-card .card-header {\n  border: none;\n  background-color: transparent;\n  color: #150458 !important;\n  font-size: var(--pst-font-size-h5);\n  font-weight: bold;\n  padding: 2.5rem 0rem 0.5rem 0rem;\n}\n\n.intro-card .card-footer {\n  border: none;\n  background-color: transparent;\n}\n\n.intro-card .card-footer p.card-text{\n  max-width: 220px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.card, .card img {\n  background-color: transparent !important;\n}\n"
     }
+  ],
+  "questions": [
+    "I'm not able to run python make.py HTML showing error module not found: No module named 'pandas._libs.interval\r\nany solution?",
+    "oh okay, thanks \r\n\r\nCan I work on this issue?",
+    "> oh okay, thanks\r\n> \r\n> Can I work on this issue?\r\n\r\nThis is my first time working with open source, it would be really helpful if you could guide me to files that need modification. \r\n\r\nThanks in advance :)"
+  ],
+  "golden_answers": [
+    "In the project root run `./setup.py build_ext --inplace` to compile pandas extensions, that should fix it. In the contributing documentation you have all the info.",
+    "Sure, thanks for the help. I think this PR should be similar to https://github.com/pandas-dev/pandas/pull/48572/files\r\n\r\nYou can build the documentation after creating an environment (see https://pandas.pydata.org/docs/dev/development/contributing_environment.html) running the make.py script inside doc/. The development documentation I point to has more detailed information.",
+    "Sure, thanks for the help. I think this PR should be similar to https://github.com/pandas-dev/pandas/pull/48572/files\r\n\r\nYou can build the documentation after creating an environment (see https://pandas.pydata.org/docs/dev/development/contributing_environment.html) running the make.py script inside doc/. The development documentation I point to has more detailed information."
+  ],
+  "questions_generated": [
+    "What specific changes need to be made to the CSS to support dark mode in the Pandas documentation?",
+    "How can you test the changes made for dark mode compatibility in the Pandas documentation?",
+    "What are the steps to resolve the 'No module named pandas._libs.interval' error encountered when trying to build the documentation?",
+    "In the code context provided, what is the purpose of the '.gs-callout' CSS class?",
+    "What is the role of '.gs-torefguide a' in the CSS code provided, and how does it change on hover?",
+    "Why is it important to replace old SVG images rather than uploading new ones in the context of this issue?"
+  ],
+  "golden_answers_generated": [
+    "To support dark mode, any custom styles that force a white background should be removed or altered to allow for transparency or a dark background. This includes inspecting elements like boxes on the docs home page that currently have a white background. The goal is to ensure compatibility with dark mode settings in browsers.",
+    "The changes can be tested by switching to the branch #48285 where the dark mode is being implemented. After making the necessary CSS changes, you can build the documentation using the `make.py` script located in the `doc/` directory to ensure that the styles display correctly in dark mode.",
+    "To resolve the 'No module named pandas._libs.interval' error, you should run `./setup.py build_ext --inplace` in the project root. This command compiles the Pandas extensions, and should fix the issue. Detailed instructions are available in the contributing documentation.",
+    "The '.gs-callout' CSS class is used to style callout boxes in the documentation. It adds padding, margins, a border with a specific width and color, and rounded corners. The class ensures that callout boxes are visually distinct and draw attention to important information.",
+    "The '.gs-torefguide a' class styles anchor tags within the 'gs-torefguide' class. By default, it sets the margin, color, border, and box-shadow properties. On hover, the color changes to grey, the text decoration is removed, and both the border-bottom and box-shadow change to a different color, enhancing user interaction.",
+    "Replacing old SVG images ensures consistency and prevents any potential issues with duplicate or outdated graphics. It simplifies the maintenance of the documentation by ensuring that only the latest and most relevant images are used, especially in the context of making the docs compatible with dark mode."
   ]
 }

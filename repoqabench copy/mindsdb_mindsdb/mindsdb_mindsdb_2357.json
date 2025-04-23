@@ -1,0 +1,173 @@
+{
+  "repo_name": "mindsdb_mindsdb",
+  "issue_id": "2357",
+  "issue_description": "# [New Integration]: Prometheus Monitoring Integration\n\n### Is there an existing integration?\r\n\r\n- [X] I have searched the existing integrations.\r\n\r\n### Use Case\r\n\r\nSo the engineering team has deployed the next big application on cloud servers, but how can they constantly \"keep eyes\" on the servers to assess its performance, health, and proactively detect and prevent any possible failure? This introduces the need for automated monitoring and instrumentation tools. \r\n\r\nPrometheus is a popular open-source instrumentation and monitoring system for cloud-native applications, which provides notable capabilities for \"scraping\" metrics from several target servers in a time-series format, analyzing these metrics, querying metrics, alerting etc. These metrics could include CPU usage, memory usage, disk or I/O activity, server status etc.\r\n\r\nPrometheus stores data in time-series form, and provides a querying language called PromQL for aggregating the time-series data for each metric. The result of the queries can be shown as a graph for visualization, or expressed in tabular form. \r\n\r\nPrometheus pulls data from data sources using lightweight agents installed on the data sources, these agents are called **exporters**. Prometheus also provides client libraries in Go, Python, Java etc. for instrumenting code directly. Prometheus provides third-party exporters and integrations with popular tools like Kubernetes, Grafana, SQL and NoSQL databases, modern alerting solutions etc. \r\n\r\nThe best part is that Prometheus is open-source and free, hence making integrations with other tools achievable.\r\n\r\n### Motivation\r\n\r\nMachine learning has continued to drive digital transformation in several areas and industries. The primary motivation behind integrating MindsDB with Prometheus is to leverage the machine learning capabilities that MindsDB provides to gain actionable insights from the time-series data that Prometheus extracts from several data sources. \r\n\r\nThe two main machine learning capabilities that MindsDB can provide to improve the Prometheus observability experience are: - \r\n1. **Real-time Forecasting:-** Despite the growth in cloud infrastructure for deploying highly available applications, servers still experience failure (usually abruptly). Hence, we need a way to predict these failures and understand failure patterns, in order to proactively respond to them. To achieve this this, we need data (from Prometheus), and a \"brain\" to make predictions (MindsDB). We can extract time-series data from Prometheus, and train machine learning models for automatically forecasting future behavior of our applications from historical patterns. For instance, we can forecast a server failure or surge in CPU usage, and prevent the downtime this might cause.\r\n\r\n2. **Anomaly detection:-** In production environments, applications can usually drift from their expected behavior, causing possible failure or irregularities. Manual checks for anomalies is usually inefficient and inconvenient. Hence we need the machine learning capabilities that MindsDB provides to automatically predict possible anomalies from Prometheus data. This anomaly detection pipeline can be integrated with alerting tools that Prometheus provides to inform engineers if an anomaly has occurred. \r\n\r\nWith forecasting and anomaly detection, we can better understand the data Prometheus extracts from servers at scale, and make intelligent predictions. These predictions will help engineering teams detect failures and automatically prevent failures. This will in provide better customer satisfaction, improve business revenue, and improve developer productivity by adding another **\"mind\"** to the team. This is indeed a great motivation!\r\n\r\n### Implementation\r\n\r\nThe implementation of this integration will include: - \r\n\r\n1. **Loading the data for specific metrics from Prometheus:-** As described in the documentation, Prometheus stores the data as a multi-dimensional data model, with streams of timestamped data points identified by metric name, and labelled using key/value pairs. This metrics data can be exposed via Prometheus APIs or HTTP endpoints and queried via PromQL. \r\n\r\n2. **Training a model for forecasting and anomaly detection:-** A MindsDB model can hence be trained on the extracted data for forecasting and anomaly detection. \r\n\r\n3. **Making inference: -** Inference can be made in real-time, and the results can be sent back to Prometheus. These predictions can then be sent from Prometheus to other tools like Grafana for visualizing forecasts, or AlertManager for alerting when an anomaly occurs. \r\n\r\n>This implementation promises to be improved, as it is still in an immature stage of conception. **A high-level implementation diagram has been added below: -**\r\n\r\n![mindsdb-prometheus-integration drawio (2)](https://user-images.githubusercontent.com/38814629/173975241-41dd8a4a-3d3d-42b5-8639-3468a065389d.png)\r\n\r\n\r\n### Anything else?\r\n\r\n A detailed description of Prometheus's benefits, integrations, and use cases can be found on its [website](https://prometheus.io).\r\n ",
+  "issue_comments": [
+    {
+      "id": 1206014999,
+      "user": "agberoz",
+      "body": "Hi there,\r\n\r\nCan I work on this integration?\r\n"
+    },
+    {
+      "id": 1207218017,
+      "user": "ZoranPandovski",
+      "body": "Hey sure @agberoz "
+    },
+    {
+      "id": 1215603371,
+      "user": "ZoranPandovski",
+      "body": "Hi @agberoz did you start with this?"
+    },
+    {
+      "id": 1217711234,
+      "user": "agberoz",
+      "body": "yes @ZoranPandovski"
+    },
+    {
+      "id": 1264314851,
+      "user": "ZoranPandovski",
+      "body": "@agberoz  Did you make a progress here? If not, we can open this for contributors?"
+    },
+    {
+      "id": 1463724899,
+      "user": "nicolastakashi",
+      "body": "Any news about that folks?\r\nThis would be massive"
+    },
+    {
+      "id": 1463730132,
+      "user": "ZoranPandovski",
+      "body": "This is still open for contributors"
+    },
+    {
+      "id": 1463742201,
+      "user": "nicolastakashi",
+      "body": "@ZoranPandovski I can try to help, but I have a lot of doubts still about the product.\r\nPrometheus there's no support for SQL the only way to query is using PromQL.\r\n\r\nHow should this be mate?"
+    },
+    {
+      "id": 1463743160,
+      "user": "nicolastakashi",
+      "body": "Prometheus also have a RemoteWrite feature were we can push data to MindsDB "
+    },
+    {
+      "id": 1468450674,
+      "user": "nicolastakashi",
+      "body": "@ZoranPandovski can you give some directions with this?"
+    },
+    {
+      "id": 1505140302,
+      "user": "nicolastakashi",
+      "body": "@ZoranPandovski friendly ping 😄 "
+    },
+    {
+      "id": 1505147612,
+      "user": "ZoranPandovski",
+      "body": "Hey @nicolastakashi we should find a way to parse the SQL to PromQL or we can create an application integration using the HTTP API. I am not familiar with how Prometheus works but I guess the HTTP way will work"
+    },
+    {
+      "id": 1505182717,
+      "user": "nicolastakashi",
+      "body": "@ZoranPandovski is there any doc you can share with me?"
+    },
+    {
+      "id": 1505243199,
+      "user": "ZoranPandovski",
+      "body": "Please check https://docs.mindsdb.com/contribute/app-handlers"
+    },
+    {
+      "id": 1506533704,
+      "user": "nicolastakashi",
+      "body": "Hey, @ZoranPandovski I started to work on this and open a PR, this is still in draft but feel free to take a look.\r\nI'm probably will need some guidance to test this integration"
+    },
+    {
+      "id": 1582570221,
+      "user": "amk9978",
+      "body": "I think we need to move further as we need to forecast anomalies in real-time. "
+    },
+    {
+      "id": 1657298165,
+      "user": "AndrewFarley",
+      "body": "> I think we need to move further as we need to forecast anomalies in real-time.\r\n\r\nFirst we need the handler, then forecasting in real-time would just be one of the ways you could implement/use the handler.  Certainly in the way they above diagram things it would work fairly well, having MindsDB both read data from Prometheus to make certain trend estimates, then feeding data back into Prometheus for being able to use the alerting engine and logic of Prometheus instead of having to write alert logic in MindsDB.  It's a great proposal, starts with a handler first (to read from Prometheus), then might require an additional component (an exporter to write to Prometheus), then requires a series of blog/articles/explanations of how to use all of it."
+    },
+    {
+      "id": 1778851488,
+      "user": "nicolastakashi",
+      "body": "@martyna-mindsdb is this implemented?"
+    },
+    {
+      "id": 1781481631,
+      "user": "martyna-mindsdb",
+      "body": "@nicolastakashi \r\nNo. Let us know if you want to work on it."
+    },
+    {
+      "id": 1793109607,
+      "user": "mindsdb-devops",
+      "body": "Re-opened this issue since it is still pending.  And I would add this would be a very important and valuable integration and highly recommend we prioritize and even officially support this handler.  No one is working on this yet, I welcome someone to do so."
+    },
+    {
+      "id": 1809691629,
+      "user": "masterujjval",
+      "body": "I want to work on this as this is labelled as good-first-issue but i havent worked with integration of the app so can anyone help me like providing some guide (how to integrate with mindsdb guide)\r\n"
+    },
+    {
+      "id": 1810211992,
+      "user": "martyna-mindsdb",
+      "body": "@masterujjval \r\nHere are the docs on how to build an ML handler: https://docs.mindsdb.com/contribute/ml-handlers\r\n\r\nYou can check the available handler implementations here: https://github.com/mindsdb/mindsdb/tree/staging/mindsdb/integrations/handlers"
+    },
+    {
+      "id": 1818430471,
+      "user": "sairampillai",
+      "body": "Since no one is assigned to this issue and after reading the thread I believe the best way to implement this is to use Prometheus HTTP APIs to read and write prometheus data using the handler. I would like to try and implement this. Please assign to me @ZoranPandovski @martyna-mindsdb "
+    },
+    {
+      "id": 1818453765,
+      "user": "nicolastakashi",
+      "body": "@sairampillai I just wrote some code long time ago but I didn't have the proper time to finish it.\r\nhttps://github.com/mindsdb/mindsdb/pull/5614\r\n\r\nFeel free to take over and use the code"
+    },
+    {
+      "id": 1818478916,
+      "user": "sairampillai",
+      "body": "@nicolastakashi This is really helpful thanks! Do you have a list of what you would like to add/change to this?"
+    },
+    {
+      "id": 1818517660,
+      "user": "nicolastakashi",
+      "body": "@sairampillai backing in that time I wasn't able to run minds on my local env to test it, since I'm not a pythonist I faced some issues regarding my python knowledge.\r\n\r\nBut if you manage to test it and needs to change anything on the code I can help review it"
+    },
+    {
+      "id": 1818590208,
+      "user": "sairampillai",
+      "body": "@nicolastakashi Got it"
+    },
+    {
+      "id": 2254299625,
+      "user": "panoskyriakis",
+      "body": "This seems to still be open? If so, I'd take it!"
+    },
+    {
+      "id": 2283446237,
+      "user": "ZoranPandovski",
+      "body": "@panoskyriakis Did you started on this?"
+    },
+    {
+      "id": 2284017535,
+      "user": "panoskyriakis",
+      "body": "@ZoranPandovski I did. I'll send out a PR soon. "
+    }
+  ],
+  "text_context": "# [New Integration]: Prometheus Monitoring Integration\n\n### Is there an existing integration?\r\n\r\n- [X] I have searched the existing integrations.\r\n\r\n### Use Case\r\n\r\nSo the engineering team has deployed the next big application on cloud servers, but how can they constantly \"keep eyes\" on the servers to assess its performance, health, and proactively detect and prevent any possible failure? This introduces the need for automated monitoring and instrumentation tools. \r\n\r\nPrometheus is a popular open-source instrumentation and monitoring system for cloud-native applications, which provides notable capabilities for \"scraping\" metrics from several target servers in a time-series format, analyzing these metrics, querying metrics, alerting etc. These metrics could include CPU usage, memory usage, disk or I/O activity, server status etc.\r\n\r\nPrometheus stores data in time-series form, and provides a querying language called PromQL for aggregating the time-series data for each metric. The result of the queries can be shown as a graph for visualization, or expressed in tabular form. \r\n\r\nPrometheus pulls data from data sources using lightweight agents installed on the data sources, these agents are called **exporters**. Prometheus also provides client libraries in Go, Python, Java etc. for instrumenting code directly. Prometheus provides third-party exporters and integrations with popular tools like Kubernetes, Grafana, SQL and NoSQL databases, modern alerting solutions etc. \r\n\r\nThe best part is that Prometheus is open-source and free, hence making integrations with other tools achievable.\r\n\r\n### Motivation\r\n\r\nMachine learning has continued to drive digital transformation in several areas and industries. The primary motivation behind integrating MindsDB with Prometheus is to leverage the machine learning capabilities that MindsDB provides to gain actionable insights from the time-series data that Prometheus extracts from several data sources. \r\n\r\nThe two main machine learning capabilities that MindsDB can provide to improve the Prometheus observability experience are: - \r\n1. **Real-time Forecasting:-** Despite the growth in cloud infrastructure for deploying highly available applications, servers still experience failure (usually abruptly). Hence, we need a way to predict these failures and understand failure patterns, in order to proactively respond to them. To achieve this this, we need data (from Prometheus), and a \"brain\" to make predictions (MindsDB). We can extract time-series data from Prometheus, and train machine learning models for automatically forecasting future behavior of our applications from historical patterns. For instance, we can forecast a server failure or surge in CPU usage, and prevent the downtime this might cause.\r\n\r\n2. **Anomaly detection:-** In production environments, applications can usually drift from their expected behavior, causing possible failure or irregularities. Manual checks for anomalies is usually inefficient and inconvenient. Hence we need the machine learning capabilities that MindsDB provides to automatically predict possible anomalies from Prometheus data. This anomaly detection pipeline can be integrated with alerting tools that Prometheus provides to inform engineers if an anomaly has occurred. \r\n\r\nWith forecasting and anomaly detection, we can better understand the data Prometheus extracts from servers at scale, and make intelligent predictions. These predictions will help engineering teams detect failures and automatically prevent failures. This will in provide better customer satisfaction, improve business revenue, and improve developer productivity by adding another **\"mind\"** to the team. This is indeed a great motivation!\r\n\r\n### Implementation\r\n\r\nThe implementation of this integration will include: - \r\n\r\n1. **Loading the data for specific metrics from Prometheus:-** As described in the documentation, Prometheus stores the data as a multi-dimensional data model, with streams of timestamped data points identified by metric name, and labelled using key/value pairs. This metrics data can be exposed via Prometheus APIs or HTTP endpoints and queried via PromQL. \r\n\r\n2. **Training a model for forecasting and anomaly detection:-** A MindsDB model can hence be trained on the extracted data for forecasting and anomaly detection. \r\n\r\n3. **Making inference: -** Inference can be made in real-time, and the results can be sent back to Prometheus. These predictions can then be sent from Prometheus to other tools like Grafana for visualizing forecasts, or AlertManager for alerting when an anomaly occurs. \r\n\r\n>This implementation promises to be improved, as it is still in an immature stage of conception. **A high-level implementation diagram has been added below: -**\r\n\r\n![mindsdb-prometheus-integration drawio (2)](https://user-images.githubusercontent.com/38814629/173975241-41dd8a4a-3d3d-42b5-8639-3468a065389d.png)\r\n\r\n\r\n### Anything else?\r\n\r\n A detailed description of Prometheus's benefits, integrations, and use cases can be found on its [website](https://prometheus.io).\r\n \n\nHi there,\r\n\r\nCan I work on this integration?\r\n\n\nHey sure @agberoz \n\nHi @agberoz did you start with this?\n\nyes @ZoranPandovski\n\n@agberoz  Did you make a progress here? If not, we can open this for contributors?\n\nAny news about that folks?\r\nThis would be massive\n\nThis is still open for contributors\n\n@ZoranPandovski I can try to help, but I have a lot of doubts still about the product.\r\nPrometheus there's no support for SQL the only way to query is using PromQL.\r\n\r\nHow should this be mate?\n\nPrometheus also have a RemoteWrite feature were we can push data to MindsDB \n\n@ZoranPandovski can you give some directions with this?\n\n@ZoranPandovski friendly ping 😄 \n\nHey @nicolastakashi we should find a way to parse the SQL to PromQL or we can create an application integration using the HTTP API. I am not familiar with how Prometheus works but I guess the HTTP way will work\n\n@ZoranPandovski is there any doc you can share with me?\n\nPlease check https://docs.mindsdb.com/contribute/app-handlers\n\nHey, @ZoranPandovski I started to work on this and open a PR, this is still in draft but feel free to take a look.\r\nI'm probably will need some guidance to test this integration\n\nI think we need to move further as we need to forecast anomalies in real-time. \n\n> I think we need to move further as we need to forecast anomalies in real-time.\r\n\r\nFirst we need the handler, then forecasting in real-time would just be one of the ways you could implement/use the handler.  Certainly in the way they above diagram things it would work fairly well, having MindsDB both read data from Prometheus to make certain trend estimates, then feeding data back into Prometheus for being able to use the alerting engine and logic of Prometheus instead of having to write alert logic in MindsDB.  It's a great proposal, starts with a handler first (to read from Prometheus), then might require an additional component (an exporter to write to Prometheus), then requires a series of blog/articles/explanations of how to use all of it.\n\n@martyna-mindsdb is this implemented?\n\n@nicolastakashi \r\nNo. Let us know if you want to work on it.\n\nRe-opened this issue since it is still pending.  And I would add this would be a very important and valuable integration and highly recommend we prioritize and even officially support this handler.  No one is working on this yet, I welcome someone to do so.\n\nI want to work on this as this is labelled as good-first-issue but i havent worked with integration of the app so can anyone help me like providing some guide (how to integrate with mindsdb guide)\r\n\n\n@masterujjval \r\nHere are the docs on how to build an ML handler: https://docs.mindsdb.com/contribute/ml-handlers\r\n\r\nYou can check the available handler implementations here: https://github.com/mindsdb/mindsdb/tree/staging/mindsdb/integrations/handlers\n\nSince no one is assigned to this issue and after reading the thread I believe the best way to implement this is to use Prometheus HTTP APIs to read and write prometheus data using the handler. I would like to try and implement this. Please assign to me @ZoranPandovski @martyna-mindsdb \n\n@sairampillai I just wrote some code long time ago but I didn't have the proper time to finish it.\r\nhttps://github.com/mindsdb/mindsdb/pull/5614\r\n\r\nFeel free to take over and use the code\n\n@nicolastakashi This is really helpful thanks! Do you have a list of what you would like to add/change to this?\n\n@sairampillai backing in that time I wasn't able to run minds on my local env to test it, since I'm not a pythonist I faced some issues regarding my python knowledge.\r\n\r\nBut if you manage to test it and needs to change anything on the code I can help review it\n\n@nicolastakashi Got it\n\nThis seems to still be open? If so, I'd take it!\n\n@panoskyriakis Did you started on this?\n\n@ZoranPandovski I did. I'll send out a PR soon. ",
+  "pr_link": "https://github.com/mindsdb/mindsdb/pull/5614",
+  "code_context": [
+    {
+      "filename": "mindsdb/integrations/handlers/prometheus_handler/__about__.py",
+      "content": "__title__ = 'MindsDB Prometheus handler'\n__package_name__ = 'mindsdb_prometheus_handler'\n__version__ = '0.0.1'\n__description__ = \"MindsDB handler for Prometheus\"\n__author__ = 'MindsDB Inc'\n__github__ = 'https://github.com/mindsdb/mindsdb'\n__pypi__ = 'https://pypi.org/project/mindsdb/'\n__license__ = 'GPL-3.0'\n__copyright__ = 'Copyright 2022- mindsdb'\n"
+    },
+    {
+      "filename": "mindsdb/integrations/handlers/prometheus_handler/__init__.py",
+      "content": "from mindsdb.integrations.libs.const import HANDLER_TYPE\n\nfrom .__about__ import __version__ as version, __description__ as description\ntry:\n    from .prometheus_handler import (\n        PrometheusHandler as Handler\n    )\n    import_error = None\nexcept Exception as e:\n    Handler = None\n    import_error = e\n\ntitle = 'Prometheus'\nname = 'prometheus'\ntype = HANDLER_TYPE.DATA\nicon_path = 'icon.svg'\n\n__all__ = [\n    'Handler', 'version', 'name', 'type', 'title', 'description',\n    'import_error', 'icon_path'\n]\n"
+    },
+    {
+      "filename": "mindsdb/integrations/handlers/prometheus_handler/prometheus_handler.py",
+      "content": "import os\nimport requests\n\nfrom prometheus_api_client import utils\nfrom prometheus_pandas import query as prometheus_pandas\n\nfrom mindsdb.utilities import log\nfrom mindsdb.utilities.config import Config\n\nfrom mindsdb_sql.parser import ast\n\nfrom mindsdb.integrations.libs.api_handler import APIHandler, APITable\nfrom mindsdb.integrations.utilities.sql_utils import extract_comparison_conditions\n\nfrom mindsdb.integrations.libs.response import (\n    HandlerStatusResponse as StatusResponse,\n    HandlerResponse as Response,\n    RESPONSE_TYPE\n)\n\nclass PrometheusTable(APITable):\n    def select(self, query: ast.Select) -> Response:\n        conditions = extract_comparison_conditions(query.where)\n        params = {\n            \"query\": None,\n            \"start_time\": utils.parse_datetime(\"5m\"),\n            \"end_time\": utils.parse_datetime(\"now\"),\n            \"step\": \"1m\"\n        }\n\n        for operation, key, value in conditions:\n            if operation == 'or':\n                raise NotImplementedError(f'OR is not supported')\n            if key == 'start_time':\n                params['start_time'] = utils.parse_datetime(value)\n            elif key == 'end_time':\n                params['end_time'] = utils.parse_datetime(value)\n            elif key == 'step':\n                params[key] = value\n            elif key == 'query':\n                if operation == '=':\n                    params[key] = value\n                else:\n                    NotImplementedError(f'Unknown op: {operation}')\n\n        if params.query is None:\n            ValueError(\"Query must be provided\")\n\n        return self.handler.call_prometheus_api(params)\n\nclass PrometheusHandler(APIHandler):\n    \"\"\"A class for handling connections and interactions with the Prometheus API.\n\n    Attributes:\n        api (prometheus_pandas.Prometheus): The `prometheus_pandas.Prometheus` object for interacting with the Prometheus API.\n\n    \"\"\"\n\n    def __init__(self, name=None, **kwargs):\n        super().__init__(name)\n\n        args = kwargs.get('connection_data', {})\n        handler_config = Config().get('prometheus_handler', {})\n\n        for k in ['prometheus_host', 'disable_ssl']:\n            if k in args:\n                self.connection_args[k] = args[k]\n            elif f'PROMETHEUS_{k.upper()}' in os.environ:\n                self.connection_args[k] = os.environ[f'PROMETHEUS_{k.upper()}']\n            elif k in handler_config:\n                self.connection_args[k] = handler_config[k]\n\n        self.api = None\n        self.is_connected = False\n\n        prometheus = PrometheusTable(self)\n        self._register_table('prometheus', prometheus)\n    \n    def create_connection(self):\n        return prometheus_pandas.Prometheus(\n            self.connection_args['prometheus_host'],\n        )\n\n    def connect(self):\n        \"\"\"Authenticate with the Prometheus API.\"\"\"\n\n        if self.is_connected is True:\n            return self.api\n\n        self.api = self.create_connection()\n\n        self.is_connected = True\n        return self.api\n\n    def check_connection(self) -> StatusResponse:\n        response = StatusResponse(False)\n\n        try:\n            api = self.connect()\n            api.query(query=\"vector(1)\")\n            response.success = True\n        except requests.exceptions.RequestException as e:\n            response.error_message = f'Error connecting to Prometheus api: {e}.'\n            log.logger.error(response.error_message)\n            \n        if response.success is False and self.is_connected is True:\n            self.is_connected = False\n\n        return response\n\n    def call_prometheus_api(self, params: dict = None):\n        api = self.connect()\n        return api.query_range(\n            params.get(\"query\"), \n            params.get(\"start_time\"), \n            params.get(\"end_time\"),\n            params.get(\"step\")\n        )\n"
+    }
+  ]
+}

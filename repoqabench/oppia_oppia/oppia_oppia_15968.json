@@ -169,5 +169,33 @@
       "filename": "core/templates/components/review-material-editor/review-material-editor.component.html",
       "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n  <title>Document3</title>\n  <script src=\"https://kit.fontawesome.com/c7bb85ee1f.js\" crossorigin=“anonymous\"></script>\n  <style>\n    .review-material {\n      padding-bottom: 36px;\n      padding-top: 0.5em;\n    }\n\n    .editor-buttons {\n      margin-top: 2px;\n    }\n\n    .oppia-editor-edit-icon {\n      position: inherit;\n    }\n\n    .far {\n      border: 1px solid;\n    }\n  </style>\n</head>\n<body>\n  <div *ngIf=\"!conceptCardExplanationEditorIsShown\" class=\"review-material\">\n    <div [ngClass]=\"oppia-editable-section\" (click)=\"openConceptCardExplanationEditor()\">\n      <i class=\"far fa-square-full\"></i>\n      </i>\n      <div class=\"oppia-state-content-display oppia-transition-200 e2e-test-concept-card-explanation\" [ngClass]=\"oppia-prevent-selection\" title=\"Concept Card Explanation\">\n        <span class=\"oppia-placeholder\" [hidden]=\"!(editableExplanation === '')\">\n          Give a review or explanation of the skill.\n        </span>\n        <oppia-rte-output-display [rteString]=\"editableExplanation\">\n        </oppia-rte-output-display>\n      </div>\n      <!-- This is a dummy div created to mask the contents when the user hovers over the content. -->\n      <div class=\"oppia-editable-section-mask\">\n      </div>\n    </div>\n  </div>\n<div *ngIf=\"conceptCardExplanationEditorIsShown\">\n    <schema-based-editor class=\"e2e-test-concept-card-text\" [schema]=\"getSchema()\" [localValue]=\"editableExplanation\" (localValueChange)=\"updateLocalExp($event)\">\n    </schema-based-editor>\n    <div class=\"editor-buttons\">\n      <button type=\"button\" class=\"btn btn-success oppia-save-state-item-button float-right e2e-test-save-concept-card\" (click)=\"saveConceptCardExplanation()\">\n        Save\n      </button>\n      <button type=\"button\" class=\"btn btn-secondary float-right\" (click)=\"closeConceptCardExplanationEditor()\">Cancel</button>\n      <div class=\"oppia-clear\"></div>\n    </div>\n  </div>\n</body>\n</html>\n"
     }
+  ],
+  "questions": [
+    "Hi @JayVivarekar, can you please unassign me this issue as I will be busy working on a new proposal related to CUJ testing frameworks? Also, this material icon issue would be a good issue for the new contributors!"
+  ],
+  "golden_answers": [
+    "@JayVivarekar @vojtechjelinek \r\nHey there, I've selected these three files. Can I work on this issue?\r\n\r\n- [ ]  `oppia/core/templates/pages/release-coordinator-page/navbar/release-coordinator-navbar.component.html`\r\n\r\n \r\n\r\n- [ ]  `oppia/core/templates/pages/skill-editor-page/editor-tab/skill-concept-card-editor/worked-example-editor.component.html`\r\n\r\n- [ ]  ` oppia/core/templates/pages/skill-editor-page/editor-tab/skill-misconceptions-editor/misconception-editor.component.html`"
+  ],
+  "questions_generated": [
+    "What is the primary objective of the issue described in the repository oppia_oppia?",
+    "What are the first steps a contributor should take to get assigned files for this issue?",
+    "Explain the process a contributor should follow to replace a Material Icon with a Font Awesome icon in a file.",
+    "How should a contributor handle uncertainty when selecting a Font Awesome icon replacement?",
+    "What are the expectations for documenting changes made to icon replacements in the pull request?",
+    "Why might a contributor need to modify CSS files when replacing Material Icons with Font Awesome icons?",
+    "In the provided code context, which Angular directive is used to iterate over misconceptions by skill?",
+    "What is the purpose of the 'toggleMisconceptionFeedbackUsage' function in the code context?",
+    "What is the significance of the 'selectedMisconceptionSkillId' variable in the code context?"
+  ],
+  "golden_answers_generated": [
+    "The primary objective is to replace all Material Icons used in the Oppia frontend with corresponding or similar Font Awesome icons to maintain consistency in the icon family used across the frontend code.",
+    "A contributor should select around three files from the provided list and request assignment from either @JayVivarekar or @vojtechjelinek. Only after assignment can they begin working on those files.",
+    "After being assigned a file, the contributor should locate occurrences of Material Icons in the file, run the Oppia server locally to identify the icon in the frontend, and then replace it with the closest Font Awesome 5 'Free' icon available. They may need to modify CSS files for correct appearance and should document the changes with before and after screenshots in the PR description.",
+    "If a contributor is unsure about which Font Awesome icon to use as a replacement, they are encouraged to seek guidance from @JayVivarekar or @vojtechjelinek for assistance in selecting the most appropriate icon.",
+    "Contributors are expected to document their changes by taking screenshots of the icons before and after the replacement and including these in the pull request description to provide a clear visual reference of the modifications.",
+    "Modifying CSS files might be necessary to ensure that the appearance of the replaced Font Awesome icons aligns with the design and layout of the frontend, as differences in size, positioning, or styling between icon sets may require adjustments.",
+    "The Angular directive used to iterate over misconceptions by skill is *ngFor. It is utilized to loop through the 'misconceptionsBySkill' object and render each misconception.",
+    "The 'toggleMisconceptionFeedbackUsage' function is likely used to toggle the state of whether misconception feedback is being used or not, which is visually represented by the icon changing between two states using Font Awesome icons.",
+    "The 'selectedMisconceptionSkillId' variable is used to determine if a particular misconception is the currently selected one, based on its skill ID and ID. This is important for displaying additional information or feedback related to the selected misconception."
   ]
 }

@@ -122,5 +122,23 @@
       "filename": "sklearn/utils/tests/test_arpack.py",
       "content": "import numpy as np\n\nfrom sklearn.utils.arpack import _init_arpack_v0\n\n\ndef test_init_arpack_v0():\n    v0s = []\n    for i in range(100):\n        v0s.append(_init_arpack_v0(1000, i))\n        if i > 0:\n            assert not any(np.equal(v0s[i], v0s[i-1]))\n\n    v0 = np.concatenate(v0s)\n    assert np.allclose(np.mean(v0), 0, atol=1e-2)\n    assert np.allclose(np.std(v0), 1/np.sqrt(3), atol=1e-3)\n"
     }
+  ],
+  "questions": [],
+  "golden_answers": [],
+  "questions_generated": [
+    "What is the main objective of introducing random seeding for scipy's eigs, eigsh, and svds functions in scikit-learn?",
+    "Where in the scikit-learn codebase should the initialization strategy for eigs, eigsh, and svds be implemented to ensure consistency?",
+    "How can one identify the parts of the scikit-learn codebase that could benefit from a consistent initialization strategy for eigs, eigsh, and svds?",
+    "What are some of the potential benefits of contacting the upstream scipy team regarding the initialization of eigs, eigsh, and svds?",
+    "In the context of addressing this issue, what should a first-time contributor to scikit-learn do before beginning implementation?",
+    "What previous work should be reviewed before tackling the issue of making scipy's eigs, eigsh, and svds calls deterministic in scikit-learn?"
+  ],
+  "golden_answers_generated": [
+    "The main objective is to make the calls to these functions deterministic by introducing random seeding. This consistency is important because, without seeding, these functions can produce non-deterministic results due to their reliance on random initializations. Making the interface for these functions consistent across the codebase ensures that results are reproducible.",
+    "The initialization strategy should be implemented in a utility function within sklearn.utils, such as sklearn.utils._init_arpack_v0(size, random_state). This function would be used to generate the v0 vector correctly whenever eigsh and svds solvers are used in scikit-learn.",
+    "One can use commands like `git grep eigs`, `git grep eigsh`, `git grep svds`, and `git grep \"v0=\"` to search through the codebase for instances where these functions are used. This will help identify where a consistent initialization strategy could be applied.",
+    "Contacting the upstream scipy team could lead to a discussion about adding an optional parameter like 'seed' or 'random_state' to these functions, which would be used to initialize v0 when it is not explicitly passed. This could standardize the approach to deterministic random initialization across different libraries and make the functions more user-friendly.",
+    "A first-time contributor should read the diffs and discussions in PRs #5012 and #5243 and the scipy documentation on eigs, eigsh, and svds to understand the context and get familiar with the relevant parts of the codebase. They should also identify current uses of these functions in scikit-learn that do not use deterministic seeding.",
+    "One should review the work done in PR #11524, which addressed this issue but left some comments unresolved. Reading the discussion in this PR will provide insights into why certain choices were made and how to resolve the remaining comments."
   ]
 }

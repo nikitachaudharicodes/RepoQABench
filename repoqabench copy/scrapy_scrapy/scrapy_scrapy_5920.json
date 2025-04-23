@@ -1,0 +1,75 @@
+{
+  "repo_name": "scrapy_scrapy",
+  "issue_id": "5920",
+  "issue_description": "# Remove docs for other projects from the Scrapy docs\n\nWe have some auto* statements for things from other projects, like itemadapter in https://github.com/scrapy/scrapy/blob/92f86fab062d179fd68590f1be6a24ca13ec33b6/docs/topics/items.rst?plain=1#L404 and parsel in https://github.com/scrapy/scrapy/blob/92f86fab062d179fd68590f1be6a24ca13ec33b6/docs/topics/selectors.rst#L1037.\r\n\r\nWe should find these and remove them, instead linking to the other projects docs and maybe adding some explanations locally.",
+  "issue_comments": [
+    {
+      "id": 1537185499,
+      "user": "amedina1570",
+      "body": "I would like to contribute to this issue. Is anybody working with it?"
+    },
+    {
+      "id": 1537790044,
+      "user": "Gallaecio",
+      "body": "@amedina1570 Please go ahead"
+    },
+    {
+      "id": 1556032687,
+      "user": "whendo",
+      "body": "@amedina1570 I'd be willing to pitch in if you're not done already"
+    },
+    {
+      "id": 1556042946,
+      "user": "amedina1570",
+      "body": "> @amedina1570 I'd be willing to pitch in if you're not done already\r\n\r\nI could really use some help trying to generate some examples for these external libraries for further reference, for example: parsel.xpathfuncs.set_xpathfunc I don't fully understand it and the output is completely unexpected. "
+    },
+    {
+      "id": 1609583016,
+      "user": "wRAR",
+      "body": "@amedina1570 what output do you mean? Also, that function is documented at https://parsel.readthedocs.io/en/latest/usage.html#parsel.xpathfuncs.set_xpathfunc and I don't think you need to add examples to solve this issue."
+    },
+    {
+      "id": 1707982034,
+      "user": "pjparties",
+      "body": "is there any help required for this issue? I would like to contribute x"
+    },
+    {
+      "id": 1708078266,
+      "user": "wRAR",
+      "body": "@ParthJuneja I think you can just go ahead"
+    },
+    {
+      "id": 1758009958,
+      "user": "ghostp13409",
+      "body": "Hey @wRAR @amedina1570,\r\nI would love to contribute. is there any help still required?"
+    },
+    {
+      "id": 1761792301,
+      "user": "wRAR",
+      "body": "@ghostp13409 there is a promising PR for this so I wouldn't recommend to duplicate effort for now."
+    },
+    {
+      "id": 1857314201,
+      "user": "dwk601",
+      "body": "I would like to contribute."
+    },
+    {
+      "id": 1857436529,
+      "user": "wRAR",
+      "body": "@dwk601 sure, go ahead. Please note that there are old incomplete PRs for this, you can reuse some of the work there."
+    },
+    {
+      "id": 1947812491,
+      "user": "hitansupanda",
+      "body": "Hey @wRAR @amedina1570 ,\r\nI would like to contribute is there any thing I can do? "
+    },
+    {
+      "id": 1947964537,
+      "user": "Gallaecio",
+      "body": "@hitansupanda I suspect https://github.com/scrapy/scrapy/pull/6223 will solve this. “The third time is the charm”."
+    }
+  ],
+  "text_context": "# Remove docs for other projects from the Scrapy docs\n\nWe have some auto* statements for things from other projects, like itemadapter in https://github.com/scrapy/scrapy/blob/92f86fab062d179fd68590f1be6a24ca13ec33b6/docs/topics/items.rst?plain=1#L404 and parsel in https://github.com/scrapy/scrapy/blob/92f86fab062d179fd68590f1be6a24ca13ec33b6/docs/topics/selectors.rst#L1037.\r\n\r\nWe should find these and remove them, instead linking to the other projects docs and maybe adding some explanations locally.\n\nI would like to contribute to this issue. Is anybody working with it?\n\n@amedina1570 Please go ahead\n\n@amedina1570 I'd be willing to pitch in if you're not done already\n\n> @amedina1570 I'd be willing to pitch in if you're not done already\r\n\r\nI could really use some help trying to generate some examples for these external libraries for further reference, for example: parsel.xpathfuncs.set_xpathfunc I don't fully understand it and the output is completely unexpected. \n\n@amedina1570 what output do you mean? Also, that function is documented at https://parsel.readthedocs.io/en/latest/usage.html#parsel.xpathfuncs.set_xpathfunc and I don't think you need to add examples to solve this issue.\n\nis there any help required for this issue? I would like to contribute x\n\n@ParthJuneja I think you can just go ahead\n\nHey @wRAR @amedina1570,\r\nI would love to contribute. is there any help still required?\n\n@ghostp13409 there is a promising PR for this so I wouldn't recommend to duplicate effort for now.\n\nI would like to contribute.\n\n@dwk601 sure, go ahead. Please note that there are old incomplete PRs for this, you can reuse some of the work there.\n\nHey @wRAR @amedina1570 ,\r\nI would like to contribute is there any thing I can do? \n\n@hitansupanda I suspect https://github.com/scrapy/scrapy/pull/6223 will solve this. “The third time is the charm”.",
+  "pr_link": "https://github.com/scrapy/scrapy/pull/6223",
+  "code_context": []
+}

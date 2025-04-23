@@ -1,0 +1,70 @@
+{
+  "repo_name": "scrapy_scrapy",
+  "issue_id": "5135",
+  "issue_description": "# Remove UrlLengthMiddleware from default enabled middlewares\n\nAccording [RFC2396](http://www.faqs.org/rfcs/rfc2396.html), section 3.2.1:\r\n```\r\n   The HTTP protocol does not place any a priori limit on the length of a URI.\r\n   Servers MUST be able to handle the URI of any resource they serve, and\r\n   SHOULD be able to handle URIs of unbounded length if they provide \r\n   GET-based forms that could generate such URIs. A server SHOULD \r\n   return 414 (Request-URI Too Long) status if a URI is longer than the server\r\n   can handle (see section 10.4.15).\r\n```\r\n\r\nWe have enabled by default `scrapy.spidermiddlewares.urllength.UrlLengthMiddleware` that has a default limit defined by `URLLENGTH_LIMIT` setting (that can be modified by in project settings) set to `2083`. As [mentioned here](https://github.com/scrapy/scrapy/pull/5134), the reason for this number is related to limits of Microsoft Internet Explorer to handle URIs longer than that. \r\n\r\nThis can cause problems to spiders that will skip requests of URIs longer than that. Certainly we can change `URLLENGTH_LIMIT` on these spiders, but sometimes is not easy to set the right value and we chose to set a higher number just to make the middleware happy. This is what I am doing in a real world project, but the solution doesn't look good.\r\n\r\nI know that we can or disable the middleware, or change the length limit, but I think it is smoother for the user not to have to worry about this artificial limit we have on Scrapy. We are not using Microsoft Internet Explorer, we don't need this limit.\r\n\r\nSome alternatives that I considered:\r\n\r\n- Remove `UrlLengthMiddleware` as a default enabled middlewares, so we don't need to worry about that limit unless we really need to worry about that (I don't know the exact use-case that required this limit, so keeping the middleware available may make sense);\r\n- Change the default value to a more reasonable (difficult to find a reasonable value)\r\n- Allow `URLLENGTH_LIMIT = -1`, and in this case, ignore the limit. This seems an easier change in the settings than modifying `SPIDER_MIDDLEWARES` setting",
+  "issue_comments": [
+    {
+      "id": 833568953,
+      "user": "Gallaecio",
+      "body": "I would go for `URLLENGTH_LIMIT = -1` (or `None` or `0`?) and making that the default value, unless we decide to remove the middleware altogether.\r\n\r\nAnd I think we should at least consider removing the middleware altogether unless we can come up with scenarios where this middleware can be useful, and if we do we should mention those in the documentation of the `URLLENGTH_LIMIT` setting."
+    },
+    {
+      "id": 835863308,
+      "user": "kmike",
+      "body": "MSIE is not the only main reason for having url length limit. Sometimes, when you're doing broad crawls, you can have a website returning links of ever-increasing length, which usually indicates a loop (and sometimes - incorrect link extraction code); url length limit acts as a stopping condition in this case. It also puts some limits on the request size. I'm not sure, maybe that was also useful for data uris (before we had a downloader handler for them), to prevent queues from exploding.\r\n\r\nI'd still consider having some URL length limit a good practice for broad crawls.\r\n\r\n"
+    },
+    {
+      "id": 836304816,
+      "user": "Gallaecio",
+      "body": "> you can have a website returning links of ever-increasing length, which usually indicates a loop\r\n\r\nDoesn’t that happen through redirects? (i.e. handled by `REDIRECT_MAX_TIMES`) Or are we talking about a website containing ever-increasing links in the HTML of their responses?"
+    },
+    {
+      "id": 836494467,
+      "user": "kmike",
+      "body": "Yeah, it is about ever-increasing links in HTML responses, or links which could be incorectly built by the client code."
+    },
+    {
+      "id": 836522161,
+      "user": "Gallaecio",
+      "body": "That could probably be handled by `DEPTH_LIMIT`, but since it is disabled by default, I guess it makes sense to keep `URLLENGTH_LIMIT` set by default.\r\n\r\nShall we simply allow to set `URLLENGTH_LIMIT` to a value that effectively disables the middleware? Any preference? (`-1`, `0`, `None`)."
+    },
+    {
+      "id": 836678049,
+      "user": "kmike",
+      "body": "> Shall we simply allow to set URLLENGTH_LIMIT to a value that effectively disables the middleware? Any preference? (-1, 0, None).\r\n\r\nYeah, why not? I think we're using 0 for other settings as such value."
+    },
+    {
+      "id": 838234985,
+      "user": "Gallaecio",
+      "body": "@rennerocha We need to add documentation and tests for it, but know that it turns out the existing code already disables the middleware if you set the setting to `0`."
+    },
+    {
+      "id": 892846796,
+      "user": "sidharthkumar2019",
+      "body": "I want to contribute. Has this issue been resolved?\r\n"
+    },
+    {
+      "id": 893332924,
+      "user": "Gallaecio",
+      "body": "@sidharthkumar2019 It hasn’t been resolved, it’s up for the taking.\r\n\r\nThe goal here is to update the documentation of the `URLLENGTH_LIMIT` setting to indicate how it can be disabled and to mention scenarios where it can be useful (to justify it being enabled by default)."
+    },
+    {
+      "id": 930981763,
+      "user": "bit2244",
+      "body": "I suppose this is still open, if so I would like to add to the docs"
+    },
+    {
+      "id": 931163050,
+      "user": "Gallaecio",
+      "body": "@iDeepverma Feel free! Let us know if you have any question."
+    },
+    {
+      "id": 931394846,
+      "user": "bit2244",
+      "body": "@Gallaecio  Should I Add using ``DEPTH_LIMIT`` to some appropriate value as the recommended way of using it while disabling the ``URLLENGTH_LIMIT`` to avoid loops (which can cause URLs of increasing lengths) as discussed in the above comments  "
+    }
+  ],
+  "text_context": "# Remove UrlLengthMiddleware from default enabled middlewares\n\nAccording [RFC2396](http://www.faqs.org/rfcs/rfc2396.html), section 3.2.1:\r\n```\r\n   The HTTP protocol does not place any a priori limit on the length of a URI.\r\n   Servers MUST be able to handle the URI of any resource they serve, and\r\n   SHOULD be able to handle URIs of unbounded length if they provide \r\n   GET-based forms that could generate such URIs. A server SHOULD \r\n   return 414 (Request-URI Too Long) status if a URI is longer than the server\r\n   can handle (see section 10.4.15).\r\n```\r\n\r\nWe have enabled by default `scrapy.spidermiddlewares.urllength.UrlLengthMiddleware` that has a default limit defined by `URLLENGTH_LIMIT` setting (that can be modified by in project settings) set to `2083`. As [mentioned here](https://github.com/scrapy/scrapy/pull/5134), the reason for this number is related to limits of Microsoft Internet Explorer to handle URIs longer than that. \r\n\r\nThis can cause problems to spiders that will skip requests of URIs longer than that. Certainly we can change `URLLENGTH_LIMIT` on these spiders, but sometimes is not easy to set the right value and we chose to set a higher number just to make the middleware happy. This is what I am doing in a real world project, but the solution doesn't look good.\r\n\r\nI know that we can or disable the middleware, or change the length limit, but I think it is smoother for the user not to have to worry about this artificial limit we have on Scrapy. We are not using Microsoft Internet Explorer, we don't need this limit.\r\n\r\nSome alternatives that I considered:\r\n\r\n- Remove `UrlLengthMiddleware` as a default enabled middlewares, so we don't need to worry about that limit unless we really need to worry about that (I don't know the exact use-case that required this limit, so keeping the middleware available may make sense);\r\n- Change the default value to a more reasonable (difficult to find a reasonable value)\r\n- Allow `URLLENGTH_LIMIT = -1`, and in this case, ignore the limit. This seems an easier change in the settings than modifying `SPIDER_MIDDLEWARES` setting\n\nI would go for `URLLENGTH_LIMIT = -1` (or `None` or `0`?) and making that the default value, unless we decide to remove the middleware altogether.\r\n\r\nAnd I think we should at least consider removing the middleware altogether unless we can come up with scenarios where this middleware can be useful, and if we do we should mention those in the documentation of the `URLLENGTH_LIMIT` setting.\n\nMSIE is not the only main reason for having url length limit. Sometimes, when you're doing broad crawls, you can have a website returning links of ever-increasing length, which usually indicates a loop (and sometimes - incorrect link extraction code); url length limit acts as a stopping condition in this case. It also puts some limits on the request size. I'm not sure, maybe that was also useful for data uris (before we had a downloader handler for them), to prevent queues from exploding.\r\n\r\nI'd still consider having some URL length limit a good practice for broad crawls.\r\n\r\n\n\n> you can have a website returning links of ever-increasing length, which usually indicates a loop\r\n\r\nDoesn’t that happen through redirects? (i.e. handled by `REDIRECT_MAX_TIMES`) Or are we talking about a website containing ever-increasing links in the HTML of their responses?\n\nYeah, it is about ever-increasing links in HTML responses, or links which could be incorectly built by the client code.\n\nThat could probably be handled by `DEPTH_LIMIT`, but since it is disabled by default, I guess it makes sense to keep `URLLENGTH_LIMIT` set by default.\r\n\r\nShall we simply allow to set `URLLENGTH_LIMIT` to a value that effectively disables the middleware? Any preference? (`-1`, `0`, `None`).\n\n> Shall we simply allow to set URLLENGTH_LIMIT to a value that effectively disables the middleware? Any preference? (-1, 0, None).\r\n\r\nYeah, why not? I think we're using 0 for other settings as such value.\n\n@rennerocha We need to add documentation and tests for it, but know that it turns out the existing code already disables the middleware if you set the setting to `0`.\n\nI want to contribute. Has this issue been resolved?\r\n\n\n@sidharthkumar2019 It hasn’t been resolved, it’s up for the taking.\r\n\r\nThe goal here is to update the documentation of the `URLLENGTH_LIMIT` setting to indicate how it can be disabled and to mention scenarios where it can be useful (to justify it being enabled by default).\n\nI suppose this is still open, if so I would like to add to the docs\n\n@iDeepverma Feel free! Let us know if you have any question.\n\n@Gallaecio  Should I Add using ``DEPTH_LIMIT`` to some appropriate value as the recommended way of using it while disabling the ``URLLENGTH_LIMIT`` to avoid loops (which can cause URLs of increasing lengths) as discussed in the above comments  ",
+  "pr_link": "https://github.com/scrapy/scrapy/pull/5134",
+  "code_context": []
+}

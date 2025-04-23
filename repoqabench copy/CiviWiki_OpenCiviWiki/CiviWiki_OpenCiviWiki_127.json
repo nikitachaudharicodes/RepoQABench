@@ -1,0 +1,160 @@
+{
+  "repo_name": "CiviWiki_OpenCiviWiki",
+  "issue_id": "127",
+  "issue_description": "# No verification when user deletes it's info\n\nIf I am a logged in user with properly entered information and I go to Settings and delete my first and last name, the changes are saved without the application telling me they are mandatory.\r\nThen, if I decide to open another page, I am redirected to the registration form to complete my sign up.",
+  "issue_comments": [
+    {
+      "id": 393337368,
+      "user": "bradserlis",
+      "body": "Hello, \r\n\r\nwe had a suggested fix: \r\nWithin **project/api/forms.py:** \r\n\r\nCan this be resolved by making the first name and last name fields unable to be submit as blank, by making those fields have the property \"required=True\"?\r\n\r\n```py\r\nclass UpdateAccount(forms.ModelForm):\r\n    \"\"\"\r\n    Form for updating Account data\r\n    \"\"\"\r\n    class Meta:\r\n        model = Account\r\n        fields = ['first_name', 'last_name', 'about_me', 'profile_image']\r\n\r\n    first_name = forms.CharField(label='First Name', max_length=63, required=**False**) **(True)**\r\n    last_name = forms.CharField(label='Last Name', max_length=63, required=**False**) **(True)**\r\n    about_me = forms.CharField(label='About Me', max_length=511, required=False)\r\n    profile_image = forms.ImageField(required=False)\r\n```"
+    },
+    {
+      "id": 955582009,
+      "user": "khushkaushal",
+      "body": "Hi @brylie, I can take a look at this issue."
+    },
+    {
+      "id": 956039606,
+      "user": "brylie",
+      "body": "@khushkaushal, sure thanks! First steps are to\r\n\r\n1. [install the CiviWiki development environment](https://github.com/CiviWiki/OpenCiviWiki/blob/develop/CONTRIBUTING.md#development)\r\n2. create a superuser\r\n3. populate some profile data for your user\r\n4. try to replicate the bug"
+    },
+    {
+      "id": 960107540,
+      "user": "khushkaushal",
+      "body": "@brylie I was able to reproduce the issue. I have created a PR to fix it. Requesting a review. Please and thanks!"
+    },
+    {
+      "id": 960556366,
+      "user": "brylie",
+      "body": "Let's keep the first_name and last_name fields optional and fix the issue in code that depends on those fields."
+    },
+    {
+      "id": 970721260,
+      "user": "benwade91",
+      "body": "@brylie Would it be okay to default a blank first_name to 'ANONYMOUS'? "
+    },
+    {
+      "id": 971561470,
+      "user": "brylie",
+      "body": "Sure. E.g. when rendering a Civi written by a user without first and last name, correct?"
+    },
+    {
+      "id": 985974438,
+      "user": "sidanand67",
+      "body": "Hello @brylie,\r\nIf this issue is still not fixed then can I fix it?\r\nThanks."
+    },
+    {
+      "id": 987621697,
+      "user": "brylie",
+      "body": "Sure thing, @sidanand67. Thanks!"
+    },
+    {
+      "id": 996374604,
+      "user": "mnoguier",
+      "body": "I would like to be assigned to this if possible?"
+    },
+    {
+      "id": 996377841,
+      "user": "mnoguier",
+      "body": "If I understand this correctly I think the issue is coming from \r\n![Screen Shot 2021-12-16 at 9 08 33 PM](https://user-images.githubusercontent.com/55517552/146477149-7a066282-aabd-4acc-801d-bb26a43ae179.png)\r\nThis is checking whether or not registration is complete.  This check is done by the save function:\r\n\r\n![Screen Shot 2021-12-16 at 9 09 47 PM](https://user-images.githubusercontent.com/55517552/146477261-c5da59cf-18de-4e1c-8fe7-394a64cb0152.png)\r\n and that check is done by the is full profile function which is based on whether or not they have a first and last name:\r\n\r\n![Screen Shot 2021-12-16 at 9 10 44 PM](https://user-images.githubusercontent.com/55517552/146477324-d87724e7-3223-4145-ae09-af079db2f0c7.png)\r\n\r\nI propose changing it to a a simple Boolean function of whether or not they finished registering \r\n\r\n\r\n\r\n\r\n"
+    },
+    {
+      "id": 996475096,
+      "user": "brylie",
+      "body": "@mnoguier, sounds good. I've assigned you to the issue. Thanks :smiley: "
+    },
+    {
+      "id": 1132737385,
+      "user": "Divyashree-iyer",
+      "body": "If this issue is still open I would like to be assigned.\r\nBut i have some doubts that I would like to get cleared before starting -\r\n1. what is the main purpose here? Do we simply need to keep the first name and last name mandatory? if yes then it has already been solved by @khushkaushal \r\n2. if you want to keep the first name and last name as optional but give a default value as \"ANONYMOUS\" \r\n3.  or change the is_full_profile function in /project/accounts/models.py to not consider first name and last name as an important indicator of the profile being completed, as suggested by @mnoguier \r\n4. make changes in such a way that even if there is no first_name and last_name field code must not break\r\n5. Or do you want something totally different?"
+    },
+    {
+      "id": 1217953752,
+      "user": "shashwatpandeyvns",
+      "body": "Hi,\r\nI would like contribute to the project. How can start this journey? Please, Enlighten me."
+    },
+    {
+      "id": 1250217874,
+      "user": "werberger",
+      "body": "Looking for first contribution. Relatively new to Python but this looks achievable. Is it being worked on by anyone? Please assign me the issue if not.\r\n\r\nAny idea why it keeps getting started and seemingly fixed but nothing merged?"
+    },
+    {
+      "id": 1276558374,
+      "user": "quinnrdavis",
+      "body": "I'd like to take this on. Can I ask for some clarification on what the desired functionality is? Do we want the user to not be able to delete their first and last name? Or make first and last name not mandatory?"
+    },
+    {
+      "id": 1276573227,
+      "user": "brylie",
+      "body": "@quinnrdavis, thanks! I'll assign you."
+    },
+    {
+      "id": 1276578354,
+      "user": "quinnrdavis",
+      "body": "Thanks! I am able to reproduce the bug. I notice that the registration page does not let you continue without something in both the first and last name fields so I assume we don't want any users with a blank first or last name? It seems at odds with the comments above about defaulting a blank name to ANONYMOUS so I'd just like to understand what precisely our goal is."
+    },
+    {
+      "id": 1276595384,
+      "user": "quinnrdavis",
+      "body": "I can't really work on this without knowing what the goal is so I'm gonna go ahead and unassign myself for now. If you know the direction you want to go you can reassign me and I'll be happy to try and figure it out."
+    },
+    {
+      "id": 1276597627,
+      "user": "brylie",
+      "body": "I believe the name fields should be made optional, and the templates should show the username when the name fields are not available."
+    },
+    {
+      "id": 1276600623,
+      "user": "quinnrdavis",
+      "body": "Great! That sounds very doable. If you would like to assign me again I can work on that."
+    },
+    {
+      "id": 1278522209,
+      "user": "brylie",
+      "body": "If it's not too much of a difficulty. Let's move the `first_name` and `last_name` fields to the `Profile` model instead of `Account`. The fields will need to be set to `None` on the `Account` model.\r\n\r\n```py\r\nclass Accounts(AbstractUser):\r\n    first_name = None\r\n    last_name = None\r\n    ...\r\n```"
+    },
+    {
+      "id": 1302188685,
+      "user": "werberger",
+      "body": "I have finally got my branch set up. However I am unable to reproduce the issue. When I register it only asks for Username, Email, and Password....?"
+    },
+    {
+      "id": 1304445448,
+      "user": "brylie",
+      "body": "Yes, we've removed the account setup \"wizard\" so users have a more straightforward onboarding process. However, users can edit their profile to fill in more details by clicking the profile link in the navigation menu."
+    },
+    {
+      "id": 1304730506,
+      "user": "werberger",
+      "body": "I should have said that I can edit a logged in user from the 'Settings' menu item and add or delete the first and/or last names and it does not throw any error, nor ask me to complete registration.\r\n\r\nPerhaps I'm misunderstanding the problem, or have not installed it properly (as I also cannot add issues of interest, or create new threads)."
+    },
+    {
+      "id": 1304772142,
+      "user": "brylie",
+      "body": "OK, well, it seems this may be a non-issue. This old bug came out of our QA process and may have been indirectly resolved along the way. Thanks for investigating, @werberger!"
+    },
+    {
+      "id": 1304772177,
+      "user": "brylie",
+      "body": "@all-contributors please add @werberger for bug, qa"
+    },
+    {
+      "id": 1304772207,
+      "user": "allcontributors[bot]",
+      "body": "@brylie \n\nI've put up [a pull request](https://github.com/CiviWiki/OpenCiviWiki/pull/1464) to add @werberger! :tada:"
+    },
+    {
+      "id": 1304776075,
+      "user": "werberger",
+      "body": "I may have commented too soon ◞‸◟\r\n\r\nI was playing around in the admin console and think I've found it still exists.\r\n\r\nThat is, if you try and save a _Profile_ with empty _First name_ or _Last name_.\r\n\r\nYou are able to save a _User_ with name fields empty, just not a _Profile_.\r\n\r\nDo you want to reopen this or create a new issue?"
+    },
+    {
+      "id": 1304776478,
+      "user": "brylie",
+      "body": "Let's open a new issue so we can start the discussion fresh."
+    }
+  ],
+  "text_context": "# No verification when user deletes it's info\n\nIf I am a logged in user with properly entered information and I go to Settings and delete my first and last name, the changes are saved without the application telling me they are mandatory.\r\nThen, if I decide to open another page, I am redirected to the registration form to complete my sign up.\n\nHello, \r\n\r\nwe had a suggested fix: \r\nWithin **project/api/forms.py:** \r\n\r\nCan this be resolved by making the first name and last name fields unable to be submit as blank, by making those fields have the property \"required=True\"?\r\n\r\n```py\r\nclass UpdateAccount(forms.ModelForm):\r\n    \"\"\"\r\n    Form for updating Account data\r\n    \"\"\"\r\n    class Meta:\r\n        model = Account\r\n        fields = ['first_name', 'last_name', 'about_me', 'profile_image']\r\n\r\n    first_name = forms.CharField(label='First Name', max_length=63, required=**False**) **(True)**\r\n    last_name = forms.CharField(label='Last Name', max_length=63, required=**False**) **(True)**\r\n    about_me = forms.CharField(label='About Me', max_length=511, required=False)\r\n    profile_image = forms.ImageField(required=False)\r\n```\n\nHi @brylie, I can take a look at this issue.\n\n@khushkaushal, sure thanks! First steps are to\r\n\r\n1. [install the CiviWiki development environment](https://github.com/CiviWiki/OpenCiviWiki/blob/develop/CONTRIBUTING.md#development)\r\n2. create a superuser\r\n3. populate some profile data for your user\r\n4. try to replicate the bug\n\n@brylie I was able to reproduce the issue. I have created a PR to fix it. Requesting a review. Please and thanks!\n\nLet's keep the first_name and last_name fields optional and fix the issue in code that depends on those fields.\n\n@brylie Would it be okay to default a blank first_name to 'ANONYMOUS'? \n\nSure. E.g. when rendering a Civi written by a user without first and last name, correct?\n\nHello @brylie,\r\nIf this issue is still not fixed then can I fix it?\r\nThanks.\n\nSure thing, @sidanand67. Thanks!\n\nI would like to be assigned to this if possible?\n\nIf I understand this correctly I think the issue is coming from \r\n![Screen Shot 2021-12-16 at 9 08 33 PM](https://user-images.githubusercontent.com/55517552/146477149-7a066282-aabd-4acc-801d-bb26a43ae179.png)\r\nThis is checking whether or not registration is complete.  This check is done by the save function:\r\n\r\n![Screen Shot 2021-12-16 at 9 09 47 PM](https://user-images.githubusercontent.com/55517552/146477261-c5da59cf-18de-4e1c-8fe7-394a64cb0152.png)\r\n and that check is done by the is full profile function which is based on whether or not they have a first and last name:\r\n\r\n![Screen Shot 2021-12-16 at 9 10 44 PM](https://user-images.githubusercontent.com/55517552/146477324-d87724e7-3223-4145-ae09-af079db2f0c7.png)\r\n\r\nI propose changing it to a a simple Boolean function of whether or not they finished registering \r\n\r\n\r\n\r\n\r\n\n\n@mnoguier, sounds good. I've assigned you to the issue. Thanks :smiley: \n\nIf this issue is still open I would like to be assigned.\r\nBut i have some doubts that I would like to get cleared before starting -\r\n1. what is the main purpose here? Do we simply need to keep the first name and last name mandatory? if yes then it has already been solved by @khushkaushal \r\n2. if you want to keep the first name and last name as optional but give a default value as \"ANONYMOUS\" \r\n3.  or change the is_full_profile function in /project/accounts/models.py to not consider first name and last name as an important indicator of the profile being completed, as suggested by @mnoguier \r\n4. make changes in such a way that even if there is no first_name and last_name field code must not break\r\n5. Or do you want something totally different?\n\nHi,\r\nI would like contribute to the project. How can start this journey? Please, Enlighten me.\n\nLooking for first contribution. Relatively new to Python but this looks achievable. Is it being worked on by anyone? Please assign me the issue if not.\r\n\r\nAny idea why it keeps getting started and seemingly fixed but nothing merged?\n\nI'd like to take this on. Can I ask for some clarification on what the desired functionality is? Do we want the user to not be able to delete their first and last name? Or make first and last name not mandatory?\n\n@quinnrdavis, thanks! I'll assign you.\n\nThanks! I am able to reproduce the bug. I notice that the registration page does not let you continue without something in both the first and last name fields so I assume we don't want any users with a blank first or last name? It seems at odds with the comments above about defaulting a blank name to ANONYMOUS so I'd just like to understand what precisely our goal is.\n\nI can't really work on this without knowing what the goal is so I'm gonna go ahead and unassign myself for now. If you know the direction you want to go you can reassign me and I'll be happy to try and figure it out.\n\nI believe the name fields should be made optional, and the templates should show the username when the name fields are not available.\n\nGreat! That sounds very doable. If you would like to assign me again I can work on that.\n\nIf it's not too much of a difficulty. Let's move the `first_name` and `last_name` fields to the `Profile` model instead of `Account`. The fields will need to be set to `None` on the `Account` model.\r\n\r\n```py\r\nclass Accounts(AbstractUser):\r\n    first_name = None\r\n    last_name = None\r\n    ...\r\n```\n\nI have finally got my branch set up. However I am unable to reproduce the issue. When I register it only asks for Username, Email, and Password....?\n\nYes, we've removed the account setup \"wizard\" so users have a more straightforward onboarding process. However, users can edit their profile to fill in more details by clicking the profile link in the navigation menu.\n\nI should have said that I can edit a logged in user from the 'Settings' menu item and add or delete the first and/or last names and it does not throw any error, nor ask me to complete registration.\r\n\r\nPerhaps I'm misunderstanding the problem, or have not installed it properly (as I also cannot add issues of interest, or create new threads).\n\nOK, well, it seems this may be a non-issue. This old bug came out of our QA process and may have been indirectly resolved along the way. Thanks for investigating, @werberger!\n\n@all-contributors please add @werberger for bug, qa\n\n@brylie \n\nI've put up [a pull request](https://github.com/CiviWiki/OpenCiviWiki/pull/1464) to add @werberger! :tada:\n\nI may have commented too soon ◞‸◟\r\n\r\nI was playing around in the admin console and think I've found it still exists.\r\n\r\nThat is, if you try and save a _Profile_ with empty _First name_ or _Last name_.\r\n\r\nYou are able to save a _User_ with name fields empty, just not a _Profile_.\r\n\r\nDo you want to reopen this or create a new issue?\n\nLet's open a new issue so we can start the discussion fresh.",
+  "pr_link": "https://github.com/CiviWiki/OpenCiviWiki/pull/1464",
+  "code_context": []
+}

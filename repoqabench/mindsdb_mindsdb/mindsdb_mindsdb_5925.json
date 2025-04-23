@@ -56,5 +56,21 @@
   ],
   "text_context": "# [Docs] Update the MonetDB link in the `README.md` file\n\n## Instructions :page_facing_up:\r\n\r\nHere are the step-by-step instructions:\r\n\r\n1. Go to the file `/mindsdb/README.md`.\r\n\r\n2. Find the section titled `## Database Integrations`. This section contains a table with integrations and their logos.\r\n\r\n3. Find the below HTML tag:\r\n\r\n`<a href=\"https://docs.mindsdb.com/data-integrations/all-data-integrations#monetdb\"><img src=\"https://img.shields.io/badge/Monetdb-0099E5?logo=Monetdb&logoColor=fff&style=for-the-badge\" alt=\"Monetdb Badge\"></a>`\r\n\r\n4. Update the `href` value to this link: https://docs.mindsdb.com/data-integrations/monetdb\r\n\r\n5. Save the changes and create a PR.\r\n\r\n## The https://github.com/mindsdb/mindsdb/labels/first-timers-only Label\r\n\r\nWe are happy to welcome you on board! Please take a look at the rules below for first-time contributors.\r\n\r\n1. You can solve only one issue labeled as https://github.com/mindsdb/mindsdb/labels/first-timers-only. After that, please look at other issues labeled as https://github.com/mindsdb/mindsdb/labels/good%20first%20issue, https://github.com/mindsdb/mindsdb/labels/help%20wanted, or https://github.com/mindsdb/mindsdb/labels/integration.\r\n\r\n2. After you create your first PR in the MindsDB repository, please sign our CLA to become a MindsDB contributor. You can do that by leaving a comment that contains the following: `I have read the CLA Document and I hereby sign the CLA`\r\n\r\nThank you for contributing to MindsDB!\n\nCan I be assigned to this issue? I am a first timer and I can update it.\r\n\r\nThanks,\r\nVen\r\n\n\n@raghavaraghav3 \r\nYou can start working on this issue.\n\nI have forked the repo and made the changes to my repo. Could you just guide me to raise a PR? @martyna-mindsdb \n\nI have read the CLA Document and I hereby sign the CLA\r\n\n\nPlease raise a PR in the MindsDB repository: https://github.com/mindsdb/mindsdb\r\n\r\nAlso, please sign the CLA by leaving a comment on your PR, once you create it.\n\nI think I have created it here is the link. \r\n\r\nhttps://github.com/mindsdb/mindsdb/pull/5927\r\n\r\nI have read the CLA Document and I hereby sign the CLA\n\n@raghavaraghav3 \r\nYes. Now you can sign the CLA there.\n\nI have read the CLA Document and I hereby sign the CLA\r\n\n\nIs this how?\r\n\n\n@raghavaraghav3 \r\nPlease leave this comment under your PR.",
   "pr_link": "https://github.com/mindsdb/mindsdb/pull/5927",
-  "code_context": []
+  "code_context": [],
+  "questions": [],
+  "golden_answers": [],
+  "questions_generated": [
+    "What is the specific change required in the `README.md` file for the MindsDB repository?",
+    "Where in the `README.md` file should you look to find the MonetDB link that needs updating?",
+    "What steps should a first-time contributor follow to make changes and submit a pull request for this issue?",
+    "What rules apply to first-time contributors regarding the issue labels in the MindsDB repository?",
+    "Why is it necessary for contributors to sign the CLA, and how should they do it?"
+  ],
+  "golden_answers_generated": [
+    "The specific change required is to update the `href` value of the MonetDB link in the `README.md` file from 'https://docs.mindsdb.com/data-integrations/all-data-integrations#monetdb' to 'https://docs.mindsdb.com/data-integrations/monetdb'.",
+    "You should look in the section titled `## Database Integrations` within the `README.md` file, which contains a table with integrations and their logos.",
+    "A first-time contributor should: 1) Go to the `/mindsdb/README.md` file, 2) Find and update the MonetDB link as per the instructions, 3) Save the changes, 4) Fork the repository, 5) Push the changes to their fork, 6) Create a pull request from their fork to the MindsDB repository, and 7) Sign the CLA by leaving a comment on their PR.",
+    "First-time contributors can only solve one issue labeled as 'https://github.com/mindsdb/mindsdb/labels/first-timers-only'. After that, they should look at issues labeled as 'good first issue', 'help wanted', or 'integration'.",
+    "It is necessary for contributors to sign the CLA to become official MindsDB contributors. They should do this by leaving a comment saying 'I have read the CLA Document and I hereby sign the CLA' under their pull request in the MindsDB repository."
+  ]
 }

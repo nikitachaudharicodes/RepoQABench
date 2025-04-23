@@ -1,0 +1,75 @@
+{
+  "repo_name": "pandas-dev_pandas",
+  "issue_id": "39158",
+  "issue_description": "# Minor typo on warnings\n\nhttps://github.com/pandas-dev/pandas/blob/25110a92b291de6688c3accad4c34d84837445e8/pandas/_libs/parsers.pyx#L1993-L1996\r\n`\"Columns ({warning_names}) have mixed types.Specify dtype option on import or set low_memory=False.\"`\r\nNote the lack of a space after the period on `types.Specify`. That's because there's no comma separating the strings inside the list, so they get appended while still inside the list, and get passed as a single string to `\" \".join(...)`, thus it has nothing to join.\r\nSimply adding the missing comma should fix it.\r\n",
+  "issue_comments": [
+    {
+      "id": 759830931,
+      "user": "MicaelJarniac",
+      "body": "take"
+    },
+    {
+      "id": 901273144,
+      "user": "Kavya9986",
+      "body": "Hi !\r\nI am new to the open source contribution community .\r\nCan I take this issue ?"
+    },
+    {
+      "id": 901277281,
+      "user": "MarcoGorelli",
+      "body": "go ahead"
+    },
+    {
+      "id": 901312917,
+      "user": "Kavya9986",
+      "body": "Just wanted to know if this issue still persists ? Because I think it is already fixed in #39159 .\r\nAm I supposed to find such warning messages in the source code and fix them?"
+    },
+    {
+      "id": 901320303,
+      "user": "MarcoGorelli",
+      "body": "https://github.com/pandas-dev/pandas/pull/39159 wasn't merged, so it looks like this is still open"
+    },
+    {
+      "id": 901325351,
+      "user": "Kavya9986",
+      "body": "> #39159 wasn't merged, so it looks like this is still open\r\n\r\nOkay ! Will try fixing this "
+    },
+    {
+      "id": 903323020,
+      "user": "karthik200116",
+      "body": "Hey found this issue still open. Can I take this issue?. I'm new to the open-source community willing to do some useful contributions."
+    },
+    {
+      "id": 903328148,
+      "user": "MarcoGorelli",
+      "body": "it's being worked on, look up"
+    },
+    {
+      "id": 903403857,
+      "user": "Kavya9986",
+      "body": "> Hey found this issue still open. Can I take this issue?. I'm new to the open-source community willing to do some useful contributions.\r\n\r\nHey! \r\nI'm working on this issue ."
+    },
+    {
+      "id": 903505762,
+      "user": "Kavya9986",
+      "body": "@MarcoGorelli . I have fixed all the warning.warn messages in the entire code .\r\nHere is the pull request Fixed all warning.warn messages for space,full-stop etc issues #43163 .\r\nCould you just review it ?"
+    },
+    {
+      "id": 904636024,
+      "user": "Kavya9986",
+      "body": "Gentle ping @MarcoGorelli .\r\nPull request : #43163"
+    },
+    {
+      "id": 905391690,
+      "user": "Kavya9986",
+      "body": "@MarcoGorelli  Could you check the pull request ? #43163\r\n\r\nfixed flake8\r\n104e786\r\n\r\n\r\n![precommit](https://user-images.githubusercontent.com/60135021/130777759-714426bd-20cd-48f1-b63f-1eb60151778f.png)\r\n"
+    }
+  ],
+  "text_context": "# Minor typo on warnings\n\nhttps://github.com/pandas-dev/pandas/blob/25110a92b291de6688c3accad4c34d84837445e8/pandas/_libs/parsers.pyx#L1993-L1996\r\n`\"Columns ({warning_names}) have mixed types.Specify dtype option on import or set low_memory=False.\"`\r\nNote the lack of a space after the period on `types.Specify`. That's because there's no comma separating the strings inside the list, so they get appended while still inside the list, and get passed as a single string to `\" \".join(...)`, thus it has nothing to join.\r\nSimply adding the missing comma should fix it.\r\n\n\ntake\n\nHi !\r\nI am new to the open source contribution community .\r\nCan I take this issue ?\n\ngo ahead\n\nJust wanted to know if this issue still persists ? Because I think it is already fixed in #39159 .\r\nAm I supposed to find such warning messages in the source code and fix them?\n\nhttps://github.com/pandas-dev/pandas/pull/39159 wasn't merged, so it looks like this is still open\n\n> #39159 wasn't merged, so it looks like this is still open\r\n\r\nOkay ! Will try fixing this \n\nHey found this issue still open. Can I take this issue?. I'm new to the open-source community willing to do some useful contributions.\n\nit's being worked on, look up\n\n> Hey found this issue still open. Can I take this issue?. I'm new to the open-source community willing to do some useful contributions.\r\n\r\nHey! \r\nI'm working on this issue .\n\n@MarcoGorelli . I have fixed all the warning.warn messages in the entire code .\r\nHere is the pull request Fixed all warning.warn messages for space,full-stop etc issues #43163 .\r\nCould you just review it ?\n\nGentle ping @MarcoGorelli .\r\nPull request : #43163\n\n@MarcoGorelli  Could you check the pull request ? #43163\r\n\r\nfixed flake8\r\n104e786\r\n\r\n\r\n![precommit](https://user-images.githubusercontent.com/60135021/130777759-714426bd-20cd-48f1-b63f-1eb60151778f.png)\r\n",
+  "pr_link": "https://github.com/pandas-dev/pandas/pull/39159",
+  "code_context": [
+    {
+      "filename": "pandas/tests/io/parser/common/test_chunksize.py",
+      "content": "\"\"\"\nTests that work on both the Python and C engines but do not have a\nspecific classification into the other test modules.\n\"\"\"\nfrom io import StringIO\n\nimport numpy as np\nimport pytest\nimport regex as re\n\nfrom pandas.errors import DtypeWarning\n\nfrom pandas import (\n    DataFrame,\n    concat,\n)\nimport pandas._testing as tm\n\n\n@pytest.mark.parametrize(\"index_col\", [0, \"index\"])\ndef test_read_chunksize_with_index(all_parsers, index_col):\n    parser = all_parsers\n    data = \"\"\"index,A,B,C,D\nfoo,2,3,4,5\nbar,7,8,9,10\nbaz,12,13,14,15\nqux,12,13,14,15\nfoo2,12,13,14,15\nbar2,12,13,14,15\n\"\"\"\n\n    expected = DataFrame(\n        [\n            [\"foo\", 2, 3, 4, 5],\n            [\"bar\", 7, 8, 9, 10],\n            [\"baz\", 12, 13, 14, 15],\n            [\"qux\", 12, 13, 14, 15],\n            [\"foo2\", 12, 13, 14, 15],\n            [\"bar2\", 12, 13, 14, 15],\n        ],\n        columns=[\"index\", \"A\", \"B\", \"C\", \"D\"],\n    )\n    expected = expected.set_index(\"index\")\n\n    with parser.read_csv(StringIO(data), index_col=0, chunksize=2) as reader:\n        chunks = list(reader)\n    tm.assert_frame_equal(chunks[0], expected[:2])\n    tm.assert_frame_equal(chunks[1], expected[2:4])\n    tm.assert_frame_equal(chunks[2], expected[4:])\n\n\n@pytest.mark.parametrize(\"chunksize\", [1.3, \"foo\", 0])\ndef test_read_chunksize_bad(all_parsers, chunksize):\n    data = \"\"\"index,A,B,C,D\nfoo,2,3,4,5\nbar,7,8,9,10\nbaz,12,13,14,15\nqux,12,13,14,15\nfoo2,12,13,14,15\nbar2,12,13,14,15\n\"\"\"\n    parser = all_parsers\n    msg = r\"'chunksize' must be an integer >=1\"\n\n    with pytest.raises(ValueError, match=msg):\n        with parser.read_csv(StringIO(data), chunksize=chunksize) as _:\n            pass\n\n\n@pytest.mark.parametrize(\"chunksize\", [2, 8])\ndef test_read_chunksize_and_nrows(all_parsers, chunksize):\n    # see gh-15755\n    data = \"\"\"index,A,B,C,D\nfoo,2,3,4,5\nbar,7,8,9,10\nbaz,12,13,14,15\nqux,12,13,14,15\nfoo2,12,13,14,15\nbar2,12,13,14,15\n\"\"\"\n    parser = all_parsers\n    kwargs = {\"index_col\": 0, \"nrows\": 5}\n\n    expected = parser.read_csv(StringIO(data), **kwargs)\n    with parser.read_csv(StringIO(data), chunksize=chunksize, **kwargs) as reader:\n        tm.assert_frame_equal(concat(reader), expected)\n\n\ndef test_read_chunksize_and_nrows_changing_size(all_parsers):\n    data = \"\"\"index,A,B,C,D\nfoo,2,3,4,5\nbar,7,8,9,10\nbaz,12,13,14,15\nqux,12,13,14,15\nfoo2,12,13,14,15\nbar2,12,13,14,15\n\"\"\"\n    parser = all_parsers\n    kwargs = {\"index_col\": 0, \"nrows\": 5}\n\n    expected = parser.read_csv(StringIO(data), **kwargs)\n    with parser.read_csv(StringIO(data), chunksize=8, **kwargs) as reader:\n        tm.assert_frame_equal(reader.get_chunk(size=2), expected.iloc[:2])\n        tm.assert_frame_equal(reader.get_chunk(size=4), expected.iloc[2:5])\n\n        with pytest.raises(StopIteration, match=\"\"):\n            reader.get_chunk(size=3)\n\n\ndef test_get_chunk_passed_chunksize(all_parsers):\n    parser = all_parsers\n    data = \"\"\"A,B,C\n1,2,3\n4,5,6\n7,8,9\n1,2,3\"\"\"\n\n    with parser.read_csv(StringIO(data), chunksize=2) as reader:\n        result = reader.get_chunk()\n\n    expected = DataFrame([[1, 2, 3], [4, 5, 6]], columns=[\"A\", \"B\", \"C\"])\n    tm.assert_frame_equal(result, expected)\n\n\n@pytest.mark.parametrize(\"kwargs\", [{}, {\"index_col\": 0}])\ndef test_read_chunksize_compat(all_parsers, kwargs):\n    # see gh-12185\n    data = \"\"\"index,A,B,C,D\nfoo,2,3,4,5\nbar,7,8,9,10\nbaz,12,13,14,15\nqux,12,13,14,15\nfoo2,12,13,14,15\nbar2,12,13,14,15\n\"\"\"\n    parser = all_parsers\n    result = parser.read_csv(StringIO(data), **kwargs)\n    with parser.read_csv(StringIO(data), chunksize=2, **kwargs) as reader:\n        tm.assert_frame_equal(concat(reader), result)\n\n\ndef test_read_chunksize_jagged_names(all_parsers):\n    # see gh-23509\n    parser = all_parsers\n    data = \"\\n\".join([\"0\"] * 7 + [\",\".join([\"0\"] * 10)])\n\n    # error: List item 0 has incompatible type \"float\"; expected \"int\"\n    expected = DataFrame(\n        [[0] + [np.nan] * 9] * 7 + [[0] * 10]  # type: ignore[list-item]\n    )\n    with parser.read_csv(StringIO(data), names=range(10), chunksize=4) as reader:\n        result = concat(reader)\n    tm.assert_frame_equal(result, expected)\n\n\ndef test_chunk_begins_with_newline_whitespace(all_parsers):\n    # see gh-10022\n    parser = all_parsers\n    data = \"\\n hello\\nworld\\n\"\n\n    result = parser.read_csv(StringIO(data), header=None)\n    expected = DataFrame([\" hello\", \"world\"])\n    tm.assert_frame_equal(result, expected)\n\n\n@pytest.mark.xfail(reason=\"GH38630, sometimes gives ResourceWarning\", strict=False)\ndef test_chunks_have_consistent_numerical_type(all_parsers):\n    parser = all_parsers\n    integers = [str(i) for i in range(499999)]\n    data = \"a\\n\" + \"\\n\".join(integers + [\"1.0\", \"2.0\"] + integers)\n\n    # Coercions should work without warnings.\n    with tm.assert_produces_warning(None):\n        result = parser.read_csv(StringIO(data))\n\n    assert type(result.a[0]) is np.float64\n    assert result.a.dtype == float\n\n\ndef test_warn_if_chunks_have_mismatched_type(all_parsers, request):\n    warning_type = None\n    parser = all_parsers\n    integers = [str(i) for i in range(499999)]\n    data = \"a\\n\" + \"\\n\".join(integers + [\"a\", \"b\"] + integers)\n\n    # see gh-3866: if chunks are different types and can't\n    # be coerced using numerical types, then issue warning.\n    if parser.engine == \"c\" and parser.low_memory:\n        warning_type = DtypeWarning\n\n    buf = StringIO(data)\n\n    try:\n        msg = (\n            \"Columns (0) have mixed types. Specify dtype option on import or \"\n            \"set low_memory=False.\"\n        )\n        with tm.assert_produces_warning(warning_type, match=re.escape(msg)):\n            df = parser.read_csv(buf)\n    except AssertionError as err:\n        # 2021-02-21 this occasionally fails on the CI with an unexpected\n        #  ResourceWarning that we have been unable to track down,\n        #  see GH#38630\n        if \"ResourceWarning\" not in str(err) or parser.engine != \"python\":\n            raise\n\n        # Check the main assertion of the test before re-raising\n        assert df.a.dtype == object\n\n        mark = pytest.mark.xfail(\n            reason=\"ResourceWarning for unclosed SSL Socket, GH#38630\"\n        )\n        request.node.add_marker(mark)\n        raise\n\n    assert df.a.dtype == object\n\n\n@pytest.mark.parametrize(\"iterator\", [True, False])\ndef test_empty_with_nrows_chunksize(all_parsers, iterator):\n    # see gh-9535\n    parser = all_parsers\n    expected = DataFrame(columns=[\"foo\", \"bar\"])\n\n    nrows = 10\n    data = StringIO(\"foo,bar\\n\")\n\n    if iterator:\n        with parser.read_csv(data, chunksize=nrows) as reader:\n            result = next(iter(reader))\n    else:\n        result = parser.read_csv(data, nrows=nrows)\n\n    tm.assert_frame_equal(result, expected)\n\n\ndef test_read_csv_memory_growth_chunksize(all_parsers):\n    # see gh-24805\n    #\n    # Let's just make sure that we don't crash\n    # as we iteratively process all chunks.\n    parser = all_parsers\n\n    with tm.ensure_clean() as path:\n        with open(path, \"w\") as f:\n            for i in range(1000):\n                f.write(str(i) + \"\\n\")\n\n        with parser.read_csv(path, chunksize=20) as result:\n            for _ in result:\n                pass\n"
+    }
+  ]
+}
