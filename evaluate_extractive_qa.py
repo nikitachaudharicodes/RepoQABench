@@ -22,7 +22,6 @@ TOP_K = 3
 # Load evaluation metrics
 squad_metric = evaluate.load("squad")
 rouge_metric = evaluate.load("rouge")
-bleu_metric = evaluate.load("bleu")
 
 
 def simple_retrieve(question, text_context, code_snippets, k=TOP_K):
@@ -63,7 +62,10 @@ def run_qa_model(model_name, questions, contexts):
                 outputs = model(**inputs)
             start_idx = torch.argmax(outputs.start_logits)
             end_idx = torch.argmax(outputs.end_logits) + 1
-            answer = tokenizer.decode(inputs['input_ids'][0][start_idx:end_idx], skip_special_tokens=True)
+            answer = tokenizer.decode(
+                inputs['input_ids'][0][start_idx:end_idx],
+                skip_special_tokens=True
+            )
         except:
             answer = ""
         answers.append(answer)
@@ -74,7 +76,8 @@ def evaluate_model_on_jsons(path, model_key):
     rows = []
     for root, _, files in os.walk(path):
         for file in files:
-            if not file.endswith('.json'): continue
+            if not file.endswith('.json'):
+                continue
             data = json.load(open(os.path.join(root, file)))
             questions = data.get('questions', [])
             golds = data.get('golden_answers', [])
@@ -90,17 +93,29 @@ def evaluate_model_on_jsons(path, model_key):
 
             preds = run_qa_model(SUPPORTED_MODELS[model_key], questions, contexts)
             for q, p, g in zip(questions, preds, golds):
-                rows.append({'model': model_key, 'question': q, 'predicted': p, 'gold': g})
+                rows.append({
+                    'model': model_key,
+                    'question': q,
+                    'predicted': p,
+                    'gold': g
+                })
     return pd.DataFrame(rows)
 
 
 def compute_metrics(df):
-    # SQuAD metrics
-    preds_dict = [{"id": str(i), "prediction_text": pred}
-                  for i, pred in enumerate(df['predicted'].fillna(""))]
-    refs = [{"id": str(i), "answers": {"text": [g], "answer_start": [0]}}
-            for i, g in enumerate(df['gold'].fillna(""))]
-    squad = squad_metric.compute(predictions=preds_dict, references=refs)
+    # SQuAD metrics: exact match and F1
+    preds_dict = [{
+        'id': str(i),
+        'prediction_text': pred
+    } for i, pred in enumerate(df['predicted'].fillna(""))]
+    refs = [{
+        'id': str(i),
+        'answers': {'text': [g], 'answer_start': [0]}
+    } for i, g in enumerate(df['gold'].fillna(""))]
+    squad = squad_metric.compute(
+        predictions=preds_dict,
+        references=refs
+    )
 
     # ROUGE-L
     rouge = rouge_metric.compute(
@@ -108,19 +123,10 @@ def compute_metrics(df):
         references=df['gold'].fillna("").tolist()
     )
 
-    # BLEU: tokenized inputs; catch zero-division
-    pred_tokens = [p.split() if p else [] for p in df['predicted'].fillna("")]
-    ref_tokens = [[g.split()] for g in df['gold'].fillna("")]
-    try:
-        bleu_score = bleu_metric.compute(predictions=pred_tokens, references=ref_tokens).get('bleu', 0.0)
-    except ZeroDivisionError:
-        bleu_score = 0.0
-
     return {
         'EM': squad.get('exact_match', 0.0),
         'F1': squad.get('f1', 0.0),
-        'ROUGE-L': rouge.get('rougeL', 0.0),
-        'BLEU': bleu_score
+        'ROUGE-L': rouge.get('rougeL', 0.0)
     }
 
 
@@ -146,7 +152,12 @@ def main():
     ms_df = pd.DataFrame(metrics_summary)
     ms_df.to_csv('results_ex/metrics_summary.csv', index=False)
 
-    ax = ms_df.set_index('model').plot(kind='bar', figsize=(10,5), ylim=(0,100))
+    # Plot EM, F1, and ROUGE-L
+    ax = ms_df.set_index('model').plot(
+        kind='bar',
+        figsize=(10, 5),
+        ylim=(0, 100)
+    )
     ax.set_ylabel('Score (%)')
     ax.set_title('QA Metrics by Model')
     plt.tight_layout()
