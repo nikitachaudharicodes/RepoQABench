@@ -6,7 +6,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
-from evaluate import load as load_metric  # swapped from datasets to evaluate for compatibility
+from evaluate import load as load_metric
 
 # Define supported generative models
 SUPPORTED_MODELS = {
@@ -27,26 +27,18 @@ def run_qa_model(model_name, questions, qa_pipeline):
     return answers
 
 def compute_metrics(preds, refs):
-    bleu = load_metric("bleu")
     rouge = load_metric("rouge")
     bertscore = load_metric("bertscore")
 
-    # Ensure valid format for all metrics
-    tokenized_preds = [p.split() for p in preds]
-    tokenized_refs = [[r.split()] for r in refs]  # BLEU expects list of list of tokens
-
-    bleu_score = bleu.compute(predictions=tokenized_preds, references=tokenized_refs)["bleu"]
-
+    # ROUGE expects plain strings
     rouge_result = rouge.compute(predictions=preds, references=refs, use_stemmer=True)
-    rouge_score = rouge_result["rougeL"]
-    if isinstance(rouge_score, dict) and "fmeasure" in rouge_score:
-        rouge_score = rouge_score["fmeasure"]
+    rouge_score = rouge_result["rougeL"].mid.fmeasure if hasattr(rouge_result["rougeL"], "mid") else float(rouge_result["rougeL"])
 
-    bert_result = bertscore.compute(predictions=preds, references=refs, lang="en")
-    avg_bert_score = sum(bert_result["f1"]) / len(bert_result["f1"])
+    # BERTScore expects string predictions and refs
+    bert_score = bertscore.compute(predictions=preds, references=refs, lang="en")["f1"]
+    avg_bert_score = sum(bert_score) / len(bert_score) if bert_score else 0.0
 
     return {
-        "BLEU": bleu_score,
         "ROUGE-L": rouge_score,
         "BERTScore": avg_bert_score
     }
