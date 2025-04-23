@@ -111,8 +111,8 @@ def compute_metrics(df):
         references=df['gold'].fillna("").tolist()
     )
     bleu = bleu_metric.compute(
-        predictions=[p.split() for p in df['predicted'].fillna("")],
-        references=[[g.split()] for g in df['gold'].fillna("")]
+        predictions=df['predicted'].fillna("").tolist(),
+        references=df['gold'].fillna("").tolist()
     )
 
     return {
