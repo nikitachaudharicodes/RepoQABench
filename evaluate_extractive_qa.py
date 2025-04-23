@@ -13,7 +13,7 @@ import evaluate
 SUPPORTED_MODELS = {
     "roberta": "deepset/roberta-base-squad2",
     "distilbert": "distilbert-base-uncased-distilled-squad",
-    "codet5": "Salesforce/codet5-base-squadc"
+    "codet5": "Salesforce/codet5-base"
 }
 
 # Number of top code snippets to retrieve per question
