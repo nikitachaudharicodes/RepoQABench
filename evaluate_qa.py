@@ -6,20 +6,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
-from evaluate import load as load_metric
-from transformers.pipelines.pt_utils import KeyDataset
-from datasets import Dataset
-
-def run_qa_model(model_name, questions, qa_pipeline):
-    inputs = [f"Question: {q}" for q in questions]
-    dataset = Dataset.from_dict({"text": inputs})
-    predictions = []
-
-    for output in qa_pipeline(KeyDataset(dataset, "text"), batch_size=8, truncation=True):
-        predictions.append(output[0]["generated_text"] if isinstance(output, list) else output["generated_text"])
-
-    return predictions
-
+from datasets import load_metric
 
 # Define supported generative models
 SUPPORTED_MODELS = {
@@ -28,69 +15,40 @@ SUPPORTED_MODELS = {
     "mistral": "mistralai/Mistral-7B-Instruct-v0.1"
 }
 
-# def run_qa_model(model_name, questions, qa_pipeline):
-#     answers = []
-#     for question in questions:
-#         try:
-#             input_text = f"Question: {question}"
-#             result = qa_pipeline(input_text)[0]["generated_text"]
-#             answers.append(result)
-#         except Exception as e:
-#             answers.append("<error>")
-#     return answers
-
-
 def run_qa_model(model_name, questions, qa_pipeline):
-    inputs = [f"Question: {q}" for q in questions]
-    dataset = Dataset.from_dict({"text": inputs})
-    predictions = []
-
-    for output in qa_pipeline(KeyDataset(dataset, "text"), batch_size=8, truncation=True):
-        predictions.append(output[0]["generated_text"] if isinstance(output, list) else output["generated_text"])
-
-    return predictions
-
-# def compute_metrics(preds, refs):
-#     bleu = load_metric("bleu")
-#     rouge = load_metric("rouge")
-#     bertscore = load_metric("bertscore")
-
-#     # BLEU expects tokenized inputs
-#     tokenized_preds = [[p.split()] for p in preds]
-#     tokenized_refs = [[[r.split()[0]] for r in refs]]
-#     bleu_score = bleu.compute(predictions=tokenized_preds, references=tokenized_refs)["bleu"]
-
-#     rouge_score = rouge.compute(predictions=preds, references=refs)["rougeLsum"]
-
-#     bert_score = bertscore.compute(predictions=preds, references=refs, lang="en")["f1"]
-#     avg_bert_score = sum(bert_score) / len(bert_score)
-
-#     return {
-#         "BLEU": bleu_score,
-#         "ROUGE-L": rouge_score.mid.fmeasure,
-#         "BERTScore": avg_bert_score
-#     }
+    answers = []
+    for question in questions:
+        try:
+            input_text = f"Question: {question}"
+            result = qa_pipeline(input_text)[0]["generated_text"]
+            answers.append(result)
+        except Exception as e:
+            answers.append("<error>")
+    return answers
 
 def compute_metrics(preds, refs):
     bleu = load_metric("bleu")
     rouge = load_metric("rouge")
     bertscore = load_metric("bertscore")
 
-    # Format for BLEU: list of predictions, list of list of references
-    formatted_preds = [p.strip() for p in preds]
-    formatted_refs = [[r.strip()] for r in refs]
+    # BLEU expects tokenized inputs
+    tokenized_preds = [[p.split()] for p in preds]
+    tokenized_refs = [[[r.split()[0]] for r in refs]]
+    bleu_score = bleu.compute(predictions=tokenized_preds, references=tokenized_refs)["bleu"]
 
-    bleu_score = bleu.compute(predictions=formatted_preds, references=formatted_refs)["bleu"]
-    rouge_score = rouge.compute(predictions=formatted_preds, references=refs)["rougeLsum"]
-    bert_score = bertscore.compute(predictions=formatted_preds, references=refs, lang="en")["f1"]
+    rouge_result = rouge.compute(predictions=preds, references=refs)
+    rouge_score = rouge_result["rougeL"] if "rougeL" in rouge_result else 0.0
+    if hasattr(rouge_score, "fmeasure"):
+        rouge_score = rouge_score.fmeasure
+
+    bert_score = bertscore.compute(predictions=preds, references=refs, lang="en")["f1"]
     avg_bert_score = sum(bert_score) / len(bert_score)
 
     return {
         "BLEU": bleu_score,
-        "ROUGE-L": rouge_score["rougeLsum"].fmeasure if isinstance(rouge_score["rougeLsum"], object) and hasattr(rouge_score["rougeLsum"], "fmeasure") else float(rouge_score["rougeLsum"]),
+        "ROUGE-L": rouge_score,
         "BERTScore": avg_bert_score
     }
-
 
 def evaluate_model_on_jsons(path, model_key):
     model_name = SUPPORTED_MODELS[model_key]
@@ -154,13 +112,14 @@ def evaluate_and_save(path, models):
             "generated_metrics": compute_metrics(generated_df["predicted"].tolist(), generated_df["gold"].tolist())
         })
 
+    os.makedirs("results_abs", exist_ok=True)
     all_benchmark_df.to_csv("results_abs/benchmark_questions_abs_eval.csv", index=False)
     all_generated_df.to_csv("results_abs/generated_questions_abs_eval.csv", index=False)
 
     plot_scores(all_benchmark_df, "Benchmark Questions Coverage per Model", "results_abs/benchmark_abs_plot.png")
     plot_scores(all_generated_df, "Generated Questions Coverage per Model", "results_abs/generated_abs_plot.png")
 
-    pd.DataFrame(scores).to_json("qa_model_scores.json", indent=2)
+    pd.DataFrame(scores).to_json("results_abs/qa_model_scores.json", indent=2)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
