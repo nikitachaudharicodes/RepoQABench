@@ -96,20 +96,23 @@ def evaluate_model_on_jsons(path, model_key):
 
 def compute_metrics(df):
     # Prepare predictions & references for SQuAD metric
-    preds = df['predicted'].fillna("").tolist()
+    preds_dict = [
+        {"id": str(i), "prediction_text": pred}
+        for i, pred in enumerate(df['predicted'].fillna(""))
+    ]
     refs = [
         {"id": str(i), "answers": {"text": [g], "answer_start": [0]}}
-        for i, g in enumerate(df['gold'].fillna("").tolist())
+        for i, g in enumerate(df['gold'].fillna(""))
     ]
-    squad = squad_metric.compute(predictions=preds, references=refs)
+    squad = squad_metric.compute(predictions=preds_dict, references=refs)
 
     rouge = rouge_metric.compute(
-        predictions=preds,
-        references=df['gold'].tolist()
+        predictions=df['predicted'].fillna("").tolist(),
+        references=df['gold'].fillna("").tolist()
     )
     bleu = bleu_metric.compute(
-        predictions=[p.split() for p in preds],
-        references=[[g.split()] for g in df['gold'].tolist()]
+        predictions=[p.split() for p in df['predicted'].fillna("")],
+        references=[[g.split()] for g in df['gold'].fillna("")]
     )
 
     return {
