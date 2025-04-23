@@ -17,9 +17,16 @@ def analyze_repoqa_files(directory="repoqabench"):
         print(f"Error: Directory '{directory}' does not exist.")
         return
     
-    # Get list of JSON files
-    json_files = [f for f in os.listdir(directory) if f.endswith('.json')]
+    # # Get list of JSON files
+    # json_files = [f for f in os.listdir(directory) if f.endswith('.json')]
     
+    # Recursively find all .json files
+    json_files = []
+    for root, _, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".json"):
+                json_files.append(os.path.join(root, file))
+
     if not json_files:
         print(f"No JSON files found in '{directory}'.")
         return
@@ -37,8 +44,8 @@ def analyze_repoqa_files(directory="repoqabench"):
     file_stats = defaultdict(dict)
     
     # Process each file
-    for json_file in json_files:
-        file_path = os.path.join(directory, json_file)
+    for file_path in json_files:
+        json_file = os.path.basename(file_path)
         
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
