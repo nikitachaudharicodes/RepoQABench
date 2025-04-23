@@ -31,22 +31,23 @@ def compute_metrics(preds, refs):
     rouge = load_metric("rouge")
     bertscore = load_metric("bertscore")
 
-    # BLEU expects tokenized inputs
-    tokenized_preds = [[p.split()] for p in preds]
-    tokenized_refs = [[[r.split()[0]] for r in refs]]
+    # BLEU: needs predictions and references tokenized as lists of strings
+    tokenized_preds = [p.split() for p in preds]
+    tokenized_refs = [[r.split()] for r in refs]  # list of list of tokens
+
     bleu_score = bleu.compute(predictions=tokenized_preds, references=tokenized_refs)["bleu"]
 
-    rouge_result = rouge.compute(predictions=preds, references=refs)
-    rouge_score = rouge_result["rougeL"] if "rougeL" in rouge_result else 0.0
-    if hasattr(rouge_score, "fmeasure"):
-        rouge_score = rouge_score.fmeasure
+    # ROUGE-L
+    rouge_result = rouge.compute(predictions=preds, references=refs, use_stemmer=True)
+    rouge_l = rouge_result["rougeL"].mid.fmeasure if hasattr(rouge_result["rougeL"], "mid") else float(rouge_result["rougeL"])
 
-    bert_score = bertscore.compute(predictions=preds, references=refs, lang="en")["f1"]
-    avg_bert_score = sum(bert_score) / len(bert_score)
+    # BERTScore
+    bert_result = bertscore.compute(predictions=preds, references=refs, lang="en")
+    avg_bert_score = sum(bert_result["f1"]) / len(bert_result["f1"])
 
     return {
         "BLEU": bleu_score,
-        "ROUGE-L": rouge_score,
+        "ROUGE-L": rouge_l,
         "BERTScore": avg_bert_score
     }
 
