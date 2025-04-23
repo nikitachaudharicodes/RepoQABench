@@ -1,0 +1,90 @@
+{
+  "repo_name": "oppia_oppia",
+  "issue_id": "16494",
+  "issue_description": "# Move /security.txt to /.well-known/security.txt\n\n[RFC9116](https://datatracker.ietf.org/doc/html/rfc9116#section-3), which defines the `security.txt` standard, states:\r\n\r\n> For web-based services, organizations MUST place the \"security.txt\"\r\n> file under the \"/.well-known/\" path, e.g., https://example.com/.well-\r\n> known/security.txt as per [[RFC8615](https://datatracker.ietf.org/doc/html/rfc8615)] of a domain name or IP address.\r\n\r\nWe currently place the file at `/security.txt` instead, which is non-standard:\r\n\r\nhttps://github.com/oppia/oppia/blob/8eeef29fc5eba28e22b677fcb6951bbfe20e1eee/app_dev.yaml#L40\r\n\r\nAlso, we should update the contact information to use the new `security@oppia.org` address. Possibly also add a policy link to our new SECURITY.md file\r\n\r\nThis issue was raised by @micchickenburger in https://github.com/oppia/oppia/pull/16470#issuecomment-1304574393.",
+  "issue_comments": [
+    {
+      "id": 1374835973,
+      "user": "ShobhanSrivastava",
+      "body": "Hi @seanlip @U8NWXD I want to work on this issue if it is still available. Can you please assign this to me?"
+    },
+    {
+      "id": 1374840709,
+      "user": "seanlip",
+      "body": "@ShobhanSrivastava Per the guidance at https://github.com/oppia/oppia/wiki/Contributing-code-to-Oppia#choosing-a-good-first-issue, please provide an explanation of what your PR will do. If it looks good, we can assign you to it.\r\n\r\nPlease also follow the other instructions on that wiki page if you have not yet done so. Thanks!\r\n\r\n"
+    },
+    {
+      "id": 1374866427,
+      "user": "ShobhanSrivastava",
+      "body": "Thanks @seanlip for providing this wiki link, I am new to the open source world and I am an absolute beginner, so I am really sorry for not following the protocol. \r\n\r\nComing to the explanation of the PR, I did some research about the security.txt file using the links added by @U8NWXD. \r\n- Creating the .well-known directory in the src folder\r\n- Moving the security.txt file to this directory\r\n- Updating the contact information as given in the description of the issue in the security.txt file\r\n- Adding a policy link to the Security.md file in the security.txt\r\n- Updating the assets in the angular.json to make the file available at /.well-known/security.txt path"
+    },
+    {
+      "id": 1374884577,
+      "user": "seanlip",
+      "body": "Thanks @ShobhanSrivastava. I'm going to defer to @U8NWXD who leads the dev workflow team. He can assign you if he agrees with what you wrote, or he might ask follow-up questions to clarify the approach.\r\n\r\nThanks!"
+    },
+    {
+      "id": 1374908263,
+      "user": "U8NWXD",
+      "body": "@ShobhanSrivastava a couple of questions:\r\n\r\n* What `src` folder are you referring to? Currently `security.txt` is in `assets/`, and I think that location is fine.\r\n* I don't see an `angular.json` file in our code base. Did you mean [`app_dev.yaml`](https://github.com/oppia/oppia/blob/8eeef29fc5eba28e22b677fcb6951bbfe20e1eee/app_dev.yaml), which is where we currently specify the `/.security.txt` path?\r\n* Are you planning to make the file available at just `/.well-known/security.txt`, or will it also be available at the current path `/security.txt`? (I think only making it available under `/.well-known/` is fine so long as we don't have any links to its current location.)"
+    },
+    {
+      "id": 1375474549,
+      "user": "ShobhanSrivastava",
+      "body": "@seanlip @U8NWXD I did some more research about this and the steps that I will take are:\r\n- create `.well-known` directory in the `assets` folder only.\r\n- moving the `security.txt` to `.well-known` directory\r\n- Making the required changes like updating the contact information and adding a link to the `Security.md` in the `security.txt` file\r\n\r\nI think there isn't any other step required to solve this issue and this should make it available at the path `/.well-known/security.txt`\r\n\r\nIf this still doesn't work, I'll seek help from people in the Oppia community."
+    },
+    {
+      "id": 1375591034,
+      "user": "seanlip",
+      "body": "Assigning @U8NWXD to take a look, but one thing to check in the meantime: when you do the above changes locally and start a dev server, do you see the file at the path you mentioned? "
+    },
+    {
+      "id": 1375606990,
+      "user": "ShobhanSrivastava",
+      "body": "I am currently stuck at the installation steps so nothing done locally but as per my knowledge, after the installation, the aforementioned steps should do the work. I'll create a PR as soon as the issue is resolved after the installation is complete. Thanks!"
+    },
+    {
+      "id": 1375661817,
+      "user": "U8NWXD",
+      "body": "For reference, the installation issue is being discussed in https://github.com/oppia/oppia/discussions/16855. Let's focus on that and come back to this discussion once ShobhanSrivastava has a working installation."
+    },
+    {
+      "id": 1375862237,
+      "user": "ShobhanSrivastava",
+      "body": "@U8NWXD I followed the steps that I mentioned in my previous comment. It didn't work but then I made the following change under the `#DEVELOPMENT STATIC` of the handler section of `app_dev.yaml` file: \r\n\r\n\r\n```\r\nhandlers:\r\n#DEVELOPMENT STATIC\r\n- url: /.well-known/security.txt\r\n  static_files: assets/.well-known/security.txt\r\n  upload: assets/.well-known/security.txt\r\n  secure: always\r\n```\r\n\r\nand now the file is no more available in the `/security.txt` path of the development server and now has moved to `/.well-known/security.txt`\r\n\r\nFurther steps: \r\n- Editing the handler under `#PRODUCTION STATIC` in the `app_dev.yaml` file that corresponds to the `security.txt`"
+    },
+    {
+      "id": 1375907755,
+      "user": "seanlip",
+      "body": "Thanks @ShobhanSrivastava. I think you can take this issue; please go ahead and submit a PR. Thanks! "
+    },
+    {
+      "id": 1375909079,
+      "user": "ShobhanSrivastava",
+      "body": "Thank you @seanlip!"
+    }
+  ],
+  "text_context": "# Move /security.txt to /.well-known/security.txt\n\n[RFC9116](https://datatracker.ietf.org/doc/html/rfc9116#section-3), which defines the `security.txt` standard, states:\r\n\r\n> For web-based services, organizations MUST place the \"security.txt\"\r\n> file under the \"/.well-known/\" path, e.g., https://example.com/.well-\r\n> known/security.txt as per [[RFC8615](https://datatracker.ietf.org/doc/html/rfc8615)] of a domain name or IP address.\r\n\r\nWe currently place the file at `/security.txt` instead, which is non-standard:\r\n\r\nhttps://github.com/oppia/oppia/blob/8eeef29fc5eba28e22b677fcb6951bbfe20e1eee/app_dev.yaml#L40\r\n\r\nAlso, we should update the contact information to use the new `security@oppia.org` address. Possibly also add a policy link to our new SECURITY.md file\r\n\r\nThis issue was raised by @micchickenburger in https://github.com/oppia/oppia/pull/16470#issuecomment-1304574393.\n\nHi @seanlip @U8NWXD I want to work on this issue if it is still available. Can you please assign this to me?\n\n@ShobhanSrivastava Per the guidance at https://github.com/oppia/oppia/wiki/Contributing-code-to-Oppia#choosing-a-good-first-issue, please provide an explanation of what your PR will do. If it looks good, we can assign you to it.\r\n\r\nPlease also follow the other instructions on that wiki page if you have not yet done so. Thanks!\r\n\r\n\n\nThanks @seanlip for providing this wiki link, I am new to the open source world and I am an absolute beginner, so I am really sorry for not following the protocol. \r\n\r\nComing to the explanation of the PR, I did some research about the security.txt file using the links added by @U8NWXD. \r\n- Creating the .well-known directory in the src folder\r\n- Moving the security.txt file to this directory\r\n- Updating the contact information as given in the description of the issue in the security.txt file\r\n- Adding a policy link to the Security.md file in the security.txt\r\n- Updating the assets in the angular.json to make the file available at /.well-known/security.txt path\n\nThanks @ShobhanSrivastava. I'm going to defer to @U8NWXD who leads the dev workflow team. He can assign you if he agrees with what you wrote, or he might ask follow-up questions to clarify the approach.\r\n\r\nThanks!\n\n@ShobhanSrivastava a couple of questions:\r\n\r\n* What `src` folder are you referring to? Currently `security.txt` is in `assets/`, and I think that location is fine.\r\n* I don't see an `angular.json` file in our code base. Did you mean [`app_dev.yaml`](https://github.com/oppia/oppia/blob/8eeef29fc5eba28e22b677fcb6951bbfe20e1eee/app_dev.yaml), which is where we currently specify the `/.security.txt` path?\r\n* Are you planning to make the file available at just `/.well-known/security.txt`, or will it also be available at the current path `/security.txt`? (I think only making it available under `/.well-known/` is fine so long as we don't have any links to its current location.)\n\n@seanlip @U8NWXD I did some more research about this and the steps that I will take are:\r\n- create `.well-known` directory in the `assets` folder only.\r\n- moving the `security.txt` to `.well-known` directory\r\n- Making the required changes like updating the contact information and adding a link to the `Security.md` in the `security.txt` file\r\n\r\nI think there isn't any other step required to solve this issue and this should make it available at the path `/.well-known/security.txt`\r\n\r\nIf this still doesn't work, I'll seek help from people in the Oppia community.\n\nAssigning @U8NWXD to take a look, but one thing to check in the meantime: when you do the above changes locally and start a dev server, do you see the file at the path you mentioned? \n\nI am currently stuck at the installation steps so nothing done locally but as per my knowledge, after the installation, the aforementioned steps should do the work. I'll create a PR as soon as the issue is resolved after the installation is complete. Thanks!\n\nFor reference, the installation issue is being discussed in https://github.com/oppia/oppia/discussions/16855. Let's focus on that and come back to this discussion once ShobhanSrivastava has a working installation.\n\n@U8NWXD I followed the steps that I mentioned in my previous comment. It didn't work but then I made the following change under the `#DEVELOPMENT STATIC` of the handler section of `app_dev.yaml` file: \r\n\r\n\r\n```\r\nhandlers:\r\n#DEVELOPMENT STATIC\r\n- url: /.well-known/security.txt\r\n  static_files: assets/.well-known/security.txt\r\n  upload: assets/.well-known/security.txt\r\n  secure: always\r\n```\r\n\r\nand now the file is no more available in the `/security.txt` path of the development server and now has moved to `/.well-known/security.txt`\r\n\r\nFurther steps: \r\n- Editing the handler under `#PRODUCTION STATIC` in the `app_dev.yaml` file that corresponds to the `security.txt`\n\nThanks @ShobhanSrivastava. I think you can take this issue; please go ahead and submit a PR. Thanks! \n\nThank you @seanlip!",
+  "pr_link": "https://github.com/oppia/oppia/pull/16470",
+  "code_context": [],
+  "questions": [
+    "@ShobhanSrivastava a couple of questions:\r\n\r\n* What `src` folder are you referring to? Currently `security.txt` is in `assets/`, and I think that location is fine.\r\n* I don't see an `angular.json` file in our code base. Did you mean [`app_dev.yaml`](https://github.com/oppia/oppia/blob/8eeef29fc5eba28e22b677fcb6951bbfe20e1eee/app_dev.yaml), which is where we currently specify the `/.security.txt` path?\r\n* Are you planning to make the file available at just `/.well-known/security.txt`, or will it also be available at the current path `/security.txt`? (I think only making it available under `/.well-known/` is fine so long as we don't have any links to its current location.)"
+  ],
+  "golden_answers": [
+    "@seanlip @U8NWXD I did some more research about this and the steps that I will take are:\r\n- create `.well-known` directory in the `assets` folder only.\r\n- moving the `security.txt` to `.well-known` directory\r\n- Making the required changes like updating the contact information and adding a link to the `Security.md` in the `security.txt` file\r\n\r\nI think there isn't any other step required to solve this issue and this should make it available at the path `/.well-known/security.txt`\r\n\r\nIf this still doesn't work, I'll seek help from people in the Oppia community."
+  ],
+  "questions_generated": [
+    "What is the purpose of moving the 'security.txt' file to the '/.well-known/' directory in the oppia repository?",
+    "What changes need to be made to the 'app_dev.yaml' file to support the relocation of 'security.txt' to the new directory?",
+    "Why is the update of the contact information in 'security.txt' necessary, and what changes are being proposed?",
+    "What is the significance of adding a policy link to the SECURITY.md file in the 'security.txt', and how should this be implemented?",
+    "How can the proposed changes be tested to ensure that the 'security.txt' file is correctly served from the new location?"
+  ],
+  "golden_answers_generated": [
+    "The purpose of moving the 'security.txt' file to the '/.well-known/' directory is to comply with the RFC9116 standard, which mandates that organizations place the 'security.txt' file under the '/.well-known/' path for web-based services. This ensures that the file is located in a standardized location, making it easier for security researchers and automated tools to locate and use the information contained within.",
+    "In the 'app_dev.yaml' file, the path specification for the 'security.txt' file needs to be updated from its current location to '/.well-known/security.txt'. This change will ensure that the application serves the 'security.txt' file from the new standardized directory location, as required by the RFC9116 standard.",
+    "Updating the contact information in 'security.txt' is necessary to ensure that security researchers can reach the correct contact for reporting vulnerabilities. The proposed change is to update the contact email to 'security@oppia.org', reflecting the new or current contact point for security-related issues, thereby facilitating effective communication.",
+    "Adding a policy link to the SECURITY.md file in 'security.txt' provides a direct reference to the project's security policy, offering guidance on how vulnerabilities are handled and expectations for response times. This should be implemented by including a 'Policy' field in the 'security.txt' file that contains the URL to the SECURITY.md file, ensuring that anyone reading the 'security.txt' can easily access the detailed security policy.",
+    "To test the proposed changes, one should deploy the application and verify that the 'security.txt' file is accessible at the '/.well-known/security.txt' URL. This can be done by navigating to the URL in a web browser or using tools like curl or wget to perform an HTTP GET request. Additionally, checking the server logs for any errors related to serving this path can help ensure the changes are correctly implemented."
+  ]
+}

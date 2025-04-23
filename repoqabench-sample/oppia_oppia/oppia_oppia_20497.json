@@ -1,0 +1,155 @@
+{
+  "repo_name": "oppia_oppia",
+  "issue_id": "20497",
+  "issue_description": "# [BUG]: Buttons on creator guidelines page are hard to see.\n\n### Describe the bug\n\nThe \"Create an Exploration\" and \"Browse our Explorations\" buttons on the creator-guidelines page are hard to see and find in general.\n\n### URL of the page where the issue is observed.\n\nhttps://www.oppiatestserver.org/creator-guidelines\n\n### Steps To Reproduce\n\n1. Go to /creator-guidelines.\r\n2. Scroll down till you see the buttons.\n\n### Expected Behavior\n\nI expect the buttons to be easier to see and should have proper button formatting like borders, contrasting colors.\n\n### Screenshots/Videos\n\n![Screenshot 2024-06-18 140112](https://github.com/oppia/oppia/assets/70992422/83874e60-4f3d-4516-ad23-f20b01acbd36)\r\n\n\n### What device are you using?\n\nDesktop, Mobile\n\n### Operating System\n\nWindows, IOS\n\n### What browsers are you seeing the problem on?\n\nChrome, Firefox\n\n### Browser version\n\n_No response_\n\n### Additional context\n\n_No response_\n\n### Tips for developers\n\nBefore addressing the bug, please identify which PR caused the issue (you can follow the steps [here](https://github.com/oppia/oppia/wiki/How-to-find-the-commit-which-introduced-a-bug)). If you identify the PR, comment on the issue with a link to it. If not, mention the commit hash of the oldest commit you saw the bug on (and the month and year it was made in).\r\n\r\nThen, please leave a comment with details of the approach that you plan to take to fix the issue (see [example](https://github.com/oppia/oppia/issues/19157#issuecomment-1858788463)).\r\n\r\n**Note:** If this is your first Oppia issue, please make sure to follow our guidelines for [choosing an issue](https://github.com/oppia/oppia/wiki/Contributing-code-to-Oppia#choosing-a-good-first-issue) and [setting things up](https://github.com/oppia/oppia/wiki/Contributing-code-to-Oppia#setting-things-up). You will also need to show a demo of the fix working correctly on your local machine. Thanks!\r\n",
+  "issue_comments": [
+    {
+      "id": 2182501343,
+      "user": "AdityaPatadiya",
+      "body": "Hello, I want to work on this issue as my first contribution in open-source.\r\nI forked this repo and clone it followed all the step the mentioned in [Installing Oppia using Docker](https://github.com/oppia/oppia/wiki/Installing-Oppia-using-Docker#launching-the-development-server) but `make build` is not working.\r\nI asked into discussion section I didn't get the answer I'm using vscode in windows 11 \r\nThe error message: \r\n```\r\nPS D:\\coding\\opensource\\oppia> make build\r\nmake : The term 'make' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path \r\nwas included, verify that the path is correct and try again.\r\nAt line:1 char:1\r\n+ make build\r\n+ ~~~~\r\n    + CategoryInfo          : ObjectNotFound: (make:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException\r\n```\r\nCan you help with this?"
+    },
+    {
+      "id": 2183094914,
+      "user": "jnvtnguyen",
+      "body": "@AdityaPatadiya It looks like you are using powershell (which is the default terminal on VSCode), please use WSL to run the make commands (you also need to install Oppia on WSL)."
+    },
+    {
+      "id": 2253103834,
+      "user": "mannika763",
+      "body": "Hey @AdityaPatadiya \r\nYou can also run make commands in Git (try running in admin mode).\r\n"
+    },
+    {
+      "id": 2253823585,
+      "user": "mannika763",
+      "body": "Hey @jnvtnguyen \r\nDo you think the button's look and feel are okay, or do you have any suggestions?\r\n![image](https://github.com/user-attachments/assets/9ebb5260-1800-401d-92af-04d4c6563a3b)\r\n"
+    },
+    {
+      "id": 2254072975,
+      "user": "AdityaPatadiya",
+      "body": "Sorry @mannika763 I didn't get you.\r\nDoes that docker setup run successfully into your device?\r\nBecause I still got some errors."
+    },
+    {
+      "id": 2254387464,
+      "user": "mannika763",
+      "body": "You can run make commands in Git Bash, which should resolve any make-related errors.\r\n- Clone oppia repo into your system.\r\n- Open Git Bash in administrator mode.\r\n- Navigate to your Oppia directory, and then run the commands.\r\n\r\nDocker is running perfectly on my setup. When I was setting it up, I also faced many errors. Read the errors you are getting and solve them step by step. You can also use ChatGPT for assistance."
+    },
+    {
+      "id": 2266663981,
+      "user": "mannika763",
+      "body": "Hey @jnvtnguyen,\r\nI have already proposed a solution here and am waiting for you to assign me."
+    },
+    {
+      "id": 2266754103,
+      "user": "jnvtnguyen",
+      "body": "@mannika763 Sorry for the late response. This is what the old creator guidelines page looked like: \r\n![image](https://github.com/user-attachments/assets/214f0fc0-555e-49bc-94b9-12229feaec7f)\r\nAlso your image removes the teal background. I don't know if we intend to change that /cc @seanlip."
+    },
+    {
+      "id": 2270639978,
+      "user": "seanlip",
+      "body": "Let's keep it like @jnvtnguyen's screenshot, i.e. with the teal background still. Thanks for checking @jnvtnguyen! "
+    },
+    {
+      "id": 2275011452,
+      "user": "mannika763",
+      "body": "Hey @jnvtnguyen \r\nCould you assign this to me so that I can start working on it?"
+    },
+    {
+      "id": 2275042629,
+      "user": "seanlip",
+      "body": "@mannika763 Per the usual guidance at https://github.com/oppia/oppia/wiki/Contributing-code-to-Oppia#choosing-a-good-first-issue, please provide proof that you are able to solve the issue locally. If it looks good, we can assign you to this issue.\r\n\r\nPlease also follow the other instructions on that wiki page if you have not yet done so. Thanks."
+    },
+    {
+      "id": 2276220141,
+      "user": "mannika763",
+      "body": "@seanlip \r\nI've attached the screenshot here. Could you please let me know if it looks okay to you?\r\n![image](https://github.com/user-attachments/assets/52b27ba2-4da4-4855-9432-d87abccdb070)\r\n"
+    },
+    {
+      "id": 2295770990,
+      "user": "seanlip",
+      "body": "@mannika763 Please follow the screenshot that @jnvtnguyen shared in an [earlier comment](https://github.com/oppia/oppia/issues/20497#issuecomment-2266754103)."
+    },
+    {
+      "id": 2299399915,
+      "user": "akashjpal",
+      "body": "Hello @jnvtnguyen , \r\nI have done some work on it and this is my final result sharing to you. Made it responsive as per screen sizes.\r\n![oppia-creator-guidelines](https://github.com/user-attachments/assets/fbad3f2a-b503-4c6b-a382-858c2226c534)\r\n"
+    },
+    {
+      "id": 2301311684,
+      "user": "seanlip",
+      "body": "@akashjpal Please compare your mock to the one @jnvtnguyen showed. There are still fairly obvious differences."
+    },
+    {
+      "id": 2381457782,
+      "user": "uday-kiran-001",
+      "body": "Hi @seanlip , @jnvtnguyen \nI’m Uday. I’ve applied several CSS properties to the buttons in the CSS file located at _oppia/core/templates/pages/participation-playbook/playbook.component.css_. These changes make the buttons responsive, and I’ve also added a hover effect.\n\nPlease take a look at the final output, and if there are any other adjustments needed, feel free to let me know.\n![Image](https://github.com/user-attachments/assets/0c8e8721-be1c-460d-b2d5-e9f784eb6a2c)\n"
+    },
+    {
+      "id": 2382198504,
+      "user": "KartikSuryavanshi",
+      "body": "Hey @seanlip @jnvtnguyen \r\n<img width=\"1391\" alt=\"Screenshot 2024-09-30 at 11 38 46 AM\" src=\"https://github.com/user-attachments/assets/80167b3e-8728-4b71-9ee6-32c2de2488db\">\r\n\r\nProgress Update on Button Styles:-\r\nI have updated the button styles in both the playbook.component.html and playbook.component.css files to align with the previous creator guidelines, as suggested by @jnvtnguyen in the comment section. Here are the current styles for the button:-\r\n\r\n/* Updated button styles to match the image */\r\n.playbook .oppia-about-button {\r\n  background-color: #31675f; /* Medium dark green background */\r\n  color: #ffffff; /* White text */\r\n  font-size: 16px; /* Font size */\r\n  padding: 12px 30px; /* Increased padding */\r\n  border: none; /* Remove border */\r\n  border-radius: 5px; /* Rounded corners */\r\n  cursor: pointer; /* Pointer cursor */\r\n  text-align: center; /* Center text inside */\r\n  display: block; /* Block level to take full width */\r\n  margin: 20px auto; /* Space between buttons */\r\n  max-width: 280px; /* Max width for larger buttons */\r\n  width: 100%; /* Make the button responsive */\r\n  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */\r\n  transition: background-color 0.3s ease; /* Smooth hover transition */\r\n  text-transform: uppercase; /* Capitalize text */\r\n  font-weight: bold; /* Make text bold */\r\n}\r\n\r\nRequest for Issue Assignment:-\r\nWith these updates implemented, I would like to request assignment to the related issue. Please let me know if there are any further adjustments needed or if I can proceed with the next steps.\r\n\r\nThank you!\r\n\r\n"
+    },
+    {
+      "id": 2382262625,
+      "user": "seanlip",
+      "body": "Thanks -- I think both of these are close enough, but @uday-kiran-001 commented first, so I'll assign this to him.\r\n\r\nUday, when making a PR, please make the background colour of the buttons a bit darker (see @jnvtnguyen's image) and reduce the whitespace above and below them). Thanks! (Also, when will you be able to make a PR?)"
+    },
+    {
+      "id": 2382433069,
+      "user": "uday-kiran-001",
+      "body": "@seanlip \nSure, I'll make the background color of the buttons a bit darker and reduce the whitespace. \nI'll make a PR by tonight."
+    },
+    {
+      "id": 2382653638,
+      "user": "uday-kiran-001",
+      "body": "Hi @seanlip, I’m Uday. Can you finalize this work by looking into the below screenshot before I make a PR?\n\n![Image](https://github.com/user-attachments/assets/ad2bec9f-d6ec-4a58-a621-5004c5c0c3e7)\n\n"
+    },
+    {
+      "id": 2382678133,
+      "user": "seanlip",
+      "body": "It looks fine to me. Thanks!"
+    },
+    {
+      "id": 2384939633,
+      "user": "uday-kiran-001",
+      "body": "@seanlip  Could you please help me why (Frontend Karma tests / frontend-karma-tests (ubuntu-22.04, 2)) has failed in this [PR](https://github.com/oppia/oppia/pull/21021)? I'm unable it figure it out."
+    }
+  ],
+  "text_context": "# [BUG]: Buttons on creator guidelines page are hard to see.\n\n### Describe the bug\n\nThe \"Create an Exploration\" and \"Browse our Explorations\" buttons on the creator-guidelines page are hard to see and find in general.\n\n### URL of the page where the issue is observed.\n\nhttps://www.oppiatestserver.org/creator-guidelines\n\n### Steps To Reproduce\n\n1. Go to /creator-guidelines.\r\n2. Scroll down till you see the buttons.\n\n### Expected Behavior\n\nI expect the buttons to be easier to see and should have proper button formatting like borders, contrasting colors.\n\n### Screenshots/Videos\n\n![Screenshot 2024-06-18 140112](https://github.com/oppia/oppia/assets/70992422/83874e60-4f3d-4516-ad23-f20b01acbd36)\r\n\n\n### What device are you using?\n\nDesktop, Mobile\n\n### Operating System\n\nWindows, IOS\n\n### What browsers are you seeing the problem on?\n\nChrome, Firefox\n\n### Browser version\n\n_No response_\n\n### Additional context\n\n_No response_\n\n### Tips for developers\n\nBefore addressing the bug, please identify which PR caused the issue (you can follow the steps [here](https://github.com/oppia/oppia/wiki/How-to-find-the-commit-which-introduced-a-bug)). If you identify the PR, comment on the issue with a link to it. If not, mention the commit hash of the oldest commit you saw the bug on (and the month and year it was made in).\r\n\r\nThen, please leave a comment with details of the approach that you plan to take to fix the issue (see [example](https://github.com/oppia/oppia/issues/19157#issuecomment-1858788463)).\r\n\r\n**Note:** If this is your first Oppia issue, please make sure to follow our guidelines for [choosing an issue](https://github.com/oppia/oppia/wiki/Contributing-code-to-Oppia#choosing-a-good-first-issue) and [setting things up](https://github.com/oppia/oppia/wiki/Contributing-code-to-Oppia#setting-things-up). You will also need to show a demo of the fix working correctly on your local machine. Thanks!\r\n\n\nHello, I want to work on this issue as my first contribution in open-source.\r\nI forked this repo and clone it followed all the step the mentioned in [Installing Oppia using Docker](https://github.com/oppia/oppia/wiki/Installing-Oppia-using-Docker#launching-the-development-server) but `make build` is not working.\r\nI asked into discussion section I didn't get the answer I'm using vscode in windows 11 \r\nThe error message: \r\n```\r\nPS D:\\coding\\opensource\\oppia> make build\r\nmake : The term 'make' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path \r\nwas included, verify that the path is correct and try again.\r\nAt line:1 char:1\r\n+ make build\r\n+ ~~~~\r\n    + CategoryInfo          : ObjectNotFound: (make:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException\r\n```\r\nCan you help with this?\n\n@AdityaPatadiya It looks like you are using powershell (which is the default terminal on VSCode), please use WSL to run the make commands (you also need to install Oppia on WSL).\n\nHey @AdityaPatadiya \r\nYou can also run make commands in Git (try running in admin mode).\r\n\n\nHey @jnvtnguyen \r\nDo you think the button's look and feel are okay, or do you have any suggestions?\r\n![image](https://github.com/user-attachments/assets/9ebb5260-1800-401d-92af-04d4c6563a3b)\r\n\n\nSorry @mannika763 I didn't get you.\r\nDoes that docker setup run successfully into your device?\r\nBecause I still got some errors.\n\nYou can run make commands in Git Bash, which should resolve any make-related errors.\r\n- Clone oppia repo into your system.\r\n- Open Git Bash in administrator mode.\r\n- Navigate to your Oppia directory, and then run the commands.\r\n\r\nDocker is running perfectly on my setup. When I was setting it up, I also faced many errors. Read the errors you are getting and solve them step by step. You can also use ChatGPT for assistance.\n\nHey @jnvtnguyen,\r\nI have already proposed a solution here and am waiting for you to assign me.\n\n@mannika763 Sorry for the late response. This is what the old creator guidelines page looked like: \r\n![image](https://github.com/user-attachments/assets/214f0fc0-555e-49bc-94b9-12229feaec7f)\r\nAlso your image removes the teal background. I don't know if we intend to change that /cc @seanlip.\n\nLet's keep it like @jnvtnguyen's screenshot, i.e. with the teal background still. Thanks for checking @jnvtnguyen! \n\nHey @jnvtnguyen \r\nCould you assign this to me so that I can start working on it?\n\n@mannika763 Per the usual guidance at https://github.com/oppia/oppia/wiki/Contributing-code-to-Oppia#choosing-a-good-first-issue, please provide proof that you are able to solve the issue locally. If it looks good, we can assign you to this issue.\r\n\r\nPlease also follow the other instructions on that wiki page if you have not yet done so. Thanks.\n\n@seanlip \r\nI've attached the screenshot here. Could you please let me know if it looks okay to you?\r\n![image](https://github.com/user-attachments/assets/52b27ba2-4da4-4855-9432-d87abccdb070)\r\n\n\n@mannika763 Please follow the screenshot that @jnvtnguyen shared in an [earlier comment](https://github.com/oppia/oppia/issues/20497#issuecomment-2266754103).\n\nHello @jnvtnguyen , \r\nI have done some work on it and this is my final result sharing to you. Made it responsive as per screen sizes.\r\n![oppia-creator-guidelines](https://github.com/user-attachments/assets/fbad3f2a-b503-4c6b-a382-858c2226c534)\r\n\n\n@akashjpal Please compare your mock to the one @jnvtnguyen showed. There are still fairly obvious differences.\n\nHi @seanlip , @jnvtnguyen \nI’m Uday. I’ve applied several CSS properties to the buttons in the CSS file located at _oppia/core/templates/pages/participation-playbook/playbook.component.css_. These changes make the buttons responsive, and I’ve also added a hover effect.\n\nPlease take a look at the final output, and if there are any other adjustments needed, feel free to let me know.\n![Image](https://github.com/user-attachments/assets/0c8e8721-be1c-460d-b2d5-e9f784eb6a2c)\n\n\nHey @seanlip @jnvtnguyen \r\n<img width=\"1391\" alt=\"Screenshot 2024-09-30 at 11 38 46 AM\" src=\"https://github.com/user-attachments/assets/80167b3e-8728-4b71-9ee6-32c2de2488db\">\r\n\r\nProgress Update on Button Styles:-\r\nI have updated the button styles in both the playbook.component.html and playbook.component.css files to align with the previous creator guidelines, as suggested by @jnvtnguyen in the comment section. Here are the current styles for the button:-\r\n\r\n/* Updated button styles to match the image */\r\n.playbook .oppia-about-button {\r\n  background-color: #31675f; /* Medium dark green background */\r\n  color: #ffffff; /* White text */\r\n  font-size: 16px; /* Font size */\r\n  padding: 12px 30px; /* Increased padding */\r\n  border: none; /* Remove border */\r\n  border-radius: 5px; /* Rounded corners */\r\n  cursor: pointer; /* Pointer cursor */\r\n  text-align: center; /* Center text inside */\r\n  display: block; /* Block level to take full width */\r\n  margin: 20px auto; /* Space between buttons */\r\n  max-width: 280px; /* Max width for larger buttons */\r\n  width: 100%; /* Make the button responsive */\r\n  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */\r\n  transition: background-color 0.3s ease; /* Smooth hover transition */\r\n  text-transform: uppercase; /* Capitalize text */\r\n  font-weight: bold; /* Make text bold */\r\n}\r\n\r\nRequest for Issue Assignment:-\r\nWith these updates implemented, I would like to request assignment to the related issue. Please let me know if there are any further adjustments needed or if I can proceed with the next steps.\r\n\r\nThank you!\r\n\r\n\n\nThanks -- I think both of these are close enough, but @uday-kiran-001 commented first, so I'll assign this to him.\r\n\r\nUday, when making a PR, please make the background colour of the buttons a bit darker (see @jnvtnguyen's image) and reduce the whitespace above and below them). Thanks! (Also, when will you be able to make a PR?)\n\n@seanlip \nSure, I'll make the background color of the buttons a bit darker and reduce the whitespace. \nI'll make a PR by tonight.\n\nHi @seanlip, I’m Uday. Can you finalize this work by looking into the below screenshot before I make a PR?\n\n![Image](https://github.com/user-attachments/assets/ad2bec9f-d6ec-4a58-a621-5004c5c0c3e7)\n\n\n\nIt looks fine to me. Thanks!\n\n@seanlip  Could you please help me why (Frontend Karma tests / frontend-karma-tests (ubuntu-22.04, 2)) has failed in this [PR](https://github.com/oppia/oppia/pull/21021)? I'm unable it figure it out.",
+  "pr_link": "https://github.com/oppia/oppia/pull/21021",
+  "code_context": [
+    {
+      "filename": "core/templates/pages/participation-playbook/playbook.component.css",
+      "content": "/*\n  NOTE to developers: We generate RTL CSS from this file in the webpack\n  compilation, here are sme additional rules that can be added to the CSS files:\n  https://rtlcss.com/learn/usage-guide/control-directives .\n*/\n.playbook .oppia-static-content ul {\n  justify-content: center;\n  padding: 0;\n}\n.playbook .participation h2:not(:first-child) {\n  margin-top: 2.5em;\n}\n.playbook .oppia-teach-tab-content {\n  padding-bottom: 7%;\n}\n.playbook .oppia-teach-button {\n  display: block;\n  margin: 0 auto 0 auto;\n}\n.playbook .oppia-publication-instructions-container {\n  margin-left: 25px;\n}\n.playbook .oppia-about-buttons-container {\n  display: flex;\n  justify-content: space-evenly;\n  text-align: center;\n}\n.playbook .btn.oppia-about-button {\n  background-color: rgba(0, 0, 0, 0.3);\n  color: rgba(255, 255, 255, 1.0);\n  font-weight: 500;\n  letter-spacing: 0.7px;\n  margin: 0 auto 4%;\n  max-width: 80%;\n  min-width: 40%;\n  padding: 10px 30px;\n  text-transform: uppercase;\n}\n.playbook .btn.oppia-about-button:hover {\n  background-color: #fff;\n  color: #009688;\n}\n.playbook .oppia-about-extra-info {\n  background-color: #009788;\n  color: #fff;\n  height: 160px;\n  width: 100%;\n}\n\n.playbook .oppia-about-extra-container {\n  position: relative;\n  top: 50px;\n  width: 100%;\n}\n\n.playbook .oppia-static-extra-content {\n  margin: 0 auto;\n}\n\n.playbook .oppia-about-extra-container h3 {\n  color: #fff;\n  text-align: center;\n}\n\n@media(max-width: 1000px) {\n  .playbook .oppia-about-buttons-container {\n    flex-direction: column;\n  }\n  .playbook .btn.oppia-about-button {\n    min-width: 80%;\n  }\n}\n\n@media only screen and (min-width: 1400px) {\n  .playbook .oppia-about-extra-info {\n    height: 245px;\n  }\n}\n\n@media(max-width: 700px) {\n  .playbook .oppia-about-extra-container {\n    margin-bottom: -10px;\n  }\n}\n@media(max-width: 440px) {\n  .playbook .oppia-about-extra-container {\n    margin-bottom: 30px;\n  }\n}\n"
+    }
+  ],
+  "questions": [
+    "Hey @jnvtnguyen \r\nCould you assign this to me so that I can start working on it?",
+    "@seanlip \r\nI've attached the screenshot here. Could you please let me know if it looks okay to you?\r\n![image](https://github.com/user-attachments/assets/52b27ba2-4da4-4855-9432-d87abccdb070)",
+    "Thanks -- I think both of these are close enough, but @uday-kiran-001 commented first, so I'll assign this to him.\r\n\r\nUday, when making a PR, please make the background colour of the buttons a bit darker (see @jnvtnguyen's image) and reduce the whitespace above and below them). Thanks! (Also, when will you be able to make a PR?)",
+    "Hi @seanlip, I’m Uday. Can you finalize this work by looking into the below screenshot before I make a PR?\n\n![Image](https://github.com/user-attachments/assets/ad2bec9f-d6ec-4a58-a621-5004c5c0c3e7)"
+  ],
+  "golden_answers": [
+    "@seanlip \r\nI've attached the screenshot here. Could you please let me know if it looks okay to you?\r\n![image](https://github.com/user-attachments/assets/52b27ba2-4da4-4855-9432-d87abccdb070)",
+    "@mannika763 Please follow the screenshot that @jnvtnguyen shared in an [earlier comment](https://github.com/oppia/oppia/issues/20497#issuecomment-2266754103).",
+    "Hi @seanlip, I’m Uday. Can you finalize this work by looking into the below screenshot before I make a PR?\n\n![Image](https://github.com/user-attachments/assets/ad2bec9f-d6ec-4a58-a621-5004c5c0c3e7)",
+    "@seanlip  Could you please help me why (Frontend Karma tests / frontend-karma-tests (ubuntu-22.04, 2)) has failed in this [PR](https://github.com/oppia/oppia/pull/21021)? I'm unable it figure it out."
+  ],
+  "questions_generated": [
+    "What is the main issue with the buttons on the creator guidelines page in the oppia_oppia repository?",
+    "Which section of the CSS code might need modification to address the button visibility issue on the creator guidelines page?",
+    "What steps should a developer take before addressing the button visibility issue according to the issue description?",
+    "How does the oppia_oppia repository suggest handling the installation and command execution on Windows using VSCode?",
+    "What are the expected formatting changes for the buttons as per the issue description?",
+    "How should the developer demonstrate their fix for the button visibility issue in the oppia_oppia repository?",
+    "What might be a reason for the make command not being recognized in the VSCode terminal, and how can it be resolved?"
+  ],
+  "golden_answers_generated": [
+    "The 'Create an Exploration' and 'Browse our Explorations' buttons on the creator guidelines page are hard to see and find. They lack proper button formatting such as borders, contrasting colors, and clear visibility.",
+    "The CSS class .btn.oppia-about-button in the playbook.component.css file might need modification. Adjusting properties like background-color, color, borders, and padding could enhance button visibility and contrast.",
+    "Before addressing the issue, a developer should identify which PR caused the problem by following the steps outlined in the oppia wiki. They must then comment on the issue with the PR link or the commit hash where the bug was first observed. Additionally, they should provide details of their planned approach to fix the issue.",
+    "The repository suggests using WSL (Windows Subsystem for Linux) to run make commands on Windows using VSCode, as Powershell might not recognize 'make' as a command.",
+    "The buttons should be easier to see with proper formatting, including borders and contrasting colors to stand out better against the page background.",
+    "The developer needs to show a demo of the fix working correctly on their local machine and ensure that the changes are aligned with the repository's contribution guidelines.",
+    "The make command might not be recognized because Powershell is being used as the terminal, which does not support Unix-based commands by default. Switching to WSL or installing make in the Windows environment can resolve this issue."
+  ]
+}
