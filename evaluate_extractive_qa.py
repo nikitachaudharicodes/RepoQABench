@@ -13,7 +13,7 @@ import evaluate
 SUPPORTED_MODELS = {
     "roberta": "deepset/roberta-base-squad2",
     "distilbert": "distilbert-base-uncased-distilled-squad",
-    "codet5": "Salesforce/codet5-base"
+    "bert_large": "google-bert/bert-large-uncased-whole-word-masking-finetuned-squad"
 }
 
 # Number of top code snippets to retrieve per question
@@ -66,7 +66,7 @@ def run_qa_model(model_name, questions, contexts):
                 inputs['input_ids'][0][start_idx:end_idx],
                 skip_special_tokens=True
             )
-        except:
+        except Exception:
             answer = ""
         answers.append(answer)
     return answers
@@ -103,7 +103,6 @@ def evaluate_model_on_jsons(path, model_key):
 
 
 def compute_metrics(df):
-    # SQuAD metrics: exact match and F1
     preds_dict = [{
         'id': str(i),
         'prediction_text': pred
@@ -117,7 +116,6 @@ def compute_metrics(df):
         references=refs
     )
 
-    # ROUGE-L
     rouge = rouge_metric.compute(
         predictions=df['predicted'].fillna("").tolist(),
         references=df['gold'].fillna("").tolist()
@@ -152,7 +150,6 @@ def main():
     ms_df = pd.DataFrame(metrics_summary)
     ms_df.to_csv('results_ex/metrics_summary.csv', index=False)
 
-    # Plot EM, F1, and ROUGE-L
     ax = ms_df.set_index('model').plot(
         kind='bar',
         figsize=(10, 5),
