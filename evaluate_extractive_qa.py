@@ -30,23 +30,22 @@ def simple_retrieve(question, text_context, code_snippets, k=TOP_K):
     Score each snippet by overlap with question + text_context tokens,
     return top-k snippet contents.
     """
-    query = (question + " " + text_context).lower().split()
-    query_set = set(query)
+    query_tokens = set((question + " " + text_context).lower().split())
     scored = []
     for snippet in code_snippets:
         content = snippet.get("content", "")
-        tokens = content.lower().split()
-        overlap = sum(1 for t in set(tokens) if t in query_set)
+        tokens = set(content.lower().split())
+        overlap = len(tokens & query_tokens)
         scored.append((overlap, content))
-    # pick top k with positive score
     top = sorted(scored, key=lambda x: x[0], reverse=True)[:k]
-    return [content for score, content in top if score > 0]
+    return [c for score, c in top if score > 0]
 
 
 def run_qa_model(model_name, questions, contexts):
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForQuestionAnswering.from_pretrained(model_name)
-    model.eval().to(torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model.to(device).eval()
 
     answers = []
     for question, context in tqdm(zip(questions, contexts), total=len(questions), desc=f"Answering {model_name}"):
@@ -59,7 +58,7 @@ def run_qa_model(model_name, questions, contexts):
                 max_length=384,
                 truncation=True
             )
-            inputs = {k: v.to(model.device) for k, v in inputs.items()}
+            inputs = {k: v.to(device) for k, v in inputs.items()}
             with torch.no_grad():
                 outputs = model(**inputs)
             start_idx = torch.argmax(outputs.start_logits)
@@ -74,19 +73,20 @@ def run_qa_model(model_name, questions, contexts):
 def evaluate_model_on_jsons(path, model_key):
     rows = []
     for root, _, files in os.walk(path):
-        for file in [f for f in files if f.endswith('.json')]:
+        for file in files:
+            if not file.endswith('.json'): continue
             data = json.load(open(os.path.join(root, file)))
             questions = data.get('questions', [])
             golds = data.get('golden_answers', [])
-            if len(questions) != len(golds) or not questions:
+            if not questions or len(questions) != len(golds):
                 continue
+
             text_ctx = data.get('text_context', '')
             code_snips = data.get('code_context', [])
-
-            contexts = []
-            for q in questions:
-                top = simple_retrieve(q, text_ctx, code_snips)
-                contexts.append("\n\n".join([text_ctx] + top))
+            contexts = [
+                "\n\n".join([text_ctx] + simple_retrieve(q, text_ctx, code_snips))
+                for q in questions
+            ]
 
             preds = run_qa_model(SUPPORTED_MODELS[model_key], questions, contexts)
             for q, p, g in zip(questions, preds, golds):
@@ -95,14 +95,29 @@ def evaluate_model_on_jsons(path, model_key):
 
 
 def compute_metrics(df):
-    formatted = [
-        {"id": str(i), "prediction_text": p, "answers": {"text": [g], "answer_start": [0]}}
-        for i, (p, g) in enumerate(zip(df['predicted'], df['gold']))
+    # Prepare predictions & references for SQuAD metric
+    preds = df['predicted'].fillna("").tolist()
+    refs = [
+        {"id": str(i), "answers": {"text": [g], "answer_start": [0]}}
+        for i, g in enumerate(df['gold'].fillna("").tolist())
     ]
-    squad = squad_metric.compute(predictions=formatted)
-    rouge = rouge_metric.compute(predictions=df['predicted'].tolist(), references=df['gold'].tolist())
-    bleu = bleu_metric.compute(predictions=df['predicted'].tolist(), references=[[g] for g in df['gold'].tolist()])
-    return {'EM': squad['exact_match'], 'F1': squad['f1'], 'ROUGE-L': rouge.get('rougeL',0), 'BLEU': bleu.get('bleu',0)}
+    squad = squad_metric.compute(predictions=preds, references=refs)
+
+    rouge = rouge_metric.compute(
+        predictions=preds,
+        references=df['gold'].tolist()
+    )
+    bleu = bleu_metric.compute(
+        predictions=[p.split() for p in preds],
+        references=[[g.split()] for g in df['gold'].tolist()]
+    )
+
+    return {
+        'EM': squad['exact_match'],
+        'F1': squad['f1'],
+        'ROUGE-L': rouge.get('rougeL', 0.0),
+        'BLEU': bleu.get('bleu', 0.0)
+    }
 
 
 def main():
@@ -127,10 +142,10 @@ def main():
     ms_df = pd.DataFrame(metrics_summary)
     ms_df.to_csv('results_ex/metrics_summary.csv', index=False)
 
-    # plot
-    ms_df.set_index('model').plot(kind='bar', figsize=(10,5), ylim=(0,100))
-    plt.title('QA Metrics by Model')
-    plt.ylabel('Score (%)')
+    # Plot
+    ax = ms_df.set_index('model').plot(kind='bar', figsize=(10,5), ylim=(0,100))
+    ax.set_ylabel('Score (%)')
+    ax.set_title('QA Metrics by Model')
     plt.tight_layout()
     plt.savefig('results_ex/metrics_plot.png')
 
