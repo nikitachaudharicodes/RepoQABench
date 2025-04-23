@@ -7,6 +7,15 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 import torch
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering
+import evaluate  # for EM, F1, ROUGE, BLEU metrics
+import json
+import argparse
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from tqdm import tqdm
+import torch
+from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 
 # Define supported models
 SUPPORTED_MODELS = {
@@ -143,10 +152,10 @@ if __name__ == "__main__":
         all_benchmark_df = pd.concat([all_benchmark_df, benchmark_df], ignore_index=True)
         all_generated_df = pd.concat([all_generated_df, generated_df], ignore_index=True)
 
-    all_benchmark_df.to_csv("benchmark_questions_eval.csv", index=False)
-    all_generated_df.to_csv("generated_questions_eval.csv", index=False)
+    all_benchmark_df.to_csv("results_ex/benchmark_questions_ex_eval.csv", index=False)
+    all_generated_df.to_csv("results_ex/generated_questions_ex_eval.csv", index=False)
 
-    plot_scores(all_benchmark_df, "Benchmark Questions Coverage per Model", "benchmark_plot.png")
-    plot_scores(all_generated_df, "Generated Questions Coverage per Model", "generated_plot.png")
+    plot_scores(all_benchmark_df, "Benchmark Questions Coverage per Model", "results_ex/benchmark_ex_plot.png")
+    plot_scores(all_generated_df, "Generated Questions Coverage per Model", "results_ex/generated_ex_plot.png")
 
     print("Evaluation completed. Results saved to CSV files and plots generated.")

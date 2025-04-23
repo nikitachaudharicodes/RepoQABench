@@ -109,11 +109,11 @@ def evaluate_and_save(path, models):
             "generated_metrics": compute_metrics(generated_df["predicted"].tolist(), generated_df["gold"].tolist())
         })
 
-    all_benchmark_df.to_csv("benchmark_questions_eval.csv", index=False)
-    all_generated_df.to_csv("generated_questions_eval.csv", index=False)
+    all_benchmark_df.to_csv("results_abs/benchmark_questions_abs_eval.csv", index=False)
+    all_generated_df.to_csv("results_abs/generated_questions_abs_eval.csv", index=False)
 
-    plot_scores(all_benchmark_df, "Benchmark Questions Coverage per Model", "benchmark_plot.png")
-    plot_scores(all_generated_df, "Generated Questions Coverage per Model", "generated_plot.png")
+    plot_scores(all_benchmark_df, "Benchmark Questions Coverage per Model", "results_abs/benchmark_abs_plot.png")
+    plot_scores(all_generated_df, "Generated Questions Coverage per Model", "results_abs/generated_abs_plot.png")
 
     pd.DataFrame(scores).to_json("qa_model_scores.json", indent=2)
 
