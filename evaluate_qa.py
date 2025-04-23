@@ -7,6 +7,19 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 from evaluate import load as load_metric
+from transformers.pipelines.pt_utils import KeyDataset
+from datasets import Dataset
+
+def run_qa_model(model_name, questions, qa_pipeline):
+    inputs = [f"Question: {q}" for q in questions]
+    dataset = Dataset.from_dict({"text": inputs})
+    predictions = []
+
+    for output in qa_pipeline(KeyDataset(dataset, "text"), batch_size=8, truncation=True):
+        predictions.append(output[0]["generated_text"] if isinstance(output, list) else output["generated_text"])
+
+    return predictions
+
 
 # Define supported generative models
 SUPPORTED_MODELS = {
@@ -15,16 +28,27 @@ SUPPORTED_MODELS = {
     "mistral": "mistralai/Mistral-7B-Instruct-v0.1"
 }
 
+# def run_qa_model(model_name, questions, qa_pipeline):
+#     answers = []
+#     for question in questions:
+#         try:
+#             input_text = f"Question: {question}"
+#             result = qa_pipeline(input_text)[0]["generated_text"]
+#             answers.append(result)
+#         except Exception as e:
+#             answers.append("<error>")
+#     return answers
+
+
 def run_qa_model(model_name, questions, qa_pipeline):
-    answers = []
-    for question in questions:
-        try:
-            input_text = f"Question: {question}"
-            result = qa_pipeline(input_text)[0]["generated_text"]
-            answers.append(result)
-        except Exception as e:
-            answers.append("<error>")
-    return answers
+    inputs = [f"Question: {q}" for q in questions]
+    dataset = Dataset.from_dict({"text": inputs})
+    predictions = []
+
+    for output in qa_pipeline(KeyDataset(dataset, "text"), batch_size=8, truncation=True):
+        predictions.append(output[0]["generated_text"] if isinstance(output, list) else output["generated_text"])
+
+    return predictions
 
 def compute_metrics(preds, refs):
     bleu = load_metric("bleu")
