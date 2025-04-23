@@ -1,0 +1,102 @@
+{
+  "repo_name": "astropy_astropy",
+  "issue_id": "7287",
+  "issue_description": "# Documentation of trying development has python2-only stuff\n\nIn http://docs.astropy.org/en/latest/development/workflow/get_devel_version.html#activate-the-development-version-of-astropy, it is suggested to run `python setup.py develop` and it is noted that this is for python2 only. Since we moved to python3, this should be adjusted (to be tested: does this work on python3 now? if not, replace with code showing how to do it in a virtual environment)",
+  "issue_comments": [
+    {
+      "id": 373748843,
+      "user": "emilydeibert",
+      "body": "This does not work on Python3 right now---I am using Python3 and when I follow the linked instructions the development version will only activate in the distribution directory, but not outside."
+    },
+    {
+      "id": 457181023,
+      "user": "kakirastern",
+      "body": "Hi, is it okay for me to work on this issue in preparation for my GSoC 2019 application? "
+    },
+    {
+      "id": 457226384,
+      "user": "mhvk",
+      "body": "@kakirastern - yes, definitely OK. But please read the discussion in a previous attempt (#7295) and check for yourself what actually works (ideally on different machines). Specifically, there were suggestions to change the shebang on `setup.py` to `python3` and use `./setup.py` or to use `pip install -e .`\r\n\r\nNote that the main way this PR allows you to show skills for GSoC is by exploring the above issues yourself (it is clear that making the changes to the text is not difficult)."
+    },
+    {
+      "id": 457238288,
+      "user": "kakirastern",
+      "body": "Hi @mhvk , thanks for the prompt reply! Yup, I will definitely try it on my laptop to see if it works on my machine. Incidentally, I have both `python2` and `python3` installed on my computer since I still need `python2` to run IRAF for my current studies. My machine's been configured so that `python` is the same as `python3` by the use of an alias... (leaving `python2` for `python2` and not `python` for `python3`).  So I think the shebang solution might also depend on software setup/configured. I personally favor the `pip install -e .` solution for the development version. "
+    },
+    {
+      "id": 457243750,
+      "user": "mhvk",
+      "body": "OK, great!  But at least on my machine I'd need to do `pip3 ...` - a shebang would be `#! /usr/bin/python3`. Anyway, trials are the way forward."
+    },
+    {
+      "id": 457277017,
+      "user": "pllim",
+      "body": "Wait... Is this still an issue after @astrofrog 's rewrite in #8198 ? @astrofrog , that said, does `python setup.py develop -u` at the end still applies?"
+    },
+    {
+      "id": 457285678,
+      "user": "mhvk",
+      "body": "@pllim - Looking at the current documentation at http://docs.astropy.org/en/latest/development/workflow/get_devel_version.html#get-devel I see it indeed has changed. But it still has a warning about things not being possible in python3. If this is true, then the whole section should be removed. But I think it is not true, and that it is possible to pip-install under ones own user directory (with `-u` indeed).\r\n\r\nAnyway, @kakirastern, given that the documentation discusses something that supposedly does not work on python3, which is the only python version we support, there definitely is still work to do!"
+    },
+    {
+      "id": 457301123,
+      "user": "kakirastern",
+      "body": "Awesome, @mhvk! Thanks for the information. I will definitely follow up on the Issue and will open a PR soon. Need to do some investigating around first. "
+    },
+    {
+      "id": 457338810,
+      "user": "bsipocz",
+      "body": "Hmm, I supposed we've addressed this issue with https://github.com/astropy/astropy/pull/8289. If there is still some python3 incompatibility mentioned that most probably should be just simply removed.\r\n\r\n@kakirastern - If you are willing to open a PR for that removal that would be great. The assumptions are that everything should work for you locally with Python 3 (aka `python` :) ), so the only stuff in the PR is the removal of those notes about incompatibility."
+    },
+    {
+      "id": 457339209,
+      "user": "bsipocz",
+      "body": "> OK, great! But at least on my machine I'd need to do pip3 ... - a shebang would be #! /usr/bin/python3. Anyway, trials are the way forward.\r\n\r\nWell, `pip` can be aliased/linked to `pip3` this point, and `pip2` left as the exception :)"
+    },
+    {
+      "id": 457468832,
+      "user": "kakirastern",
+      "body": "@bsipocz Sure, I am willing to open a PR for the removal of outdated contents, i.e. \"those notes about incompatibility\". Do you think I should also add some comments about aliasing `python3` to `python` and `pip3` to `pip`, respectively? (Sort of like a reminder for people to check their computing setup. Maybe not everyone is aware of it.) "
+    },
+    {
+      "id": 457472789,
+      "user": "bsipocz",
+      "body": "Yes, mentioning the aliasing sounds like a good compromise. Thank you."
+    },
+    {
+      "id": 459656937,
+      "user": "kakirastern",
+      "body": "Yup, proposed adding implicit aliasing reference in PR #8385..."
+    },
+    {
+      "id": 637203212,
+      "user": "mhvk",
+      "body": "fixed a long time ago by #8385"
+    }
+  ],
+  "text_context": "# Documentation of trying development has python2-only stuff\n\nIn http://docs.astropy.org/en/latest/development/workflow/get_devel_version.html#activate-the-development-version-of-astropy, it is suggested to run `python setup.py develop` and it is noted that this is for python2 only. Since we moved to python3, this should be adjusted (to be tested: does this work on python3 now? if not, replace with code showing how to do it in a virtual environment)\n\nThis does not work on Python3 right now---I am using Python3 and when I follow the linked instructions the development version will only activate in the distribution directory, but not outside.\n\nHi, is it okay for me to work on this issue in preparation for my GSoC 2019 application? \n\n@kakirastern - yes, definitely OK. But please read the discussion in a previous attempt (#7295) and check for yourself what actually works (ideally on different machines). Specifically, there were suggestions to change the shebang on `setup.py` to `python3` and use `./setup.py` or to use `pip install -e .`\r\n\r\nNote that the main way this PR allows you to show skills for GSoC is by exploring the above issues yourself (it is clear that making the changes to the text is not difficult).\n\nHi @mhvk , thanks for the prompt reply! Yup, I will definitely try it on my laptop to see if it works on my machine. Incidentally, I have both `python2` and `python3` installed on my computer since I still need `python2` to run IRAF for my current studies. My machine's been configured so that `python` is the same as `python3` by the use of an alias... (leaving `python2` for `python2` and not `python` for `python3`).  So I think the shebang solution might also depend on software setup/configured. I personally favor the `pip install -e .` solution for the development version. \n\nOK, great!  But at least on my machine I'd need to do `pip3 ...` - a shebang would be `#! /usr/bin/python3`. Anyway, trials are the way forward.\n\nWait... Is this still an issue after @astrofrog 's rewrite in #8198 ? @astrofrog , that said, does `python setup.py develop -u` at the end still applies?\n\n@pllim - Looking at the current documentation at http://docs.astropy.org/en/latest/development/workflow/get_devel_version.html#get-devel I see it indeed has changed. But it still has a warning about things not being possible in python3. If this is true, then the whole section should be removed. But I think it is not true, and that it is possible to pip-install under ones own user directory (with `-u` indeed).\r\n\r\nAnyway, @kakirastern, given that the documentation discusses something that supposedly does not work on python3, which is the only python version we support, there definitely is still work to do!\n\nAwesome, @mhvk! Thanks for the information. I will definitely follow up on the Issue and will open a PR soon. Need to do some investigating around first. \n\nHmm, I supposed we've addressed this issue with https://github.com/astropy/astropy/pull/8289. If there is still some python3 incompatibility mentioned that most probably should be just simply removed.\r\n\r\n@kakirastern - If you are willing to open a PR for that removal that would be great. The assumptions are that everything should work for you locally with Python 3 (aka `python` :) ), so the only stuff in the PR is the removal of those notes about incompatibility.\n\n> OK, great! But at least on my machine I'd need to do pip3 ... - a shebang would be #! /usr/bin/python3. Anyway, trials are the way forward.\r\n\r\nWell, `pip` can be aliased/linked to `pip3` this point, and `pip2` left as the exception :)\n\n@bsipocz Sure, I am willing to open a PR for the removal of outdated contents, i.e. \"those notes about incompatibility\". Do you think I should also add some comments about aliasing `python3` to `python` and `pip3` to `pip`, respectively? (Sort of like a reminder for people to check their computing setup. Maybe not everyone is aware of it.) \n\nYes, mentioning the aliasing sounds like a good compromise. Thank you.\n\nYup, proposed adding implicit aliasing reference in PR #8385...\n\nfixed a long time ago by #8385",
+  "pr_link": "https://github.com/astropy/astropy/pull/8289",
+  "code_context": [],
+  "questions": [
+    "Wait... Is this still an issue after @astrofrog 's rewrite in #8198 ? @astrofrog , that said, does `python setup.py develop -u` at the end still applies?",
+    "In http://docs.astropy.org/en/latest/development/workflow/get_devel_version.html#activate-the-development-version-of-astropy, it is suggested to run `python setup.py develop` and it is noted that this is for python2 only. Since we moved to python3, this should be adjusted (to be tested: does this work on python3 now? if not, replace with code showing how to do it in a virtual environment)"
+  ],
+  "golden_answers": [
+    "@pllim - Looking at the current documentation at http://docs.astropy.org/en/latest/development/workflow/get_devel_version.html#get-devel I see it indeed has changed. But it still has a warning about things not being possible in python3. If this is true, then the whole section should be removed. But I think it is not true, and that it is possible to pip-install under ones own user directory (with `-u` indeed).\r\n\r\nAnyway, @kakirastern, given that the documentation discusses something that supposedly does not work on python3, which is the only python version we support, there definitely is still work to do!",
+    "@kakirastern - yes, definitely OK. But please read the discussion in a previous attempt (#7295) and check for yourself what actually works (ideally on different machines). Specifically, there were suggestions to change the shebang on `setup.py` to `python3` and use `./setup.py` or to use `pip install -e .`\r\n\r\nNote that the main way this PR allows you to show skills for GSoC is by exploring the above issues yourself (it is clear that making the changes to the text is not difficult)."
+  ],
+  "questions_generated": [
+    "What adjustment needs to be made to the Astropy development documentation regarding the use of 'python setup.py develop'?",
+    "Why might changing the shebang line in 'setup.py' be necessary for Python3 compatibility?",
+    "What is the significance of using 'pip install -e .' in the context of activating the development version of Astropy?",
+    "Why is testing on different machines and configurations important for resolving this issue?",
+    "What does the discussion reveal about the current status of the Python3 compatibility issue in the Astropy documentation?"
+  ],
+  "golden_answers_generated": [
+    "The documentation suggests using 'python setup.py develop', which is noted to be Python2-specific. Since Astropy has transitioned to Python3, this recommendation should be updated, possibly replacing it with a method compatible with Python3, such as using 'pip install -e .'.",
+    "Changing the shebang line in 'setup.py' to '#! /usr/bin/python3' ensures that the script will be executed with Python3, which is necessary because Astropy no longer supports Python2.",
+    "'pip install -e .' is a Python3-compatible command that installs a package in 'editable' or 'development' mode. This allows modifications to the source code to be reflected immediately, which is useful for developers working on the package.",
+    "Testing on different machines and configurations is crucial because it ensures that the proposed solutions, such as changing the shebang or using 'pip install -e .', work across various environments. This helps identify any machine-specific or configuration-specific issues that could affect the activation of the development version of Astropy.",
+    "The discussion indicates that while some updates have been made to the documentation, there are still references to functionalities that supposedly do not work on Python3. This suggests that either the documentation needs further revision or that the functionalities need to be verified and potentially updated to ensure full Python3 compatibility."
+  ]
+}
