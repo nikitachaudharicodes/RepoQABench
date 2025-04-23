@@ -5,63 +5,60 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-import torch
-from transformers import AutoTokenizer, AutoModelForQuestionAnswering
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
+from datasets import load_metric
 
-# Define supported models
+# Define supported generative models
 SUPPORTED_MODELS = {
-    "bert": "deepset/bert-base-cased-squad2",
-    "roberta": "deepset/roberta-base-squad2",
-    "distilbert": "distilbert-base-uncased-distilled-squad"
+    "flan-t5-base": "google/flan-t5-base",
+    "flan-t5-large": "google/flan-t5-large",
+    "mistral": "mistralai/Mistral-7B-Instruct-v0.1"
 }
 
-def run_qa_model(model_name, questions, context):
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForQuestionAnswering.from_pretrained(model_name)
-    model.eval()
-
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
-
+def run_qa_model(model_name, questions, qa_pipeline):
     answers = []
-    for question in tqdm(questions, desc=f"Answering ({model_name})"):
+    for question in questions:
         try:
-            inputs = tokenizer.encode_plus(
-                question,
-                context,
-                add_special_tokens=True,
-                return_tensors="pt",
-                max_length=384,
-                truncation=True
-            )
-
-            input_ids = inputs["input_ids"].to(device)
-            attention_mask = inputs["attention_mask"].to(device)
-
-            with torch.no_grad():
-                outputs = model(input_ids=input_ids, attention_mask=attention_mask)
-                start_scores = outputs.start_logits
-                end_scores = outputs.end_logits
-
-            start_index = torch.argmax(start_scores)
-            end_index = torch.argmax(end_scores) + 1
-            answer_tokens = input_ids[0][start_index:end_index]
-            answer = tokenizer.decode(answer_tokens, skip_special_tokens=True)
-            answers.append(answer)
+            input_text = f"Question: {question}"
+            result = qa_pipeline(input_text)[0]["generated_text"]
+            answers.append(result)
         except Exception as e:
-            print(f"[ERROR] {e} for question: {question}")
             answers.append("<error>")
     return answers
 
+def compute_metrics(preds, refs):
+    bleu = load_metric("bleu")
+    rouge = load_metric("rouge")
+    bertscore = load_metric("bertscore")
+
+    # BLEU expects tokenized inputs
+    tokenized_preds = [[p.split()] for p in preds]
+    tokenized_refs = [[[r.split()[0]] for r in refs]]
+    bleu_score = bleu.compute(predictions=tokenized_preds, references=tokenized_refs)["bleu"]
+
+    rouge_score = rouge.compute(predictions=preds, references=refs)["rougeLsum"]
+
+    bert_score = bertscore.compute(predictions=preds, references=refs, lang="en")["f1"]
+    avg_bert_score = sum(bert_score) / len(bert_score)
+
+    return {
+        "BLEU": bleu_score,
+        "ROUGE-L": rouge_score.mid.fmeasure,
+        "BERTScore": avg_bert_score
+    }
+
 def evaluate_model_on_jsons(path, model_key):
     model_name = SUPPORTED_MODELS[model_key]
+    qa_pipeline = pipeline("text2text-generation", model=model_name, tokenizer=model_name, max_length=512)
 
     benchmark_rows = []
     generated_rows = []
 
     for root, _, files in os.walk(path):
-        files = [f for f in files if f.endswith(".json")]
-        for file in tqdm(files, desc=f"Evaluating {model_key}"):
+        for file in files:
+            if not file.endswith(".json"):
+                continue
+
             filepath = os.path.join(root, file)
             with open(filepath, "r") as f:
                 data = json.load(f)
@@ -76,10 +73,8 @@ def evaluate_model_on_jsons(path, model_key):
             if not questions_generated or not golden_answers_generated or len(questions_generated) != len(golden_answers_generated):
                 continue
 
-            context = " ".join(questions + golden_answers)[:1000]
-
-            pred_benchmark = run_qa_model(model_name, questions, context)
-            pred_generated = run_qa_model(model_name, questions_generated, context)
+            pred_benchmark = run_qa_model(model_name, questions, qa_pipeline)
+            pred_generated = run_qa_model(model_name, questions_generated, qa_pipeline)
 
             for q, pred, gold in zip(questions, pred_benchmark, golden_answers):
                 benchmark_rows.append({"file": file, "model": model_key, "question": q, "predicted": pred, "gold": gold})
@@ -98,23 +93,34 @@ def plot_scores(df, title, filename):
     plt.savefig(filename)
     plt.close()
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--path", required=True, help="Path to benchmark JSONs")
-    parser.add_argument("--models", nargs="+", default=["bert", "roberta", "distilbert"], help="Models to compare")
-    args = parser.parse_args()
-
+def evaluate_and_save(path, models):
     all_benchmark_df = pd.DataFrame()
     all_generated_df = pd.DataFrame()
+    scores = []
 
-    for model_key in args.models:
-        benchmark_df, generated_df = evaluate_model_on_jsons(args.path, model_key)
+    for model_key in models:
+        benchmark_df, generated_df = evaluate_model_on_jsons(path, model_key)
         all_benchmark_df = pd.concat([all_benchmark_df, benchmark_df])
         all_generated_df = pd.concat([all_generated_df, generated_df])
+
+        scores.append({
+            "model": model_key,
+            "benchmark_metrics": compute_metrics(benchmark_df["predicted"].tolist(), benchmark_df["gold"].tolist()),
+            "generated_metrics": compute_metrics(generated_df["predicted"].tolist(), generated_df["gold"].tolist())
+        })
 
     all_benchmark_df.to_csv("benchmark_questions_eval.csv", index=False)
     all_generated_df.to_csv("generated_questions_eval.csv", index=False)
 
     plot_scores(all_benchmark_df, "Benchmark Questions Coverage per Model", "benchmark_plot.png")
     plot_scores(all_generated_df, "Generated Questions Coverage per Model", "generated_plot.png")
-    print("Evaluation completed. Results saved to CSV files and plots generated.")
+
+    pd.DataFrame(scores).to_json("qa_model_scores.json", indent=2)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--path", required=True, help="Path to benchmark JSONs")
+    parser.add_argument("--models", nargs="+", default=["flan-t5-base", "flan-t5-large", "mistral"], help="Models to compare")
+    args = parser.parse_args()
+
+    evaluate_and_save(args.path, args.models)
