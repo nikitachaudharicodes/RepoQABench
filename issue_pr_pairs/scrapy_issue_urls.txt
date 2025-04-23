@@ -1,0 +1,8 @@
+https://github.com/scrapy/scrapy/issues/5920
+https://github.com/scrapy/scrapy/issues/5135
+https://github.com/scrapy/scrapy/issues/4222
+https://github.com/scrapy/scrapy/issues/4216
+https://github.com/scrapy/scrapy/issues/3331
+https://github.com/scrapy/scrapy/issues/3128
+https://github.com/scrapy/scrapy/issues/2733
+https://github.com/scrapy/scrapy/issues/2374

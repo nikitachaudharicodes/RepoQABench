@@ -1,0 +1,60 @@
+{
+  "repo_name": "CiviWiki_OpenCiviWiki",
+  "issue_id": "1053",
+  "issue_description": "# Remove beta register and blocker templates\n\n### Idea summary\n\nThere are still two remaining templates related to the beta registration/blocker. Delete those templates.\n\n### Further details\n\nRemove the following templates:\r\n\r\n- [ ] `threads/templates/threads/beta_blocker.html`\r\n- [ ] `threads/templates/threads/beta_register.html`",
+  "issue_comments": [
+    {
+      "id": 929549928,
+      "user": "ssm0801",
+      "body": "Can I take this ?"
+    },
+    {
+      "id": 930033490,
+      "user": "brylie",
+      "body": "Sure, @ssm0801. Thanks :smiley: "
+    },
+    {
+      "id": 930125332,
+      "user": "ssm0801",
+      "body": "I am unable to find those templates I guess those are deleted already\r\n"
+    },
+    {
+      "id": 931199278,
+      "user": "brylie",
+      "body": "Ah, strange. I must have been on a stale branch. Thanks for taking a look @ssm0801! I'll add you for review anyhow\r\n\r\n@all-contributors please add @ssm0801 for review"
+    },
+    {
+      "id": 931199287,
+      "user": "allcontributors[bot]",
+      "body": "@brylie \n\nI could not determine your intention.\n\nBasic usage: @all-contributors please add @someone for code, doc and infra\n\nFor other usages see the [documentation](https://allcontributors.org/docs/en/bot/usage)"
+    },
+    {
+      "id": 931199429,
+      "user": "brylie",
+      "body": "@all-contributors please add @ssm0801 for review"
+    },
+    {
+      "id": 931199525,
+      "user": "allcontributors[bot]",
+      "body": "@brylie \n\nI've put up [a pull request](https://github.com/CiviWiki/OpenCiviWiki/pull/1063) to add @ssm0801! :tada:"
+    },
+    {
+      "id": 931450947,
+      "user": "ssm0801",
+      "body": "Can you tell me what does it mean, add @ssm0801 for review ?"
+    },
+    {
+      "id": 931935710,
+      "user": "brylie",
+      "body": "It means that you contributed to this project by reviewing code quality since you found that no changes were necessary. We want to acknowledge many types of contributions, so we are following the [All Contributors project](https://allcontributors.org/) guidelines."
+    },
+    {
+      "id": 931940790,
+      "user": "ssm0801",
+      "body": "oh okay thank you"
+    }
+  ],
+  "text_context": "# Remove beta register and blocker templates\n\n### Idea summary\n\nThere are still two remaining templates related to the beta registration/blocker. Delete those templates.\n\n### Further details\n\nRemove the following templates:\r\n\r\n- [ ] `threads/templates/threads/beta_blocker.html`\r\n- [ ] `threads/templates/threads/beta_register.html`\n\nCan I take this ?\n\nSure, @ssm0801. Thanks :smiley: \n\nI am unable to find those templates I guess those are deleted already\r\n\n\nAh, strange. I must have been on a stale branch. Thanks for taking a look @ssm0801! I'll add you for review anyhow\r\n\r\n@all-contributors please add @ssm0801 for review\n\n@brylie \n\nI could not determine your intention.\n\nBasic usage: @all-contributors please add @someone for code, doc and infra\n\nFor other usages see the [documentation](https://allcontributors.org/docs/en/bot/usage)\n\n@all-contributors please add @ssm0801 for review\n\n@brylie \n\nI've put up [a pull request](https://github.com/CiviWiki/OpenCiviWiki/pull/1063) to add @ssm0801! :tada:\n\nCan you tell me what does it mean, add @ssm0801 for review ?\n\nIt means that you contributed to this project by reviewing code quality since you found that no changes were necessary. We want to acknowledge many types of contributions, so we are following the [All Contributors project](https://allcontributors.org/) guidelines.\n\noh okay thank you",
+  "pr_link": "https://github.com/CiviWiki/OpenCiviWiki/pull/1063",
+  "code_context": []
+}

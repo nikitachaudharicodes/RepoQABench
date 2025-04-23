@@ -1,0 +1,29 @@
+{
+  "repo_name": "astropy",
+  "issue_pr_pairs": [
+    {
+      "issue_url": "https://github.com/astropy/astropy/issues/9485",
+      "pr_url": "https://github.com/astropy/astropy/pull/9468",
+      "issue_number": 9485,
+      "comments_count": 21
+    },
+    {
+      "issue_url": "https://github.com/astropy/astropy/issues/7799",
+      "pr_url": "https://github.com/astropy/astropy/pull/6097",
+      "issue_number": 7799,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/astropy/astropy/issues/7287",
+      "pr_url": "https://github.com/astropy/astropy/pull/8289",
+      "issue_number": 7287,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/astropy/astropy/issues/2632",
+      "pr_url": "https://github.com/gammapy/gammapy/pull/249",
+      "issue_number": 2632,
+      "comments_count": 22
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+https://github.com/scipy/scipy/pull/20924
+https://github.com/scipy/scipy/pull/4003
+https://github.com/scipy/scipy/pull/15299
+https://github.com/scipy/scipy/pull/7123
+https://github.com/scipy/scipy/pull/14249
+https://github.com/numpy/numpy/pull/5800
+https://github.com/scipy/scipy/pull/5213

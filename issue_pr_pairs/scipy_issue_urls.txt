@@ -1,0 +1,7 @@
+https://github.com/scipy/scipy/issues/20910
+https://github.com/scipy/scipy/issues/15733
+https://github.com/scipy/scipy/issues/15246
+https://github.com/scipy/scipy/issues/14471
+https://github.com/scipy/scipy/issues/13872
+https://github.com/scipy/scipy/issues/4720
+https://github.com/scipy/scipy/issues/2534

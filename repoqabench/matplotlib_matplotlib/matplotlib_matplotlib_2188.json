@@ -1,0 +1,75 @@
+{
+  "repo_name": "matplotlib_matplotlib",
+  "issue_id": "2188",
+  "issue_description": "# Add benchmarking suite\n\nIt would be nice to have a standard suite of benchmarks -- particularly those things that are known performance bottlenecks -- so we can track their improvement or regression over time and provide data about the relative performance of different backends etc.\n",
+  "issue_comments": [
+    {
+      "id": 52437512,
+      "user": "tacaswell",
+      "body": "@mdboom seems like you already solved this https://github.com/spacetelescope/asv\n\nCan we assign this to your mac-mini?\n"
+    },
+    {
+      "id": 269649541,
+      "user": "petehuang",
+      "body": "Hi,\r\n\r\nThis issue has been inactive for a while. Are there any updates? Any initial ideas that we have to help people start thinking about this? Thanks!"
+    },
+    {
+      "id": 269687406,
+      "user": "tacaswell",
+      "body": "To increase visibility tagged as 'new-contributor-friendly' as this is a very self-contained project, but medium difficulty as it will involve sorting out how to set up ASV and how to find reliable hardware to run it on (our typical CI tricks won't work here as we need fixed resources underneath).  Maybe pricing AWS for this?"
+    },
+    {
+      "id": 269687932,
+      "user": "dopplershift",
+      "body": "Rackspace may also be an option; I think that's what powers https://speed.python.org/"
+    },
+    {
+      "id": 360590015,
+      "user": "jklymak",
+      "body": "Having the suite alone would be a useful first step.  Automating it could come later.  "
+    },
+    {
+      "id": 360591633,
+      "user": "QuLogic",
+      "body": "I am working on this; will try to publish something this weekend."
+    },
+    {
+      "id": 360592093,
+      "user": "jklymak",
+      "body": "I'll bump the milestone though, as I don't think there is a higher rush.  Just getting into master should be enough."
+    },
+    {
+      "id": 362878613,
+      "user": "QuLogic",
+      "body": "We have [some benchmarks here](https://github.com/matplotlib/mpl-bench) with results that end up [here](https://matplotlib.org/mpl-bench/), from about 1.5.0 onwards. Those results are produced on my machine and I try to run them while I'm not using it, but there's not real guarantee of independence there.\r\n\r\nWe are working to get it running on the same dedicated hardware used for Pandas benchmarking."
+    },
+    {
+      "id": 366530711,
+      "user": "anntzer",
+      "body": "Perhaps worth adding a benchmark on just the time to import matplotlib, or matplotlib.pyplot (but forcing the backend to agg, as that's going to be backend dependent)."
+    },
+    {
+      "id": 366531593,
+      "user": "tacaswell",
+      "body": "import / start up time has been something that @efiring is concerned about."
+    },
+    {
+      "id": 366859842,
+      "user": "QuLogic",
+      "body": "There's a PR for that in asv: airspeed-velocity/asv#487 but it seems to have stalled."
+    },
+    {
+      "id": 430561986,
+      "user": "QuLogic",
+      "body": "Waiting on https://github.com/TomAugspurger/asv-runner/pull/2, though I think I need to update to asv 0.3 as well."
+    },
+    {
+      "id": 1451164848,
+      "user": "github-actions[bot]",
+      "body": "This issue has been marked \"inactive\" because it has been 365 days since the last comment. If this issue is still present in recent Matplotlib releases, or the feature request is still wanted, please leave a comment and this label will be removed. If there are no updates in another 30 days, this issue will be automatically closed, but you are free to re-open or create a new issue if needed. We value issue reports, and this procedure is meant to help us resurface and prioritize issues that have not been addressed yet, not make them disappear.  Thanks for your help!"
+    }
+  ],
+  "text_context": "# Add benchmarking suite\n\nIt would be nice to have a standard suite of benchmarks -- particularly those things that are known performance bottlenecks -- so we can track their improvement or regression over time and provide data about the relative performance of different backends etc.\n\n\n@mdboom seems like you already solved this https://github.com/spacetelescope/asv\n\nCan we assign this to your mac-mini?\n\n\nHi,\r\n\r\nThis issue has been inactive for a while. Are there any updates? Any initial ideas that we have to help people start thinking about this? Thanks!\n\nTo increase visibility tagged as 'new-contributor-friendly' as this is a very self-contained project, but medium difficulty as it will involve sorting out how to set up ASV and how to find reliable hardware to run it on (our typical CI tricks won't work here as we need fixed resources underneath).  Maybe pricing AWS for this?\n\nRackspace may also be an option; I think that's what powers https://speed.python.org/\n\nHaving the suite alone would be a useful first step.  Automating it could come later.  \n\nI am working on this; will try to publish something this weekend.\n\nI'll bump the milestone though, as I don't think there is a higher rush.  Just getting into master should be enough.\n\nWe have [some benchmarks here](https://github.com/matplotlib/mpl-bench) with results that end up [here](https://matplotlib.org/mpl-bench/), from about 1.5.0 onwards. Those results are produced on my machine and I try to run them while I'm not using it, but there's not real guarantee of independence there.\r\n\r\nWe are working to get it running on the same dedicated hardware used for Pandas benchmarking.\n\nPerhaps worth adding a benchmark on just the time to import matplotlib, or matplotlib.pyplot (but forcing the backend to agg, as that's going to be backend dependent).\n\nimport / start up time has been something that @efiring is concerned about.\n\nThere's a PR for that in asv: airspeed-velocity/asv#487 but it seems to have stalled.\n\nWaiting on https://github.com/TomAugspurger/asv-runner/pull/2, though I think I need to update to asv 0.3 as well.\n\nThis issue has been marked \"inactive\" because it has been 365 days since the last comment. If this issue is still present in recent Matplotlib releases, or the feature request is still wanted, please leave a comment and this label will be removed. If there are no updates in another 30 days, this issue will be automatically closed, but you are free to re-open or create a new issue if needed. We value issue reports, and this procedure is meant to help us resurface and prioritize issues that have not been addressed yet, not make them disappear.  Thanks for your help!",
+  "pr_link": "https://github.com/TomAugspurger/asv-runner/pull/2",
+  "code_context": []
+}

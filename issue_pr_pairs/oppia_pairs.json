@@ -1,0 +1,329 @@
+{
+  "repo_name": "oppia",
+  "issue_pr_pairs": [
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/21301",
+      "pr_url": "https://github.com/oppia/oppia/pull/21820",
+      "issue_number": 21301,
+      "comments_count": 23
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/21087",
+      "pr_url": "https://github.com/oppia/oppia/pull/21241",
+      "issue_number": 21087,
+      "comments_count": 19
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/20941",
+      "pr_url": "https://github.com/oppia/oppia/pull/21053",
+      "issue_number": 20941,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/20923",
+      "pr_url": "https://github.com/oppia/oppia/pull/17968",
+      "issue_number": 20923,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/20908",
+      "pr_url": "https://github.com/oppia/oppia/pull/21902",
+      "issue_number": 20908,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/20749",
+      "pr_url": "https://github.com/oppia/oppia/pull/21161",
+      "issue_number": 20749,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/20554",
+      "pr_url": "https://github.com/oppia/oppia/pull/20808",
+      "issue_number": 20554,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/20516",
+      "pr_url": "https://github.com/oppia/oppia/pull/20537",
+      "issue_number": 20516,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/20497",
+      "pr_url": "https://github.com/oppia/oppia/pull/21021",
+      "issue_number": 20497,
+      "comments_count": 22
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/20494",
+      "pr_url": "https://github.com/oppia/oppia/pull/20667",
+      "issue_number": 20494,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/20430",
+      "pr_url": "https://github.com/oppia/oppia/pull/21164",
+      "issue_number": 20430,
+      "comments_count": 17
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/20197",
+      "pr_url": "https://github.com/oppia/oppia/pull/22081",
+      "issue_number": 20197,
+      "comments_count": 15
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/20169",
+      "pr_url": "https://github.com/oppia/oppia/pull/20236",
+      "issue_number": 20169,
+      "comments_count": 17
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/20044",
+      "pr_url": "https://github.com/oppia/oppia/pull/20361",
+      "issue_number": 20044,
+      "comments_count": 39
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/19990",
+      "pr_url": "https://github.com/oppia/oppia/pull/20222",
+      "issue_number": 19990,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/19955",
+      "pr_url": "https://github.com/oppia/oppia/pull/20987",
+      "issue_number": 19955,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/19203",
+      "pr_url": "https://github.com/oppia/oppia/pull/19482",
+      "issue_number": 19203,
+      "comments_count": 18
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/18667",
+      "pr_url": "https://github.com/oppia/oppia/pull/19241",
+      "issue_number": 18667,
+      "comments_count": 28
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/18535",
+      "pr_url": "https://github.com/oppia/oppia/pull/22182",
+      "issue_number": 18535,
+      "comments_count": 26
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/18447",
+      "pr_url": "https://github.com/oppia/oppia/pull/18634",
+      "issue_number": 18447,
+      "comments_count": 20
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/18118",
+      "pr_url": "https://github.com/oppia/oppia/pull/21335",
+      "issue_number": 18118,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/17722",
+      "pr_url": "https://github.com/oppia/oppia/pull/18826",
+      "issue_number": 17722,
+      "comments_count": 27
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/17566",
+      "pr_url": "https://github.com/oppia/oppia/pull/19044",
+      "issue_number": 17566,
+      "comments_count": 18
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/17531",
+      "pr_url": "https://github.com/oppia/oppia/pull/17506",
+      "issue_number": 17531,
+      "comments_count": 26
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/17427",
+      "pr_url": "https://github.com/oppia/oppia/pull/17466",
+      "issue_number": 17427,
+      "comments_count": 19
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/17421",
+      "pr_url": "https://github.com/oppia/oppia/pull/18071",
+      "issue_number": 17421,
+      "comments_count": 26
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/17173",
+      "pr_url": "https://github.com/oppia/oppia/pull/18730",
+      "issue_number": 17173,
+      "comments_count": 15
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/17161",
+      "pr_url": "https://github.com/oppia/oppia/pull/17627",
+      "issue_number": 17161,
+      "comments_count": 21
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/17065",
+      "pr_url": "https://github.com/oppia/oppia/pull/17746",
+      "issue_number": 17065,
+      "comments_count": 24
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/16630",
+      "pr_url": "https://github.com/oppia/oppia/pull/16513",
+      "issue_number": 16630,
+      "comments_count": 70
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/16494",
+      "pr_url": "https://github.com/oppia/oppia/pull/16470",
+      "issue_number": 16494,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/16016",
+      "pr_url": "https://github.com/oppia/oppia/pull/12667",
+      "issue_number": 16016,
+      "comments_count": 22
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/15987",
+      "pr_url": "https://github.com/oppia/oppia/pull/16045",
+      "issue_number": 15987,
+      "comments_count": 16
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/15968",
+      "pr_url": "https://github.com/oppia/oppia/pull/15972",
+      "issue_number": 15968,
+      "comments_count": 213
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/15529",
+      "pr_url": "https://github.com/oppia/oppia/pull/12932",
+      "issue_number": 15529,
+      "comments_count": 20
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/15090",
+      "pr_url": "https://github.com/oppia/oppia/pull/15070",
+      "issue_number": 15090,
+      "comments_count": 58
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/12910",
+      "pr_url": "https://github.com/oppia/oppia/pull/17058",
+      "issue_number": 12910,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/11431",
+      "pr_url": "https://github.com/oppia/oppia/pull/11781",
+      "issue_number": 11431,
+      "comments_count": 26
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/10432",
+      "pr_url": "https://github.com/oppia/oppia/pull/10429",
+      "issue_number": 10432,
+      "comments_count": 20
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/9465",
+      "pr_url": "https://github.com/oppia/oppia/pull/11442",
+      "issue_number": 9465,
+      "comments_count": 18
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/7664",
+      "pr_url": "https://github.com/oppia/oppia/pull/11697",
+      "issue_number": 7664,
+      "comments_count": 22
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/7643",
+      "pr_url": "https://github.com/oppia/oppia/pull/8503",
+      "issue_number": 7643,
+      "comments_count": 28
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/6975",
+      "pr_url": "https://github.com/oppia/oppia/pull/7266",
+      "issue_number": 6975,
+      "comments_count": 40
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/6387",
+      "pr_url": "https://github.com/oppia/oppia/pull/6467",
+      "issue_number": 6387,
+      "comments_count": 25
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/6067",
+      "pr_url": "https://github.com/oppia/oppia/pull/6761",
+      "issue_number": 6067,
+      "comments_count": 17
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/5745",
+      "pr_url": "https://github.com/oppia/oppia/pull/5868",
+      "issue_number": 5745,
+      "comments_count": 18
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/5280",
+      "pr_url": "https://github.com/angular-ui-tree/angular-ui-tree/pull/814",
+      "issue_number": 5280,
+      "comments_count": 18
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/5145",
+      "pr_url": "https://github.com/oppia/oppia/pull/7992",
+      "issue_number": 5145,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/4558",
+      "pr_url": "https://github.com/oppia/oppia/pull/5292",
+      "issue_number": 4558,
+      "comments_count": 18
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/4231",
+      "pr_url": "https://github.com/oppia/oppia/pull/6116",
+      "issue_number": 4231,
+      "comments_count": 30
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/4057",
+      "pr_url": "https://github.com/oppia/oppia/pull/4135",
+      "issue_number": 4057,
+      "comments_count": 313
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/3146",
+      "pr_url": "https://github.com/oppia/oppia/pull/2883",
+      "issue_number": 3146,
+      "comments_count": 31
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/3074",
+      "pr_url": "https://github.com/oppia/oppia/pull/3140",
+      "issue_number": 3074,
+      "comments_count": 32
+    },
+    {
+      "issue_url": "https://github.com/oppia/oppia/issues/1542",
+      "pr_url": "https://github.com/oppia/oppia/pull/4269",
+      "issue_number": 1542,
+      "comments_count": 14
+    }
+  ]
+}

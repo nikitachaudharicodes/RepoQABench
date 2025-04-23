@@ -1,0 +1,80 @@
+{
+  "repo_name": "scikit-learn_scikit-learn",
+  "issue_id": "25024",
+  "issue_description": "# Fix broken links in the documentation\n\nA follow-up of https://github.com/scikit-learn/scikit-learn/issues/23631.\r\n\r\n**If you want to work on this**, please:\r\n- do **one Pull Request per link**\r\n- **add a comment in this issue saying which link you want to tackle** so that different people can work on this issue in parallel\r\n- **mention this issue (`#25024`) in your Pull Request description** so that progress on this issue can more easily be tracked\r\n\r\nPossible solutions for a broken link include:\r\n- find a replacement for the broken link. In case of links to articles, being able to link to a resource where the article is openly accessible (rather than behind a paywall) would be nice.\r\n- The link can be added to the `linkcheck_ignore` variable: https://github.com/scikit-learn/scikit-learn/blob/59473a91d4528503c63d71ad5843dac1b20a3d67/doc/conf.py#L590. This is the only thing to do for example when:\r\n  + the link is broken with no replacement (for example in testimonials some companies were acquired and their website does not exist) \r\n  + the link works fine in a browser but is flagged as broken by `make linkcheck` tool. This may happen because some websites are trying to prevent bots to scrape the content of their website\r\n\r\nSomething that may be useful in the complicated cases is to search on the [Internet Archive](https://archive.org/web/web.php) for the broken link. You may be able to look at the old content and it may help you to find an appropriate link replacement.\r\n\r\nList of broken links from a `make linkcheck` local run:\r\n- [x] `https://devguide.python.org/triaging/#becoming-a-member-of-the-python-triage-team` governance.rst\r\n  ```\r\n  Anchor 'becoming-a-member-of-the-python-triage-team' not found\r\n  ```\r\n- [x] `https://pymc-devs.github.io/pymc/` related_projects.rst\r\n  ```\r\n  404 Client Error: Not Found for url: https://pymc-devs.github.io/pymc/\r\n  ```\r\n- [x] `https://tminka.github.io/papers/logreg/minka-logreg.pdf/` modules/linear_model.rst\r\n  ```\r\n  404 Client Error: Not Found for url: https://tminka.github.io/papers/logreg/minka-logreg.pdf/\r\n  ```\r\n- ~[ ] `https://pkgs.alpinelinux.org/packages?name=py3-scikit-learn` install.rst~\r\n  ```\r\n  HTTPSConnectionPool(host='pkgs.alpinelinux.org', port=443): Read timed out. (read timeout=10)\r\n  ```\r\n- [x] `https://www1.icsi.berkeley.edu/~stellayu/publication/doc/2003kwayICCV.pdf` modules/clustering.rst\r\n  ```\r\n  404 Client Error: Not Found for url: https://www1.icsi.berkeley.edu/~stellayu/publication/doc/2003kwayICCV.pdf\r\n  ```\r\n- ~[ ] `https://www.iro.umontreal.ca/~pift6266/A06/refs/backprop_old.pdf` modules/neural_networks_supervised.rst~\r\n  ```\r\n  HTTPSConnectionPool(host='www.iro.umontreal.ca', port=443): Max retries exceeded with url: /~pift6266/A06/refs/backprop_old.pdf (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7fda35c47790>, 'Connection to www.iro.umontreal.ca timed out. (connect timeout=10)'))\r\n  ```\r\n- [x] `https://github.com/joblib/threadpoolctl/#setting-the-maximum-size-of-thread-pools` computing/parallelism.rst\r\n   ```\r\n   Anchor 'setting-the-maximum-size-of-thread-pools' not found\r\n   ```\r\n\r\n",
+  "issue_comments": [
+    {
+      "id": 1327085413,
+      "user": "jasonjg",
+      "body": "Working on:\r\n\r\nhttps://devguide.python.org/triaging/#becoming-a-member-of-the-python-triage-team"
+    },
+    {
+      "id": 1327123905,
+      "user": "jasonjg",
+      "body": "Working on:\r\n\r\nhttps://developers.google.com/open-source/"
+    },
+    {
+      "id": 1327202698,
+      "user": "lesteve",
+      "body": "> Working on:\r\n> \r\n> [developers.google.com/open-source](https://developers.google.com/open-source/)\r\n\r\n@jasonjg no idea why but rerunning `make linkcheck` the developers.google.com link is not flagged as broken anymore, I have updated the issue description.\r\n\r\nI will merge your PR #25036 in any case, I find it a little bit better to update the link in this case."
+    },
+    {
+      "id": 1327306295,
+      "user": "shrankhla20",
+      "body": "Working on : \r\nhttps://tminka.github.io/papers/logreg/minka-logreg.pdf/"
+    },
+    {
+      "id": 1327311733,
+      "user": "jasonjg",
+      "body": "> @jasonjg no idea why but rerunning `make linkcheck` the developers.google.com link is not flagged as broken anymore, I have updated the issue description.\r\n\r\nNot sure either, however status code 301 was being returned for developers.google.com/open-source and redirected to opensource.google\r\n"
+    },
+    {
+      "id": 1327322739,
+      "user": "shrankhla20",
+      "body": "Working on: https://www1.icsi.berkeley.edu/~stellayu/publication/doc/2003kwayICCV.pdf"
+    },
+    {
+      "id": 1328099700,
+      "user": "ka00ri",
+      "body": "Working on [Multiclass spectral clustering, 2003](https://www1.icsi.berkeley.edu/~stellayu/publication/doc/2003kwayICCV.pdf) in line 206 of _spectral.py"
+    },
+    {
+      "id": 1329861717,
+      "user": "gu1show",
+      "body": "Working on: https://pymc-devs.github.io/pymc/. \r\nThere are no link to the project in `related_projects.rst`.\r\n\r\nUPD:\r\nI didn't find other links in their files."
+    },
+    {
+      "id": 1330245372,
+      "user": "lesteve",
+      "body": "> Working on: [pymc-devs.github.io/pymc](https://pymc-devs.github.io/pymc/).\r\n> There are no link to the project in related_projects.rst.\r\n\r\nThis has been already fixed in https://github.com/scikit-learn/scikit-learn/pull/25027, I have updated the description and ticked the associated box."
+    },
+    {
+      "id": 1330260822,
+      "user": "gu1show",
+      "body": "OK, but what with the last two links. There are no in the files you wrote."
+    },
+    {
+      "id": 1330290496,
+      "user": "lesteve",
+      "body": "The last two links are in `doc/install.rst` and `doc/modules/neural_networks_supervised.rst`\r\n\r\n`git grep` is quite useful in this kind of cases, for example if I am looking for the second link with `backprop_old` in it:\r\n\r\n```\r\n❯ git grep backprop_old \r\ndoc/modules/neural_networks_supervised.rst:      <https://www.iro.umontreal.ca/~pift6266/A06/refs/backprop_old.pdf>`_\r\n```"
+    },
+    {
+      "id": 1330959487,
+      "user": "gu1show",
+      "body": "The last two links work correctly."
+    },
+    {
+      "id": 1331896657,
+      "user": "lesteve",
+      "body": "Indeed not sure why they were flagged as broken by `make linkcheck`. I updated the issue description to cross them out.\r\n\r\nI added another one `https://github.com/joblib/threadpoolctl/#setting-the-maximum-size-of-thread-pools` that is a valid link and that needs to be added to `linkcheck_ignore` as explained in the issue description. You are welcome to work on it if you want!"
+    },
+    {
+      "id": 1333296302,
+      "user": "lesteve",
+      "body": "I reran `make linkcheck` and there are no broken links anymore, thanks a lot to everyone who worked on this issue!"
+    }
+  ],
+  "text_context": "# Fix broken links in the documentation\n\nA follow-up of https://github.com/scikit-learn/scikit-learn/issues/23631.\r\n\r\n**If you want to work on this**, please:\r\n- do **one Pull Request per link**\r\n- **add a comment in this issue saying which link you want to tackle** so that different people can work on this issue in parallel\r\n- **mention this issue (`#25024`) in your Pull Request description** so that progress on this issue can more easily be tracked\r\n\r\nPossible solutions for a broken link include:\r\n- find a replacement for the broken link. In case of links to articles, being able to link to a resource where the article is openly accessible (rather than behind a paywall) would be nice.\r\n- The link can be added to the `linkcheck_ignore` variable: https://github.com/scikit-learn/scikit-learn/blob/59473a91d4528503c63d71ad5843dac1b20a3d67/doc/conf.py#L590. This is the only thing to do for example when:\r\n  + the link is broken with no replacement (for example in testimonials some companies were acquired and their website does not exist) \r\n  + the link works fine in a browser but is flagged as broken by `make linkcheck` tool. This may happen because some websites are trying to prevent bots to scrape the content of their website\r\n\r\nSomething that may be useful in the complicated cases is to search on the [Internet Archive](https://archive.org/web/web.php) for the broken link. You may be able to look at the old content and it may help you to find an appropriate link replacement.\r\n\r\nList of broken links from a `make linkcheck` local run:\r\n- [x] `https://devguide.python.org/triaging/#becoming-a-member-of-the-python-triage-team` governance.rst\r\n  ```\r\n  Anchor 'becoming-a-member-of-the-python-triage-team' not found\r\n  ```\r\n- [x] `https://pymc-devs.github.io/pymc/` related_projects.rst\r\n  ```\r\n  404 Client Error: Not Found for url: https://pymc-devs.github.io/pymc/\r\n  ```\r\n- [x] `https://tminka.github.io/papers/logreg/minka-logreg.pdf/` modules/linear_model.rst\r\n  ```\r\n  404 Client Error: Not Found for url: https://tminka.github.io/papers/logreg/minka-logreg.pdf/\r\n  ```\r\n- ~[ ] `https://pkgs.alpinelinux.org/packages?name=py3-scikit-learn` install.rst~\r\n  ```\r\n  HTTPSConnectionPool(host='pkgs.alpinelinux.org', port=443): Read timed out. (read timeout=10)\r\n  ```\r\n- [x] `https://www1.icsi.berkeley.edu/~stellayu/publication/doc/2003kwayICCV.pdf` modules/clustering.rst\r\n  ```\r\n  404 Client Error: Not Found for url: https://www1.icsi.berkeley.edu/~stellayu/publication/doc/2003kwayICCV.pdf\r\n  ```\r\n- ~[ ] `https://www.iro.umontreal.ca/~pift6266/A06/refs/backprop_old.pdf` modules/neural_networks_supervised.rst~\r\n  ```\r\n  HTTPSConnectionPool(host='www.iro.umontreal.ca', port=443): Max retries exceeded with url: /~pift6266/A06/refs/backprop_old.pdf (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7fda35c47790>, 'Connection to www.iro.umontreal.ca timed out. (connect timeout=10)'))\r\n  ```\r\n- [x] `https://github.com/joblib/threadpoolctl/#setting-the-maximum-size-of-thread-pools` computing/parallelism.rst\r\n   ```\r\n   Anchor 'setting-the-maximum-size-of-thread-pools' not found\r\n   ```\r\n\r\n\n\nWorking on:\r\n\r\nhttps://devguide.python.org/triaging/#becoming-a-member-of-the-python-triage-team\n\nWorking on:\r\n\r\nhttps://developers.google.com/open-source/\n\n> Working on:\r\n> \r\n> [developers.google.com/open-source](https://developers.google.com/open-source/)\r\n\r\n@jasonjg no idea why but rerunning `make linkcheck` the developers.google.com link is not flagged as broken anymore, I have updated the issue description.\r\n\r\nI will merge your PR #25036 in any case, I find it a little bit better to update the link in this case.\n\nWorking on : \r\nhttps://tminka.github.io/papers/logreg/minka-logreg.pdf/\n\n> @jasonjg no idea why but rerunning `make linkcheck` the developers.google.com link is not flagged as broken anymore, I have updated the issue description.\r\n\r\nNot sure either, however status code 301 was being returned for developers.google.com/open-source and redirected to opensource.google\r\n\n\nWorking on: https://www1.icsi.berkeley.edu/~stellayu/publication/doc/2003kwayICCV.pdf\n\nWorking on [Multiclass spectral clustering, 2003](https://www1.icsi.berkeley.edu/~stellayu/publication/doc/2003kwayICCV.pdf) in line 206 of _spectral.py\n\nWorking on: https://pymc-devs.github.io/pymc/. \r\nThere are no link to the project in `related_projects.rst`.\r\n\r\nUPD:\r\nI didn't find other links in their files.\n\n> Working on: [pymc-devs.github.io/pymc](https://pymc-devs.github.io/pymc/).\r\n> There are no link to the project in related_projects.rst.\r\n\r\nThis has been already fixed in https://github.com/scikit-learn/scikit-learn/pull/25027, I have updated the description and ticked the associated box.\n\nOK, but what with the last two links. There are no in the files you wrote.\n\nThe last two links are in `doc/install.rst` and `doc/modules/neural_networks_supervised.rst`\r\n\r\n`git grep` is quite useful in this kind of cases, for example if I am looking for the second link with `backprop_old` in it:\r\n\r\n```\r\n❯ git grep backprop_old \r\ndoc/modules/neural_networks_supervised.rst:      <https://www.iro.umontreal.ca/~pift6266/A06/refs/backprop_old.pdf>`_\r\n```\n\nThe last two links work correctly.\n\nIndeed not sure why they were flagged as broken by `make linkcheck`. I updated the issue description to cross them out.\r\n\r\nI added another one `https://github.com/joblib/threadpoolctl/#setting-the-maximum-size-of-thread-pools` that is a valid link and that needs to be added to `linkcheck_ignore` as explained in the issue description. You are welcome to work on it if you want!\n\nI reran `make linkcheck` and there are no broken links anymore, thanks a lot to everyone who worked on this issue!",
+  "pr_link": "https://github.com/scikit-learn/scikit-learn/pull/25027",
+  "code_context": []
+}

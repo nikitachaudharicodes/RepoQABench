@@ -1,0 +1,155 @@
+{
+  "repo_name": "scikit-learn",
+  "issue_pr_pairs": [
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/25844",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/24873",
+      "issue_number": 25844,
+      "comments_count": 17
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/25024",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/25027",
+      "issue_number": 25024,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/24876",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/24961",
+      "issue_number": 24876,
+      "comments_count": 21
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/20435",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/24579",
+      "issue_number": 20435,
+      "comments_count": 19
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/20308",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/20437",
+      "issue_number": 20308,
+      "comments_count": 212
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/18631",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/18056",
+      "issue_number": 18631,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/15440",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/15473",
+      "issue_number": 15440,
+      "comments_count": 34
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/15426",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/15549",
+      "issue_number": 15426,
+      "comments_count": 38
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/14580",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/14602",
+      "issue_number": 14580,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/14452",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/12356",
+      "issue_number": 14452,
+      "comments_count": 15
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/14351",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/14360",
+      "issue_number": 14351,
+      "comments_count": 15
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/13369",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/13414",
+      "issue_number": 13369,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/12895",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/6457",
+      "issue_number": 12895,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/11522",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/11166",
+      "issue_number": 11522,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/11489",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/11467",
+      "issue_number": 11489,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/10734",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/10774",
+      "issue_number": 10734,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/10636",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/10483",
+      "issue_number": 10636,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/10555",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/10560",
+      "issue_number": 10555,
+      "comments_count": 16
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/10430",
+      "pr_url": "https://github.com/ndawe/scikit-learn/pull/21",
+      "issue_number": 10430,
+      "comments_count": 24
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/10309",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/10583",
+      "issue_number": 10309,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/10252",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/10273",
+      "issue_number": 10252,
+      "comments_count": 15
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/10229",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/9835",
+      "issue_number": 10229,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/8710",
+      "pr_url": "https://github.com/scikit-learn/enhancement_proposals/pull/16",
+      "issue_number": 8710,
+      "comments_count": 27
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/5545",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/11524",
+      "issue_number": 5545,
+      "comments_count": 15
+    },
+    {
+      "issue_url": "https://github.com/scikit-learn/scikit-learn/issues/3450",
+      "pr_url": "https://github.com/scikit-learn/scikit-learn/pull/3531",
+      "issue_number": 3450,
+      "comments_count": 30
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+https://github.com/matplotlib/matplotlib/issues/24910
+https://github.com/matplotlib/matplotlib/issues/24605
+https://github.com/matplotlib/matplotlib/issues/22738
+https://github.com/matplotlib/matplotlib/issues/22686
+https://github.com/matplotlib/matplotlib/issues/19133
+https://github.com/matplotlib/matplotlib/issues/18039
+https://github.com/matplotlib/matplotlib/issues/17918
+https://github.com/matplotlib/matplotlib/issues/17774
+https://github.com/matplotlib/matplotlib/issues/17689
+https://github.com/matplotlib/matplotlib/issues/15182
+https://github.com/matplotlib/matplotlib/issues/15066
+https://github.com/matplotlib/matplotlib/issues/13400
+https://github.com/matplotlib/matplotlib/issues/8922
+https://github.com/matplotlib/matplotlib/issues/7650
+https://github.com/matplotlib/matplotlib/issues/4993
+https://github.com/matplotlib/matplotlib/issues/2188

@@ -1,0 +1,53 @@
+{
+  "repo_name": "scrapy",
+  "issue_pr_pairs": [
+    {
+      "issue_url": "https://github.com/scrapy/scrapy/issues/5920",
+      "pr_url": "https://github.com/scrapy/scrapy/pull/6223",
+      "issue_number": 5920,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/scrapy/scrapy/issues/5135",
+      "pr_url": "https://github.com/scrapy/scrapy/pull/5134",
+      "issue_number": 5135,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/scrapy/scrapy/issues/4222",
+      "pr_url": "https://github.com/scrapy/scrapy/pull/4298",
+      "issue_number": 4222,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/scrapy/scrapy/issues/4216",
+      "pr_url": "https://github.com/scrapy/scrapy/pull/4257",
+      "issue_number": 4216,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/scrapy/scrapy/issues/3331",
+      "pr_url": "https://github.com/moby/moby/pull/10192",
+      "issue_number": 3331,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/scrapy/scrapy/issues/3128",
+      "pr_url": "https://github.com/scrapy/scrapy/pull/3131",
+      "issue_number": 3128,
+      "comments_count": 18
+    },
+    {
+      "issue_url": "https://github.com/scrapy/scrapy/issues/2733",
+      "pr_url": "https://github.com/scrapy/scrapy/pull/2757",
+      "issue_number": 2733,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/scrapy/scrapy/issues/2374",
+      "pr_url": "https://github.com/scrapy/scrapy/pull/2455",
+      "issue_number": 2374,
+      "comments_count": 11
+    }
+  ]
+}

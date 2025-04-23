@@ -1,0 +1,75 @@
+{
+  "repo_name": "pandas-dev_pandas",
+  "issue_id": "38311",
+  "issue_description": "# DOC: Wrong output in the example of Timedelta.isoformat\n\n#### Location of the documentation\r\n\r\n[`pandas.Timedelta.isoformat`](https://pandas.pydata.org/docs/reference/api/pandas.Timedelta.isoformat.html#pandas.Timedelta.isoformat)\r\n\r\n#### Documentation problem\r\n\r\nThe output on an example in the docs has the wrong output(`Timedelta.isoformat` works fine)\r\n\r\n![Screenshot from 2020-12-04 16-40-36](https://user-images.githubusercontent.com/47276342/101234113-ce80fa00-36e2-11eb-8e2c-9623f41a69ae.png)\r\n\r\nWhile it should've been `'P0DT1H0M10S'`\r\n",
+  "issue_comments": [
+    {
+      "id": 741524526,
+      "user": "arw2019",
+      "body": "not sure what the issue is, aren't these the same"
+    },
+    {
+      "id": 741533094,
+      "user": "gurukiran07",
+      "body": "@arw2019 \r\nYes, the same example is given twice in the docs.\r\n\r\nThe issue is the outptut of `pd.Timedelta(hours=1, seconds=10)` is wrong in the docs (`pd.Timedelta` works perfectly fine).\r\n```\r\npd.Timedelta(hours=1, seconds=10)\r\n'P0DT1H0M10S'  # In docs it's 'P0DT0H0M10S'\r\n```"
+    },
+    {
+      "id": 741533907,
+      "user": "arw2019",
+      "body": "is this an issue in the docs or with Timedelta?"
+    },
+    {
+      "id": 741536597,
+      "user": "gurukiran07",
+      "body": "@arw2019 \r\n> is this an issue in the docs or with Timedelta?\r\n\r\nOnly related to the docs."
+    },
+    {
+      "id": 744423198,
+      "user": "simonjayhawkins",
+      "body": "https://github.com/pandas-dev/pandas/blob/d85e9a23c5cb4ecd158a7759f97a0a8a58c132ef/pandas/_libs/tslibs/timedeltas.pyx#L1086-L1098"
+    },
+    {
+      "id": 744423752,
+      "user": "simonjayhawkins",
+      "body": "@gurukiran07 Thanks for the report. Interested in submitting a PR?"
+    },
+    {
+      "id": 744443611,
+      "user": "gurukiran07",
+      "body": "@simonjayhawkins Yes, will submit. How do I assign it to myself?  \"take\" did not work."
+    },
+    {
+      "id": 744445687,
+      "user": "simonjayhawkins",
+      "body": "> How do I assign it to myself? \"take\" did not work.\r\n\r\nstrange. done it manually."
+    },
+    {
+      "id": 745990454,
+      "user": "aflah02",
+      "body": "Just wanted to ask can someone else also do issues which have been assigned?"
+    },
+    {
+      "id": 748449619,
+      "user": "MarcoGorelli",
+      "body": "In the future could you please paste the code instead of a screenshot? Else searching through old issues becomes near impossible"
+    },
+    {
+      "id": 748449910,
+      "user": "aflah02",
+      "body": "Hey @MarcoGorelli \nI received a notification for your comment\nJust wanted to ask since I'm new here can anyone take up assigned issues as well or is it reserved to the assigned person for some duration?"
+    },
+    {
+      "id": 748450106,
+      "user": "MarcoGorelli",
+      "body": "Looks like there's already a PR to close it https://github.com/pandas-dev/pandas/pull/38579\r\n\r\n@gurukiran07 I hadn't noticed you'd already assigned yourself here - unless you already have a PR ready, shall we leave it to them, as they're a first-time contributor?"
+    },
+    {
+      "id": 748458764,
+      "user": "gurukiran07",
+      "body": "@MarcoGorelli Yes sure fine. I haven't really had the time to time make a PR. Glad some else did. My bad should've unassigned myself quicker."
+    }
+  ],
+  "text_context": "# DOC: Wrong output in the example of Timedelta.isoformat\n\n#### Location of the documentation\r\n\r\n[`pandas.Timedelta.isoformat`](https://pandas.pydata.org/docs/reference/api/pandas.Timedelta.isoformat.html#pandas.Timedelta.isoformat)\r\n\r\n#### Documentation problem\r\n\r\nThe output on an example in the docs has the wrong output(`Timedelta.isoformat` works fine)\r\n\r\n![Screenshot from 2020-12-04 16-40-36](https://user-images.githubusercontent.com/47276342/101234113-ce80fa00-36e2-11eb-8e2c-9623f41a69ae.png)\r\n\r\nWhile it should've been `'P0DT1H0M10S'`\r\n\n\nnot sure what the issue is, aren't these the same\n\n@arw2019 \r\nYes, the same example is given twice in the docs.\r\n\r\nThe issue is the outptut of `pd.Timedelta(hours=1, seconds=10)` is wrong in the docs (`pd.Timedelta` works perfectly fine).\r\n```\r\npd.Timedelta(hours=1, seconds=10)\r\n'P0DT1H0M10S'  # In docs it's 'P0DT0H0M10S'\r\n```\n\nis this an issue in the docs or with Timedelta?\n\n@arw2019 \r\n> is this an issue in the docs or with Timedelta?\r\n\r\nOnly related to the docs.\n\nhttps://github.com/pandas-dev/pandas/blob/d85e9a23c5cb4ecd158a7759f97a0a8a58c132ef/pandas/_libs/tslibs/timedeltas.pyx#L1086-L1098\n\n@gurukiran07 Thanks for the report. Interested in submitting a PR?\n\n@simonjayhawkins Yes, will submit. How do I assign it to myself?  \"take\" did not work.\n\n> How do I assign it to myself? \"take\" did not work.\r\n\r\nstrange. done it manually.\n\nJust wanted to ask can someone else also do issues which have been assigned?\n\nIn the future could you please paste the code instead of a screenshot? Else searching through old issues becomes near impossible\n\nHey @MarcoGorelli \nI received a notification for your comment\nJust wanted to ask since I'm new here can anyone take up assigned issues as well or is it reserved to the assigned person for some duration?\n\nLooks like there's already a PR to close it https://github.com/pandas-dev/pandas/pull/38579\r\n\r\n@gurukiran07 I hadn't noticed you'd already assigned yourself here - unless you already have a PR ready, shall we leave it to them, as they're a first-time contributor?\n\n@MarcoGorelli Yes sure fine. I haven't really had the time to time make a PR. Glad some else did. My bad should've unassigned myself quicker.",
+  "pr_link": "https://github.com/pandas-dev/pandas/pull/38579",
+  "code_context": []
+}

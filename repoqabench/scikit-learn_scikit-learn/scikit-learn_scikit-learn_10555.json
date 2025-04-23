@@ -1,0 +1,90 @@
+{
+  "repo_name": "scikit-learn_scikit-learn",
+  "issue_id": "10555",
+  "issue_description": "# fetch_california_housing missing from the user guide\n\nThe fetch_california_housing function is missing from the dataset user guide:\r\nhttp://scikit-learn.org/dev/datasets/index.html",
+  "issue_comments": [
+    {
+      "id": 361763799,
+      "user": "amueller",
+      "body": "details are here: http://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html"
+    },
+    {
+      "id": 361881718,
+      "user": "kkang2097",
+      "body": "Hey how would i update the documentation? Sorry for being a newbie"
+    },
+    {
+      "id": 361881944,
+      "user": "jnothman",
+      "body": "doc/datasets/index.rst\n\nOn 31 January 2018 at 20:57, Elliot Kang <notifications@github.com> wrote:\n\n> Hey how would i update the documentation?\n>\n> —\n> You are receiving this because you are subscribed to this thread.\n> Reply to this email directly, view it on GitHub\n> <https://github.com/scikit-learn/scikit-learn/issues/10555#issuecomment-361881718>,\n> or mute the thread\n> <https://github.com/notifications/unsubscribe-auth/AAEz6yA56PwmPnXNirHjPh_upaDuEGDlks5tQDkMgaJpZM4RzJoK>\n> .\n>\n"
+    },
+    {
+      "id": 361957177,
+      "user": "divayjindal95",
+      "body": "@kkang2097 hey is it done ?"
+    },
+    {
+      "id": 362038670,
+      "user": "kkang2097",
+      "body": "I think so, but it hasn't been closed so idk"
+    },
+    {
+      "id": 362087313,
+      "user": "jnothman",
+      "body": "@kkang2097 you didn't mention in your PR that it fixes this issue, so other users can't see that you've opened a PR. Also, your PR still needs work."
+    },
+    {
+      "id": 362126643,
+      "user": "kkang2097",
+      "body": "Hmm, okay. Is there any guides you can point me to for how to contribute to open source projects?"
+    },
+    {
+      "id": 362129268,
+      "user": "jnothman",
+      "body": "http://scikit-learn.org/dev/developers/contributing.html"
+    },
+    {
+      "id": 362384962,
+      "user": "rsivapr",
+      "body": "For the record: there is a WIP PR for this issue here: https://github.com/scikit-learn/scikit-learn/pull/10560"
+    },
+    {
+      "id": 362414819,
+      "user": "kkang2097",
+      "body": "Update: I already made the new description .rst file for the dataset, I just need to request a change to the index.rst file adding a reference to my proposed california_housing.rst file. Sorry, pretty hung up with classes / interviews right now. Will finish by the end of this week."
+    },
+    {
+      "id": 362496634,
+      "user": "kkang2097",
+      "body": "Update 2: So in my pull request I updated the index.rst to include the California Housing dataset. But in the last line of the .rst file I wrote :add: /sklearn/datasets/descr/california_housing.rst, which is the location I want to add my proposed new description. Do I need to put in a second pull request? I mean, how do I propose modifying/adding 2 files in a single pull request?"
+    },
+    {
+      "id": 362621532,
+      "user": "rsivapr",
+      "body": "Hi @kkang2097, Not sure I completely understand your questions. \r\n\r\n> Do I need to put in a second pull request?\r\n\r\nNo. You should keep all your changes in one PR.\r\n\r\n> modifying/adding 2 files in a single pull request\r\n\r\nIf you haven't used git before, you can learn the basics here : https://try.github.io/\r\nOr use Github Desktop if you don't want to use the command line https://desktop.github.com/"
+    },
+    {
+      "id": 363016357,
+      "user": "kkang2097",
+      "body": "Update: Have finished, and uploaded a pull request."
+    },
+    {
+      "id": 371131936,
+      "user": "satishjasthi",
+      "body": "@kkang2097 has your PR been accepted or it still requires some modifications"
+    },
+    {
+      "id": 377767736,
+      "user": "Shreykhanna",
+      "body": "Hey Guys, Is the work done?\r\n"
+    },
+    {
+      "id": 405172076,
+      "user": "aboucaud",
+      "body": "Hi guys, I'm taking over this work as part of the sklearn sprint. "
+    }
+  ],
+  "text_context": "# fetch_california_housing missing from the user guide\n\nThe fetch_california_housing function is missing from the dataset user guide:\r\nhttp://scikit-learn.org/dev/datasets/index.html\n\ndetails are here: http://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html\n\nHey how would i update the documentation? Sorry for being a newbie\n\ndoc/datasets/index.rst\n\nOn 31 January 2018 at 20:57, Elliot Kang <notifications@github.com> wrote:\n\n> Hey how would i update the documentation?\n>\n> —\n> You are receiving this because you are subscribed to this thread.\n> Reply to this email directly, view it on GitHub\n> <https://github.com/scikit-learn/scikit-learn/issues/10555#issuecomment-361881718>,\n> or mute the thread\n> <https://github.com/notifications/unsubscribe-auth/AAEz6yA56PwmPnXNirHjPh_upaDuEGDlks5tQDkMgaJpZM4RzJoK>\n> .\n>\n\n\n@kkang2097 hey is it done ?\n\nI think so, but it hasn't been closed so idk\n\n@kkang2097 you didn't mention in your PR that it fixes this issue, so other users can't see that you've opened a PR. Also, your PR still needs work.\n\nHmm, okay. Is there any guides you can point me to for how to contribute to open source projects?\n\nhttp://scikit-learn.org/dev/developers/contributing.html\n\nFor the record: there is a WIP PR for this issue here: https://github.com/scikit-learn/scikit-learn/pull/10560\n\nUpdate: I already made the new description .rst file for the dataset, I just need to request a change to the index.rst file adding a reference to my proposed california_housing.rst file. Sorry, pretty hung up with classes / interviews right now. Will finish by the end of this week.\n\nUpdate 2: So in my pull request I updated the index.rst to include the California Housing dataset. But in the last line of the .rst file I wrote :add: /sklearn/datasets/descr/california_housing.rst, which is the location I want to add my proposed new description. Do I need to put in a second pull request? I mean, how do I propose modifying/adding 2 files in a single pull request?\n\nHi @kkang2097, Not sure I completely understand your questions. \r\n\r\n> Do I need to put in a second pull request?\r\n\r\nNo. You should keep all your changes in one PR.\r\n\r\n> modifying/adding 2 files in a single pull request\r\n\r\nIf you haven't used git before, you can learn the basics here : https://try.github.io/\r\nOr use Github Desktop if you don't want to use the command line https://desktop.github.com/\n\nUpdate: Have finished, and uploaded a pull request.\n\n@kkang2097 has your PR been accepted or it still requires some modifications\n\nHey Guys, Is the work done?\r\n\n\nHi guys, I'm taking over this work as part of the sklearn sprint. ",
+  "pr_link": "https://github.com/scikit-learn/scikit-learn/pull/10560",
+  "code_context": []
+}

@@ -1,0 +1,101 @@
+{
+  "repo_name": "matplotlib",
+  "issue_pr_pairs": [
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/24910",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/17219",
+      "issue_number": 24910,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/24605",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/25281",
+      "issue_number": 24605,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/22738",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/22735",
+      "issue_number": 22738,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/22686",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/22711",
+      "issue_number": 22686,
+      "comments_count": 25
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/19133",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/19187",
+      "issue_number": 19133,
+      "comments_count": 26
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/18039",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/20118",
+      "issue_number": 18039,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/17918",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/17917",
+      "issue_number": 17918,
+      "comments_count": 16
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/17774",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/18357",
+      "issue_number": 17774,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/17689",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/17096",
+      "issue_number": 17689,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/15182",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/15181",
+      "issue_number": 15182,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/15066",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/18310",
+      "issue_number": 15066,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/13400",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/6384",
+      "issue_number": 13400,
+      "comments_count": 15
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/8922",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/9479",
+      "issue_number": 8922,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/7650",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/7344",
+      "issue_number": 7650,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/4993",
+      "pr_url": "https://github.com/matplotlib/matplotlib/pull/10245",
+      "issue_number": 4993,
+      "comments_count": 16
+    },
+    {
+      "issue_url": "https://github.com/matplotlib/matplotlib/issues/2188",
+      "pr_url": "https://github.com/TomAugspurger/asv-runner/pull/2",
+      "issue_number": 2188,
+      "comments_count": 13
+    }
+  ]
+}

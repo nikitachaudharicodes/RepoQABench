@@ -1,0 +1,485 @@
+{
+  "repo_name": "pandas",
+  "issue_pr_pairs": [
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/60695",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/60944",
+      "issue_number": 60695,
+      "comments_count": 26
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/60563",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/60569",
+      "issue_number": 60563,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/60084",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/59089",
+      "issue_number": 60084,
+      "comments_count": 15
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/59458",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/59622",
+      "issue_number": 59458,
+      "comments_count": 29
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/57259",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/57273",
+      "issue_number": 57259,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/56804",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/56827",
+      "issue_number": 56804,
+      "comments_count": 66
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/55435",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/55433",
+      "issue_number": 55435,
+      "comments_count": 21
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/54229",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/54605",
+      "issue_number": 54229,
+      "comments_count": 20
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/53147",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/53244",
+      "issue_number": 53147,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/52436",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/48293",
+      "issue_number": 52436,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/51740",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/51687",
+      "issue_number": 51740,
+      "comments_count": 18
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/50207",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/50205",
+      "issue_number": 50207,
+      "comments_count": 20
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/49939",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/49694",
+      "issue_number": 49939,
+      "comments_count": 17
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/49656",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/49668",
+      "issue_number": 49656,
+      "comments_count": 45
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/49647",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/49645",
+      "issue_number": 49647,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/49406",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/46886",
+      "issue_number": 49406,
+      "comments_count": 19
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/48855",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/48759",
+      "issue_number": 48855,
+      "comments_count": 105
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/48779",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/49133",
+      "issue_number": 48779,
+      "comments_count": 32
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/48527",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/48572",
+      "issue_number": 48527,
+      "comments_count": 19
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/47953",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/50542",
+      "issue_number": 47953,
+      "comments_count": 15
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/44803",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/42992",
+      "issue_number": 44803,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/44627",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/40979",
+      "issue_number": 44627,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/43282",
+      "pr_url": "https://github.com/psf/black/pull/2459",
+      "issue_number": 43282,
+      "comments_count": 15
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/43038",
+      "pr_url": "https://github.com/numpy/numpy/pull/19228",
+      "issue_number": 43038,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/41901",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/41892",
+      "issue_number": 41901,
+      "comments_count": 21
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/41485",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/41511",
+      "issue_number": 41485,
+      "comments_count": 35
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/40737",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/40197",
+      "issue_number": 40737,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/39992",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/40310",
+      "issue_number": 39992,
+      "comments_count": 23
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/39443",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/41061",
+      "issue_number": 39443,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/39203",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/37367",
+      "issue_number": 39203,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/39158",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/39159",
+      "issue_number": 39158,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/38969",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/28733",
+      "issue_number": 38969,
+      "comments_count": 16
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/38694",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/38668",
+      "issue_number": 38694,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/38543",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/42939",
+      "issue_number": 38543,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/38482",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/39597",
+      "issue_number": 38482,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/38311",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/38579",
+      "issue_number": 38311,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/38138",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/38249",
+      "issue_number": 38138,
+      "comments_count": 21
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/36411",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/36346",
+      "issue_number": 36411,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/34164",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/52818",
+      "issue_number": 34164,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/32515",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/32516",
+      "issue_number": 32515,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/32316",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/32439",
+      "issue_number": 32316,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/32108",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/31318",
+      "issue_number": 32108,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/31954",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/33616",
+      "issue_number": 31954,
+      "comments_count": 32
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/31687",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/39761",
+      "issue_number": 31687,
+      "comments_count": 16
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/30964",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/34366",
+      "issue_number": 30964,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/30296",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/30386",
+      "issue_number": 30296,
+      "comments_count": 20
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/29886",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/30420",
+      "issue_number": 29886,
+      "comments_count": 30
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/29102",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/29104",
+      "issue_number": 29102,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/28792",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/37219",
+      "issue_number": 28792,
+      "comments_count": 19
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/28547",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/35029",
+      "issue_number": 28547,
+      "comments_count": 32
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/28378",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/27838",
+      "issue_number": 28378,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/27800",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/27071",
+      "issue_number": 27800,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/27781",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/35287",
+      "issue_number": 27781,
+      "comments_count": 19
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/27756",
+      "pr_url": "https://github.com/conda-forge/s3fs-feedstock/pull/25",
+      "issue_number": 27756,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/27558",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/27288",
+      "issue_number": 27558,
+      "comments_count": 21
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/24798",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/34302",
+      "issue_number": 24798,
+      "comments_count": 20
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/23870",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/23871",
+      "issue_number": 23870,
+      "comments_count": 24
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/23086",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/29363",
+      "issue_number": 23086,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/21295",
+      "pr_url": "https://github.com/dask/dask/pull/1760",
+      "issue_number": 21295,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/20647",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/7934",
+      "issue_number": 20647,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/20432",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/20408",
+      "issue_number": 20432,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/19505",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/20261",
+      "issue_number": 19505,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/18273",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/20480",
+      "issue_number": 18273,
+      "comments_count": 32
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/17978",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/20590",
+      "issue_number": 17978,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/16894",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/16883",
+      "issue_number": 16894,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/16829",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/16955",
+      "issue_number": 16829,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/16724",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/10838",
+      "issue_number": 16724,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/15302",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/51019",
+      "issue_number": 15302,
+      "comments_count": 18
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/15275",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/15260",
+      "issue_number": 15275,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/13919",
+      "pr_url": "https://github.com/pydata/pandas/pull/14047",
+      "issue_number": 13919,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/13120",
+      "pr_url": "https://github.com/quantopian/zipline/pull/1190",
+      "issue_number": 13120,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/12857",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/30327",
+      "issue_number": 12857,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/12412",
+      "pr_url": "https://github.com/pydata/xarray/pull/773",
+      "issue_number": 12412,
+      "comments_count": 21
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/11978",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/24912",
+      "issue_number": 11978,
+      "comments_count": 16
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/10899",
+      "pr_url": "https://github.com/pydata/pandas/pull/10983",
+      "issue_number": 10899,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/9780",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/18674",
+      "issue_number": 9780,
+      "comments_count": 15
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/8329",
+      "pr_url": "https://github.com/pydata/numexpr/pull/228",
+      "issue_number": 8329,
+      "comments_count": 22
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/6051",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/17060",
+      "issue_number": 6051,
+      "comments_count": 21
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/3439",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/15625",
+      "issue_number": 3439,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/pandas-dev/pandas/issues/2311",
+      "pr_url": "https://github.com/pandas-dev/pandas/pull/9070",
+      "issue_number": 2311,
+      "comments_count": 27
+    }
+  ]
+}

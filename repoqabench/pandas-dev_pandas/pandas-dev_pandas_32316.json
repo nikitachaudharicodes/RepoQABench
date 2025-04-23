@@ -1,0 +1,60 @@
+{
+  "repo_name": "pandas-dev_pandas",
+  "issue_id": "32316",
+  "issue_description": "# DOC: Standardize references to pandas in the documentation\n\nIn our documentation (files in `doc/source/../*.rst`), we refer to pandas as `Pandas`, `pandas`, and `*pandas*` (sphinx italics).\r\n\r\nFor documentation consistency, we should standardize these to one form. `pandas` is the preferable form in our documentation files.\r\n\r\nUnfortunately I don't think we create a lint rule for this pattern since we have to be flexible to references and hyperlinks.",
+  "issue_comments": [
+    {
+      "id": 592276753,
+      "user": "joybh98",
+      "body": "Can I take this issue?\r\n"
+    },
+    {
+      "id": 592468424,
+      "user": "ShaharNaveh",
+      "body": "> Can I take this issue?\r\n\r\n@joybhallaa  Sure!\r\nYou can do this by commenting the word ```take``` (and nothing else, just the word ```take```), and the github bot will assign this issue to you."
+    },
+    {
+      "id": 592468726,
+      "user": "joybh98",
+      "body": "take"
+    },
+    {
+      "id": 592833351,
+      "user": "jorisvandenbossche",
+      "body": "We could also decide to just use \"pandas\" instead of \"*pandas*\" (no italic), that's one thing less that you can forget to do."
+    },
+    {
+      "id": 592972417,
+      "user": "mroeschke",
+      "body": "Good point @jorisvandenbossche. I'd prefer `pandas` as well for that reason. Will update the original post "
+    },
+    {
+      "id": 598317993,
+      "user": "mroeschke",
+      "body": "https://github.com/pandas-dev/pandas/pull/32439 only fixed the references for `development/*.rst`"
+    },
+    {
+      "id": 614306486,
+      "user": "willie3838",
+      "body": "take"
+    },
+    {
+      "id": 687565861,
+      "user": "EllieLockhart",
+      "body": "take"
+    },
+    {
+      "id": 699572245,
+      "user": "LeviMatus",
+      "body": "take"
+    },
+    {
+      "id": 703117164,
+      "user": "Mikhaylov-yv",
+      "body": "take"
+    }
+  ],
+  "text_context": "# DOC: Standardize references to pandas in the documentation\n\nIn our documentation (files in `doc/source/../*.rst`), we refer to pandas as `Pandas`, `pandas`, and `*pandas*` (sphinx italics).\r\n\r\nFor documentation consistency, we should standardize these to one form. `pandas` is the preferable form in our documentation files.\r\n\r\nUnfortunately I don't think we create a lint rule for this pattern since we have to be flexible to references and hyperlinks.\n\nCan I take this issue?\r\n\n\n> Can I take this issue?\r\n\r\n@joybhallaa  Sure!\r\nYou can do this by commenting the word ```take``` (and nothing else, just the word ```take```), and the github bot will assign this issue to you.\n\ntake\n\nWe could also decide to just use \"pandas\" instead of \"*pandas*\" (no italic), that's one thing less that you can forget to do.\n\nGood point @jorisvandenbossche. I'd prefer `pandas` as well for that reason. Will update the original post \n\nhttps://github.com/pandas-dev/pandas/pull/32439 only fixed the references for `development/*.rst`\n\ntake\n\ntake\n\ntake\n\ntake",
+  "pr_link": "https://github.com/pandas-dev/pandas/pull/32439",
+  "code_context": []
+}

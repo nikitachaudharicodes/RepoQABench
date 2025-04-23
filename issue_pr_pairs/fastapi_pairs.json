@@ -1,0 +1,11 @@
+{
+  "repo_name": "fastapi",
+  "issue_pr_pairs": [
+    {
+      "issue_url": "https://github.com/fastapi/fastapi/issues/563",
+      "pr_url": "https://github.com/samuelcolvin/pydantic/pull/485",
+      "issue_number": 563,
+      "comments_count": 12
+    }
+  ]
+}

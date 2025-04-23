@@ -1,0 +1,53 @@
+{
+  "repo_name": "OpenCiviWiki",
+  "issue_pr_pairs": [
+    {
+      "issue_url": "https://github.com/CiviWiki/OpenCiviWiki/issues/1448",
+      "pr_url": "https://github.com/CiviWiki/OpenCiviWiki/pull/1491",
+      "issue_number": 1448,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/CiviWiki/OpenCiviWiki/issues/1405",
+      "pr_url": "https://github.com/CiviWiki/OpenCiviWiki/pull/1494",
+      "issue_number": 1405,
+      "comments_count": 16
+    },
+    {
+      "issue_url": "https://github.com/CiviWiki/OpenCiviWiki/issues/1053",
+      "pr_url": "https://github.com/CiviWiki/OpenCiviWiki/pull/1063",
+      "issue_number": 1053,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/CiviWiki/OpenCiviWiki/issues/230",
+      "pr_url": "https://github.com/CiviWiki/OpenCiviWiki/pull/473",
+      "issue_number": 230,
+      "comments_count": 36
+    },
+    {
+      "issue_url": "https://github.com/CiviWiki/OpenCiviWiki/issues/207",
+      "pr_url": "https://github.com/CiviWiki/OpenCiviWiki/pull/511",
+      "issue_number": 207,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/CiviWiki/OpenCiviWiki/issues/142",
+      "pr_url": "https://github.com/CiviWiki/OpenCiviWiki/pull/202",
+      "issue_number": 142,
+      "comments_count": 24
+    },
+    {
+      "issue_url": "https://github.com/CiviWiki/OpenCiviWiki/issues/141",
+      "pr_url": "https://github.com/CiviWiki/OpenCiviWiki/pull/202",
+      "issue_number": 141,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/CiviWiki/OpenCiviWiki/issues/127",
+      "pr_url": "https://github.com/CiviWiki/OpenCiviWiki/pull/1464",
+      "issue_number": 127,
+      "comments_count": 32
+    }
+  ]
+}

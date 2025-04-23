@@ -20,15 +20,27 @@
       "repo_url": "https://github.com/astropy/astropy"
     },
     {
-      "repo_name": "statsmodels",
-      "repo_url": "https://github.com/statsmodels/statsmodels"
-    },
-    {
       "repo_name": "scikit-learn",
       "repo_url": "https://github.com/scikit-learn/scikit-learn"
     },
     {
       "repo_name": "fastapi",
       "repo_url": "https://github.com/fastapi/fastapi"
+    },
+    {
+      "repo_name": "OpenCiviWiki",
+      "repo_url": "https://github.com/CiviWiki/OpenCiviWiki"
+    },
+    {
+      "repo_name": "bokeh",
+      "repo_url": "https://github.com/bokeh/bokeh"
+    },
+    {
+      "repo_name": "mindsdb",
+      "repo_url": "https://github.com/mindsdb/mindsdb"
+    },
+    {
+      "repo_name": "oppia",
+      "repo_url": "https://github.com/oppia/oppia"
     }
   ]

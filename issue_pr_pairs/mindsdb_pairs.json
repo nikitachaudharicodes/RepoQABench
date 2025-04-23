@@ -1,0 +1,53 @@
+{
+  "repo_name": "mindsdb",
+  "issue_pr_pairs": [
+    {
+      "issue_url": "https://github.com/mindsdb/mindsdb/issues/6693",
+      "pr_url": "https://github.com/mindsdb/mindsdb/pull/6820",
+      "issue_number": 6693,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/mindsdb/mindsdb/issues/5925",
+      "pr_url": "https://github.com/mindsdb/mindsdb/pull/5927",
+      "issue_number": 5925,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/mindsdb/mindsdb/issues/5688",
+      "pr_url": "https://github.com/mindsdb/mindsdb/pull/6166",
+      "issue_number": 5688,
+      "comments_count": 18
+    },
+    {
+      "issue_url": "https://github.com/mindsdb/mindsdb/issues/5274",
+      "pr_url": "https://github.com/mindsdb/mindsdb/pull/5284",
+      "issue_number": 5274,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/mindsdb/mindsdb/issues/3180",
+      "pr_url": "https://github.com/mindsdb/mindsdb/pull/3430",
+      "issue_number": 3180,
+      "comments_count": 13
+    },
+    {
+      "issue_url": "https://github.com/mindsdb/mindsdb/issues/2425",
+      "pr_url": "https://github.com/mindsdb/mindsdb/pull/6782",
+      "issue_number": 2425,
+      "comments_count": 17
+    },
+    {
+      "issue_url": "https://github.com/mindsdb/mindsdb/issues/2357",
+      "pr_url": "https://github.com/mindsdb/mindsdb/pull/5614",
+      "issue_number": 2357,
+      "comments_count": 32
+    },
+    {
+      "issue_url": "https://github.com/mindsdb/mindsdb/issues/1848",
+      "pr_url": "https://github.com/mindsdb/mindsdb/pull/2060",
+      "issue_number": 1848,
+      "comments_count": 10
+    }
+  ]
+}

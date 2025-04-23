@@ -1,0 +1,47 @@
+{
+  "repo_name": "scipy",
+  "issue_pr_pairs": [
+    {
+      "issue_url": "https://github.com/scipy/scipy/issues/20910",
+      "pr_url": "https://github.com/scipy/scipy/pull/20924",
+      "issue_number": 20910,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/scipy/scipy/issues/15733",
+      "pr_url": "https://github.com/scipy/scipy/pull/4003",
+      "issue_number": 15733,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/scipy/scipy/issues/15246",
+      "pr_url": "https://github.com/scipy/scipy/pull/15299",
+      "issue_number": 15246,
+      "comments_count": 14
+    },
+    {
+      "issue_url": "https://github.com/scipy/scipy/issues/14471",
+      "pr_url": "https://github.com/scipy/scipy/pull/7123",
+      "issue_number": 14471,
+      "comments_count": 29
+    },
+    {
+      "issue_url": "https://github.com/scipy/scipy/issues/13872",
+      "pr_url": "https://github.com/scipy/scipy/pull/14249",
+      "issue_number": 13872,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/scipy/scipy/issues/4720",
+      "pr_url": "https://github.com/numpy/numpy/pull/5800",
+      "issue_number": 4720,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/scipy/scipy/issues/2534",
+      "pr_url": "https://github.com/scipy/scipy/pull/5213",
+      "issue_number": 2534,
+      "comments_count": 12
+    }
+  ]
+}

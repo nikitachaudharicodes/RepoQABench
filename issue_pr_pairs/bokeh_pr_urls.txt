@@ -1,0 +1,5 @@
+https://github.com/bokeh/bokeh/pull/11513
+https://github.com/bokeh/bokeh/pull/10743
+https://github.com/bokeh/bokeh/pull/9906
+https://github.com/bokeh/bokeh/pull/4831
+https://github.com/ioam/holoviews/pull/1223

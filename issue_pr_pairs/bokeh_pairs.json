@@ -1,0 +1,35 @@
+{
+  "repo_name": "bokeh",
+  "issue_pr_pairs": [
+    {
+      "issue_url": "https://github.com/bokeh/bokeh/issues/11276",
+      "pr_url": "https://github.com/bokeh/bokeh/pull/11513",
+      "issue_number": 11276,
+      "comments_count": 12
+    },
+    {
+      "issue_url": "https://github.com/bokeh/bokeh/issues/10506",
+      "pr_url": "https://github.com/bokeh/bokeh/pull/10743",
+      "issue_number": 10506,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/bokeh/bokeh/issues/9907",
+      "pr_url": "https://github.com/bokeh/bokeh/pull/9906",
+      "issue_number": 9907,
+      "comments_count": 11
+    },
+    {
+      "issue_url": "https://github.com/bokeh/bokeh/issues/3125",
+      "pr_url": "https://github.com/bokeh/bokeh/pull/4831",
+      "issue_number": 3125,
+      "comments_count": 10
+    },
+    {
+      "issue_url": "https://github.com/bokeh/bokeh/issues/1671",
+      "pr_url": "https://github.com/ioam/holoviews/pull/1223",
+      "issue_number": 1671,
+      "comments_count": 21
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "repo_name": "pandas-dev_pandas",
+  "issue_id": "48527",
+  "issue_description": "# DOC: Fix styles for dark mode in docs home\n\nxref: #42744\r\n\r\nWe'll be making the pandas documentation have a dark mode soon. But some boxes in the docs home seem to have a white background, instead of a transparent one:\r\n\r\n![Screenshot_20220913_143553](https://user-images.githubusercontent.com/10058240/189917270-d613c001-ed12-4e21-aedf-2fe4d3cb8f20.png)\r\n\r\nWe should remove any custom style that is preventing the dark mode to work properly.\r\n\r\nThe changes can be tested against this branch to see if they work properly: #48285\r\n",
+  "issue_comments": [
+    {
+      "id": 1245499439,
+      "user": "valanm22",
+      "body": "@datapythonista May I work on this issue?"
+    },
+    {
+      "id": 1245502714,
+      "user": "datapythonista",
+      "body": "> @datapythonista May I work on this issue?\r\n\r\nSure, please do. Thanks @valanm22 "
+    },
+    {
+      "id": 1245505680,
+      "user": "valanm22",
+      "body": "Do I replace the old svg images or do I upload them as new svg images?"
+    },
+    {
+      "id": 1245506570,
+      "user": "datapythonista",
+      "body": "Better replace the old images."
+    },
+    {
+      "id": 1245507392,
+      "user": "valanm22",
+      "body": "Ok got it."
+    },
+    {
+      "id": 1245596139,
+      "user": "thekavikumar",
+      "body": "I'll also try to fix it"
+    },
+    {
+      "id": 1245654866,
+      "user": "datapythonista",
+      "body": "Looks like the problem are not the svg images, but the styles. I updated the description."
+    },
+    {
+      "id": 1245667770,
+      "user": "thekavikumar",
+      "body": "I'm not able to run python make.py HTML showing error module not found: No module named 'pandas._libs.interval\r\nany solution?"
+    },
+    {
+      "id": 1245730261,
+      "user": "datapythonista",
+      "body": "In the project root run `./setup.py build_ext --inplace` to compile pandas extensions, that should fix it. In the contributing documentation you have all the info."
+    },
+    {
+      "id": 1246160486,
+      "user": "thekavikumar",
+      "body": "That works! Now I will work on the styles and please do close this issue"
+    },
+    {
+      "id": 1334581613,
+      "user": "seanjedi",
+      "body": "Is this issue still open? \r\nSeems to be resolved? "
+    },
+    {
+      "id": 1369465552,
+      "user": "datapythonista",
+      "body": "The only thing I see that still doesn't show well in the dark mode is this section: https://pandas.pydata.org/docs/dev/getting_started/index.html#intro-to-pandas\r\n\r\nWe can close this issue when the background of that block is set to dark, and we check that things look good with it."
+    },
+    {
+      "id": 1385588464,
+      "user": "anushkabishnoi",
+      "body": "Hi I tried visiting the webpage you linked above, but since dark mode isn't released yet, it would be really helpful if you upload a screenshot of the portion to be modified. (willing to work on this issue :))"
+    },
+    {
+      "id": 1385842724,
+      "user": "datapythonista",
+      "body": "The dark mode is released. If you don't have your browser in dark mode, you can get it with the icon in the right top of the docs."
+    },
+    {
+      "id": 1386553553,
+      "user": "anushkabishnoi",
+      "body": "oh okay, thanks \r\n\r\nCan I work on this issue? "
+    },
+    {
+      "id": 1386556906,
+      "user": "anushkabishnoi",
+      "body": "> oh okay, thanks\r\n> \r\n> Can I work on this issue?\r\n\r\nThis is my first time working with open source, it would be really helpful if you could guide me to files that need modification. \r\n\r\nThanks in advance :)"
+    },
+    {
+      "id": 1386830892,
+      "user": "datapythonista",
+      "body": "Sure, thanks for the help. I think this PR should be similar to https://github.com/pandas-dev/pandas/pull/48572/files\r\n\r\nYou can build the documentation after creating an environment (see https://pandas.pydata.org/docs/dev/development/contributing_environment.html) running the make.py script inside doc/. The development documentation I point to has more detailed information."
+    },
+    {
+      "id": 1459147600,
+      "user": "PKNaveen",
+      "body": "is this issue closed or still open?"
+    },
+    {
+      "id": 1462032211,
+      "user": "datapythonista",
+      "body": "> is this issue closed or still open?\r\n\r\nThere is a PR open, it'll be merge shortly. But there is #51860, which is related and you can work on if you are looking for something to contribute."
+    }
+  ],
+  "text_context": "# DOC: Fix styles for dark mode in docs home\n\nxref: #42744\r\n\r\nWe'll be making the pandas documentation have a dark mode soon. But some boxes in the docs home seem to have a white background, instead of a transparent one:\r\n\r\n![Screenshot_20220913_143553](https://user-images.githubusercontent.com/10058240/189917270-d613c001-ed12-4e21-aedf-2fe4d3cb8f20.png)\r\n\r\nWe should remove any custom style that is preventing the dark mode to work properly.\r\n\r\nThe changes can be tested against this branch to see if they work properly: #48285\r\n\n\n@datapythonista May I work on this issue?\n\n> @datapythonista May I work on this issue?\r\n\r\nSure, please do. Thanks @valanm22 \n\nDo I replace the old svg images or do I upload them as new svg images?\n\nBetter replace the old images.\n\nOk got it.\n\nI'll also try to fix it\n\nLooks like the problem are not the svg images, but the styles. I updated the description.\n\nI'm not able to run python make.py HTML showing error module not found: No module named 'pandas._libs.interval\r\nany solution?\n\nIn the project root run `./setup.py build_ext --inplace` to compile pandas extensions, that should fix it. In the contributing documentation you have all the info.\n\nThat works! Now I will work on the styles and please do close this issue\n\nIs this issue still open? \r\nSeems to be resolved? \n\nThe only thing I see that still doesn't show well in the dark mode is this section: https://pandas.pydata.org/docs/dev/getting_started/index.html#intro-to-pandas\r\n\r\nWe can close this issue when the background of that block is set to dark, and we check that things look good with it.\n\nHi I tried visiting the webpage you linked above, but since dark mode isn't released yet, it would be really helpful if you upload a screenshot of the portion to be modified. (willing to work on this issue :))\n\nThe dark mode is released. If you don't have your browser in dark mode, you can get it with the icon in the right top of the docs.\n\noh okay, thanks \r\n\r\nCan I work on this issue? \n\n> oh okay, thanks\r\n> \r\n> Can I work on this issue?\r\n\r\nThis is my first time working with open source, it would be really helpful if you could guide me to files that need modification. \r\n\r\nThanks in advance :)\n\nSure, thanks for the help. I think this PR should be similar to https://github.com/pandas-dev/pandas/pull/48572/files\r\n\r\nYou can build the documentation after creating an environment (see https://pandas.pydata.org/docs/dev/development/contributing_environment.html) running the make.py script inside doc/. The development documentation I point to has more detailed information.\n\nis this issue closed or still open?\n\n> is this issue closed or still open?\r\n\r\nThere is a PR open, it'll be merge shortly. But there is #51860, which is related and you can work on if you are looking for something to contribute.",
+  "pr_link": "https://github.com/pandas-dev/pandas/pull/48572",
+  "code_context": [
+    {
+      "filename": "doc/source/_static/css/getting_started.css",
+      "content": "/* Getting started pages */\n\n/* data intro */\n.gs-data {\n  font-size: 0.9rem;\n}\n\n.gs-data-title {\n  align-items: center;\n  font-size: 0.9rem;\n}\n\n.gs-data-title .badge {\n  margin: 10px;\n  padding: 5px;\n}\n\n.gs-data .badge {\n  cursor: pointer;\n  padding: 10px;\n  border: none;\n  text-align: left;\n  outline: none;\n  font-size: 12px;\n}\n\n.gs-data .btn {\n background-color: grey;\n border: none;\n}\n\n/* note/alert properties */\n\n.alert-heading {\n  font-size: 1.2rem;\n}\n\n/* callout properties */\n.gs-callout {\n  padding: 20px;\n  margin: 20px 0;\n  border: 1px solid #eee;\n  border-left-width: 5px;\n  border-radius: 3px;\n}\n.gs-callout h4 {\n  margin-top: 0;\n  margin-bottom: 5px;\n}\n.gs-callout p:last-child {\n  margin-bottom: 0;\n}\n.gs-callout code {\n  border-radius: 3px;\n}\n.gs-callout+.gs-callout {\n  margin-top: -5px;\n}\n.gs-callout-remember {\n  border-left-color: #f0ad4e;\n  align-items: center;\n  font-size: 1.2rem;\n}\n.gs-callout-remember h4 {\n  color: #f0ad4e;\n}\n\n/* reference to user guide */\n.gs-torefguide {\n  align-items: center;\n  font-size: 0.9rem;\n}\n\n.gs-torefguide .badge {\n  background-color: #130654;\n  margin: 10px 10px 10px 0px;\n  padding: 5px;\n}\n\n.gs-torefguide a {\n  margin-left: 5px;\n  color: #130654;\n  border-bottom: 1px solid #FFCA00f3;\n  box-shadow: 0px -10px 0px #FFCA00f3 inset;\n}\n\n.gs-torefguide p {\n  margin-top: 1rem;\n}\n\n.gs-torefguide a:hover {\n  margin-left: 5px;\n  color: grey;\n  text-decoration: none;\n  border-bottom: 1px solid #b2ff80f3;\n  box-shadow: 0px -10px 0px #b2ff80f3 inset;\n}\n\n/* question-task environment */\n\nul.task-bullet, ol.custom-bullet{\n  list-style:none;\n  padding-left: 0;\n  margin-top: 2em;\n}\n\nul.task-bullet > li:before {\n    content:\"\";\n    height:2em;\n    width:2em;\n    display:block;\n    float:left;\n    margin-left:-2em;\n    background-position:center;\n    background-repeat:no-repeat;\n    background-color: #130654;\n    border-radius: 50%;\n    background-size:100%;\n    background-image:url('../question_mark_noback.svg');\n  }\n\nul.task-bullet > li {\n  border-left: 1px solid #130654;\n  padding-left:1em;\n}\n\nul.task-bullet > li > p:first-child {\n  font-size: 1.1rem;\n  padding-left: 0.75rem;\n}\n\n/* Getting started index page */\n\n.comparison-card {\n  background:#FFF;\n  border-radius:0;\n  padding: 30px 10px 10px 10px;\n  margin: 10px 0px;\n}\n\n.comparison-card p.card-text {\n  margin: 0px;\n}\n\n.comparison-card .card-img-top {\n  margin: 10px;\n  margin-bottom: 20px;\n  height: 72px;\n}\n\n.comparison-card-excel .card-img-top, .comparison-card-stata .card-img-top, .comparison-card-sas .card-img-top {\n  height: 52px;\n}\n\n.comparison-card .card-footer {\n  border: none;\n  background-color: transparent;\n}\n\n.install-block {\n  padding-bottom: 30px;\n}\n\n.install-card .card-header {\n  border: none;\n  background-color: transparent;\n  padding: 1rem 1rem 0rem 1rem;\n}\n\n.install-card .card-header p.card-text {\n  font-size: 1.1rem;\n  font-weight: bold;\n}\n\n.install-card .card-footer {\n  border: none;\n  background-color: transparent;\n}\n\n.install-card pre {\n  margin: 0 1em 1em 1em;\n}\n\n.custom-button {\n  background-color:#DCDCDC;\n  border: none;\n  color: #484848;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 0.9rem;\n  border-radius: 0.5rem;\n  max-width: 120px;\n  padding: 0.5rem 0rem;\n}\n\n.custom-button a {\n  color: #484848;\n}\n\n.custom-button p {\n  margin-top: 0;\n  margin-bottom: 0rem;\n  color: #484848;\n}\n\n/* intro to tutorial collapsed cards */\n\n.tutorial-accordion {\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n\n.tutorial-card .card-header.card-link .btn {\n  margin-right: 12px;\n}\n\n.tutorial-card .card-header.card-link .btn:after {\n  content: \"-\";\n}\n\n.tutorial-card .card-header.card-link.collapsed .btn:after {\n  content: \"+\";\n}\n\n.tutorial-card-header-1 {\n  justify-content: space-between;\n  align-items: center;\n}\n\n.tutorial-card-header-2 {\n  justify-content: flex-start;\n  align-items: center;\n  font-size: 1.3rem;\n}\n\n.tutorial-card .card-header {\n  cursor: pointer;\n  background-color: white;\n}\n\n.tutorial-card .card-body {\n  background-color: #F0F0F0;\n}\n\n.tutorial-card .badge {\n  background-color: #130654;\n  margin: 10px 10px 10px 10px;\n  padding: 5px;\n}\n\n.tutorial-card .gs-badge-link p {\n  margin: 0px;\n}\n\n.tutorial-card .gs-badge-link a {\n  color: white;\n  text-decoration: none;\n}\n\n.tutorial-card .badge:hover {\n  background-color: grey;\n}\n"
+    },
+    {
+      "filename": "doc/source/_static/css/pandas.css",
+      "content": "/* Override some aspects of the pydata-sphinx-theme */\n\n:root {\n  /* Use softer blue from bootstrap's default info color */\n  --pst-color-info: 23, 162, 184;\n}\n\n/* Main index page overview cards */\n\n.intro-card {\n  background: #fff;\n  border-radius: 0;\n  padding: 30px 10px 20px 10px;\n  margin: 10px 0px;\n}\n\n.intro-card p.card-text {\n  margin: 0px;\n}\n\n.intro-card .card-img-top {\n  margin: 10px;\n  height: 52px;\n}\n\n.intro-card .card-header {\n  border: none;\n  background-color: transparent;\n  color: #150458 !important;\n  font-size: var(--pst-font-size-h5);\n  font-weight: bold;\n  padding: 2.5rem 0rem 0.5rem 0rem;\n}\n\n.intro-card .card-footer {\n  border: none;\n  background-color: transparent;\n}\n\n.intro-card .card-footer p.card-text{\n  max-width: 220px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.card, .card img {\n  background-color: transparent !important;\n}\n"
+    }
+  ]
+}

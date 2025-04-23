@@ -1,0 +1,165 @@
+{
+  "repo_name": "oppia_oppia",
+  "issue_id": "4231",
+  "issue_description": "# The \"Add Response\" tab in creator view can not be scrolled down. \n\nRepro Steps:\r\n\r\n1.  Go to CREATE option in Creator Dashboard.\r\n2.  Choose Item Selection Interaction.\r\n3.  Try to Add Response like - ![screen shot 2017-12-18 at 4 20 49 pm](https://user-images.githubusercontent.com/26625980/34103230-05cff3d4-e412-11e7-9f71-629eb3349c9c.png)\r\n\r\nObserved:  The page can not be scrolled down when the option \"If the learner's answer...\"  is changed.\r\nExpected:  It should scroll smoothly up and down. ",
+  "issue_comments": [
+    {
+      "id": 353075414,
+      "user": "darthgera123",
+      "body": "Ill work on this issue\r\nPlease Guide"
+    },
+    {
+      "id": 353104254,
+      "user": "vibhor98",
+      "body": "Sure! Firstly, try to reproduce it. It requires little bit of debugging. Then, try inspecting and finding the related file.\r\n"
+    },
+    {
+      "id": 353658457,
+      "user": "darthgera123",
+      "body": "Yeah ive reproduced it and im not able to find where the error in the file is.  Though in the related modal css there is overflow hidden written which prevents it from scrolling down, its there even when the modal is scrollable.Please Guide "
+    },
+    {
+      "id": 353708683,
+      "user": "vibhor98",
+      "body": "@darthgera123 , I have to  check myself first. @shubha1593 , please help him."
+    },
+    {
+      "id": 353744529,
+      "user": "shubha1593",
+      "body": "@darthgera123, is this behaviour just happening with 'Item Selection' interaction or is it occurring for other interactions as well ?"
+    },
+    {
+      "id": 353854777,
+      "user": "darthgera123",
+      "body": "Its only present with Item Selection only"
+    },
+    {
+      "id": 354656464,
+      "user": "darthgera123",
+      "body": "Hello, i am trying to fix this issue but i am not able to identify the root cause, as the page kinda gets reloaded and gets stuck just before loading. Please guide"
+    },
+    {
+      "id": 354660016,
+      "user": "shubha1593",
+      "body": "@darthgera123, can you be more specific, changes you might have made in the code, screenshots or error logs you might be getting?"
+    },
+    {
+      "id": 411297093,
+      "user": "unit-00",
+      "body": "Hey @vibhor98 ,\r\n\r\nhow many images are you adding to reproduce the bug? I'm currently trying to reproduce it with 13 images with resolutions of 225 x 225, but I'm not able to achieve it. \r\n\r\nCurrently on osx and chrome v68, and I'm able to scroll down still. \r\n\r\nI'm thinking my images are either too little or too small.\r\n\r\n<img width=\"596\" alt=\"screen shot 2018-08-07 at 23 09 32\" src=\"https://user-images.githubusercontent.com/10623811/43819251-fff35406-9a96-11e8-9ea8-596401fb70cb.png\">\r\n\r\nSide note, @seanlip , I have noticed the bottom of the image turn into cross. Is that the intended behavior?\r\n\r\nEdit: @vibhor98 , please scratch what I said earlier. I was able to reproduce the bug finally! I didn't see that I needed to change the \"if the learner's answer...\" option."
+    },
+    {
+      "id": 411300956,
+      "user": "seanlip",
+      "body": "> ... I have noticed the bottom of the image turn into cross. Is that the intended behavior?\r\n\r\nNo, it's not. I have no idea why that's happening -- perhaps @ishucr7 can help?"
+    },
+    {
+      "id": 411333109,
+      "user": "vibhor98",
+      "body": "@unit-00 , FYI this issue is common to all the 'Add Response' models of the interactions that need scrolling. You need to just add as many options as required (image size doesn't matter) to need scrolling of the model. \r\n\r\n@seanlip, AFAIK, this issue is there from the beginning itself when we add images in other interactions as well."
+    },
+    {
+      "id": 416335587,
+      "user": "unit-00",
+      "body": "Hi everyone, \r\n\r\ngiving an update on this issue. \r\n\r\nSo far I've tried playing with the z-index, the overflow property, and also changing the height based on several SO posts.\r\nHere are some of my observations thus far.\r\n\r\n- When adding `overflow-y: auto;` to the html or the body element, the modal can be scrolled via 2 finger touch on OSX 10.13.3 but cannot the scroll bar cannot be clicked nor dragged. \r\n    - Here's a gif to show this, but I've also gotten reports that people cannot two finger scroll. Additionally, the elements aren't where you click them and on the very bottom where the modal ends, you can scroll the background.\r\n\r\n![issue-4231](https://user-images.githubusercontent.com/10623811/44679763-adec7480-a9f0-11e8-918e-839e6286dc5e.gif)\r\n\r\n- I've also ran oppia on safari, and interestingly, I've found that without changing anything the scroll shoots/bounces back up when scrolled down. \r\n    - Here's a gif to show this, though I apologize, the bouncing effect isn't as prominent in the gif. \r\n\r\n![issue-4231-safari](https://user-images.githubusercontent.com/10623811/44679984-57336a80-a9f1-11e8-8ef3-8e96db26c1af.gif)\r\n\r\nNone of the other properties that I've changed has had any impact on scrolling.\r\n\r\nI've tried to compare css from oppia to bootstrap's css for [scrolling modal](https://getbootstrap.com/docs/4.0/components/modal/#scrolling-long-content), and it seems as though the modal has been implemented accordingly.\r\n\r\nRight now I'm trying to narrow down if there's a js or jquery cause other than css. \r\n\r\nIf anyone has any recommendations, I'd love to have new perspectives on what I should try next or look into. \r\n\r\nPlease and thank you.\r\n"
+    },
+    {
+      "id": 416499399,
+      "user": "seanlip",
+      "body": "Hi @unit-00, thanks for the detailed writeup! \r\n\r\nOne thought for a path to investigate: does this happen with a plain vanilla app that uses just the standard bootstrap modal (or maybe the standard angular-bootstrap modal)? I think a good way to figure out what's going on might be: create a vanilla implementation of the modal that works correctly, then try to narrow down the difference between the two modals (e.g. try to make the implementation of the vanilla modal more similar to the oppia one) until the vanilla modal breaks. That should give some insight into what's causing the issue. What do you think?"
+    },
+    {
+      "id": 416678648,
+      "user": "unit-00",
+      "body": "Hi @seanlip ,\r\n\r\nI think that's actually a great idea. I tried to rebuild the modal with a similar css in codepen, but I wasn't sure which js is running in the background thus I didn't rebuild it properly.\r\n\r\nHow do I go about building a plain vanilla app with the standard angular-bootstrap modal with the proper js?\r\n\r\nPS. If anyone else wants to solve this issue, please feel welcome. I am trying my best, but the quicker we can solve this, the better it would be. "
+    },
+    {
+      "id": 416687568,
+      "user": "vibhor98",
+      "body": "Hi @unit-00,  please look at this example of [bootstrap modal](https://getbootstrap.com/docs/4.0/components/modal/#scrolling-long-content). Here bootstrap with JS example is given referring which you can implement vanilla app without using AngularJS and later on, if it works you can extent your work with Angular as well. Let me know if you've any doubt."
+    },
+    {
+      "id": 416690120,
+      "user": "unit-00",
+      "body": "Hey @vibhor98 ,\r\n\r\nI'll try to reimplement it again!\r\n\r\nQuick follow up question, when changing the options, is the `rule_editor` being called upon?"
+    },
+    {
+      "id": 416796745,
+      "user": "vibhor98",
+      "body": "Hi @unit-00, yes, the `rule_editor` is called when we change the options in the dropdown as different rules in same interaction may have different rule editors as well.  "
+    },
+    {
+      "id": 420371958,
+      "user": "jacobdavis11",
+      "body": "@unit-00 are you still working on this?"
+    },
+    {
+      "id": 421524623,
+      "user": "unit-00",
+      "body": "Hey @jacobdavis11 ,\r\n\r\nI haven't been able to spend much time on it. If you want to take a go at it, please do. "
+    },
+    {
+      "id": 422085252,
+      "user": "jacobdavis11",
+      "body": "I'll de-assign you for now; please re-assign yourself if you'd like to resume work in the future."
+    },
+    {
+      "id": 453832278,
+      "user": "mjprince",
+      "body": "@aks681 @seanlip @unit-00 @nithusha21 @DubeySandeep @jacobdavis11 @vibhor98 \r\nHi, I am John Prince Mesape, and I am interested in contributing to Oppia for and after GSoC 2019.\r\n\r\nAfter having a look at this issue, \r\n\r\n- I have noticed that the modal is re-rendered after we change contents of the rule-editor directive, which in itself is a form.\r\n\r\n- Now if during the first render, there is no scroll problem; but subsequent select change cause this error, I am pretty sure that this has to do with some javascript or props that are not reset after the rule-edit content is changed.\r\n\r\n- After having a vague look at how the bootstrap modal does its scrolling, my guess is that it is done via javascript; and the interface confirms this, because there is no clearly visible scroll when the content of the modal is greater than the viewport.\r\n\r\nSo far, I can propose a temporal solution to this error using CSS, and the content of the modal will scrolls normally even after the rule-editor directive is changed, but this will imply setting a max-height on the modal content.\r\nIf you all are willing, I can do a pull request with this; while we keep investigating the javascript-related bug.\r\n\r\nHere is how it works:\r\n\r\n![ezgif com-optimize](https://user-images.githubusercontent.com/45537681/51086198-dc6eb000-1743-11e9-90a6-63f947d03a11.gif)\r\n\r\n\r\nPlease, anyone, feel free to work on this as well and share updates, because I do not think that we like oppia with this error."
+    },
+    {
+      "id": 453843808,
+      "user": "seanlip",
+      "body": "Hi @mjprince, thank you for taking a detailed look at this! I like the solution you propose. If there is no interior scrollbar showing when the \"if the learner's answer\" section's content is not too tall, then I think it is a perfectly fine solution and will resolve this issue.\r\n\r\nSo, please feel free to go ahead and submit a PR that implements your approach. Thanks!"
+    },
+    {
+      "id": 453862667,
+      "user": "mjprince",
+      "body": "@seanlip ok\r\n"
+    },
+    {
+      "id": 466402751,
+      "user": "bansalnitish",
+      "body": "Hi @mjprince, Any updates on this issue ? \r\n\r\nOr are you stuck anywhere ? Let us know, we'll be happy to help you out :)."
+    },
+    {
+      "id": 466405109,
+      "user": "mjprince",
+      "body": "Hi @bansalnitish.\r\nI have made a pull request on this issue, https://github.com/oppia/oppia/pull/6116\r\nAll my changes are clearly mentioned on that PR.\r\n\r\nAnd this pull request has been merged already.\r\nHowever, I am open to learning, so if there is anything I could do better, kindly mention it on the pull request.\r\n\r\nThanks.\r\n"
+    },
+    {
+      "id": 466407924,
+      "user": "bansalnitish",
+      "body": "Hi @mjprince, Oh great! Thanks for the same. Just don't forget to follow the checklist in the PR. Ideally, you should add Fixes #bugnum in the PR description. This would automatically close the issue once the PR is merged :).\r\n\r\nCould you take up an issue from the `To-do` list -- https://github.com/oppia/oppia/projects/27? These are user-facing bugs (and high-priority ones!) and we need to bring down the count of these. I think you could help us out here. Let me know if you want to work on any of these, I'll assign you one. \r\n\r\nThanks!"
+    },
+    {
+      "id": 466408131,
+      "user": "bansalnitish",
+      "body": "Closing this one. This is fixed via PR #6116."
+    },
+    {
+      "id": 467661490,
+      "user": "mjprince",
+      "body": "Hi Bansal,\n\nI would like to work on any of the following two issues:\n\n- https://github.com/oppia/oppia/issues/6325\n- https://github.com/oppia/oppia/issues/6285\n\nHowever, if there are any high priority issues which you would like me to\nwork on, please let me know.\n\nRegards,\n\nLe ven. 22 févr. 2019 à 15:09, Nitish Bansal <notifications@github.com> a\nécrit :\n\n> Closed #4231 <https://github.com/oppia/oppia/issues/4231>.\n>\n> —\n> You are receiving this because you were mentioned.\n> Reply to this email directly, view it on GitHub\n> <https://github.com/oppia/oppia/issues/4231#event-2157940509>, or mute\n> the thread\n> <https://github.com/notifications/unsubscribe-auth/ArbZkRmt4jqqQt6TWM2yHUSfEqi5VsM6ks5vP_oMgaJpZM4RFUgj>\n> .\n>\n"
+    },
+    {
+      "id": 468809191,
+      "user": "bansalnitish",
+      "body": "Hi @mjprince, \r\n\r\nAre you working on any issue? If not, could you take up one from the To do list that I mentioned in my above comment? Those are some high priority issues that we are looking to fix currently. \r\n\r\nThanks!"
+    },
+    {
+      "id": 469037417,
+      "user": "mjprince",
+      "body": "Ok. Just did.\n\nLe ven. 1 mars 2019 à 21:57, Nitish Bansal <notifications@github.com> a\nécrit :\n\n> Hi @mjprince <https://github.com/mjprince>,\n>\n> Are you working on any issue? If not, could you take up one from the To do\n> list that I mentioned in my above comment? Those are some high priority\n> issues that we are looking to fix currently.\n>\n> Thanks!\n>\n> —\n> You are receiving this because you were mentioned.\n> Reply to this email directly, view it on GitHub\n> <https://github.com/oppia/oppia/issues/4231#issuecomment-468809191>, or mute\n> the thread\n> <https://github.com/notifications/unsubscribe-auth/ArbZkVwZT8N_mEf9vIRfNnaR9eD-gPwZks5vSZRDgaJpZM4RFUgj>\n> .\n>\n"
+    }
+  ],
+  "text_context": "# The \"Add Response\" tab in creator view can not be scrolled down. \n\nRepro Steps:\r\n\r\n1.  Go to CREATE option in Creator Dashboard.\r\n2.  Choose Item Selection Interaction.\r\n3.  Try to Add Response like - ![screen shot 2017-12-18 at 4 20 49 pm](https://user-images.githubusercontent.com/26625980/34103230-05cff3d4-e412-11e7-9f71-629eb3349c9c.png)\r\n\r\nObserved:  The page can not be scrolled down when the option \"If the learner's answer...\"  is changed.\r\nExpected:  It should scroll smoothly up and down. \n\nIll work on this issue\r\nPlease Guide\n\nSure! Firstly, try to reproduce it. It requires little bit of debugging. Then, try inspecting and finding the related file.\r\n\n\nYeah ive reproduced it and im not able to find where the error in the file is.  Though in the related modal css there is overflow hidden written which prevents it from scrolling down, its there even when the modal is scrollable.Please Guide \n\n@darthgera123 , I have to  check myself first. @shubha1593 , please help him.\n\n@darthgera123, is this behaviour just happening with 'Item Selection' interaction or is it occurring for other interactions as well ?\n\nIts only present with Item Selection only\n\nHello, i am trying to fix this issue but i am not able to identify the root cause, as the page kinda gets reloaded and gets stuck just before loading. Please guide\n\n@darthgera123, can you be more specific, changes you might have made in the code, screenshots or error logs you might be getting?\n\nHey @vibhor98 ,\r\n\r\nhow many images are you adding to reproduce the bug? I'm currently trying to reproduce it with 13 images with resolutions of 225 x 225, but I'm not able to achieve it. \r\n\r\nCurrently on osx and chrome v68, and I'm able to scroll down still. \r\n\r\nI'm thinking my images are either too little or too small.\r\n\r\n<img width=\"596\" alt=\"screen shot 2018-08-07 at 23 09 32\" src=\"https://user-images.githubusercontent.com/10623811/43819251-fff35406-9a96-11e8-9ea8-596401fb70cb.png\">\r\n\r\nSide note, @seanlip , I have noticed the bottom of the image turn into cross. Is that the intended behavior?\r\n\r\nEdit: @vibhor98 , please scratch what I said earlier. I was able to reproduce the bug finally! I didn't see that I needed to change the \"if the learner's answer...\" option.\n\n> ... I have noticed the bottom of the image turn into cross. Is that the intended behavior?\r\n\r\nNo, it's not. I have no idea why that's happening -- perhaps @ishucr7 can help?\n\n@unit-00 , FYI this issue is common to all the 'Add Response' models of the interactions that need scrolling. You need to just add as many options as required (image size doesn't matter) to need scrolling of the model. \r\n\r\n@seanlip, AFAIK, this issue is there from the beginning itself when we add images in other interactions as well.\n\nHi everyone, \r\n\r\ngiving an update on this issue. \r\n\r\nSo far I've tried playing with the z-index, the overflow property, and also changing the height based on several SO posts.\r\nHere are some of my observations thus far.\r\n\r\n- When adding `overflow-y: auto;` to the html or the body element, the modal can be scrolled via 2 finger touch on OSX 10.13.3 but cannot the scroll bar cannot be clicked nor dragged. \r\n    - Here's a gif to show this, but I've also gotten reports that people cannot two finger scroll. Additionally, the elements aren't where you click them and on the very bottom where the modal ends, you can scroll the background.\r\n\r\n![issue-4231](https://user-images.githubusercontent.com/10623811/44679763-adec7480-a9f0-11e8-918e-839e6286dc5e.gif)\r\n\r\n- I've also ran oppia on safari, and interestingly, I've found that without changing anything the scroll shoots/bounces back up when scrolled down. \r\n    - Here's a gif to show this, though I apologize, the bouncing effect isn't as prominent in the gif. \r\n\r\n![issue-4231-safari](https://user-images.githubusercontent.com/10623811/44679984-57336a80-a9f1-11e8-8ef3-8e96db26c1af.gif)\r\n\r\nNone of the other properties that I've changed has had any impact on scrolling.\r\n\r\nI've tried to compare css from oppia to bootstrap's css for [scrolling modal](https://getbootstrap.com/docs/4.0/components/modal/#scrolling-long-content), and it seems as though the modal has been implemented accordingly.\r\n\r\nRight now I'm trying to narrow down if there's a js or jquery cause other than css. \r\n\r\nIf anyone has any recommendations, I'd love to have new perspectives on what I should try next or look into. \r\n\r\nPlease and thank you.\r\n\n\nHi @unit-00, thanks for the detailed writeup! \r\n\r\nOne thought for a path to investigate: does this happen with a plain vanilla app that uses just the standard bootstrap modal (or maybe the standard angular-bootstrap modal)? I think a good way to figure out what's going on might be: create a vanilla implementation of the modal that works correctly, then try to narrow down the difference between the two modals (e.g. try to make the implementation of the vanilla modal more similar to the oppia one) until the vanilla modal breaks. That should give some insight into what's causing the issue. What do you think?\n\nHi @seanlip ,\r\n\r\nI think that's actually a great idea. I tried to rebuild the modal with a similar css in codepen, but I wasn't sure which js is running in the background thus I didn't rebuild it properly.\r\n\r\nHow do I go about building a plain vanilla app with the standard angular-bootstrap modal with the proper js?\r\n\r\nPS. If anyone else wants to solve this issue, please feel welcome. I am trying my best, but the quicker we can solve this, the better it would be. \n\nHi @unit-00,  please look at this example of [bootstrap modal](https://getbootstrap.com/docs/4.0/components/modal/#scrolling-long-content). Here bootstrap with JS example is given referring which you can implement vanilla app without using AngularJS and later on, if it works you can extent your work with Angular as well. Let me know if you've any doubt.\n\nHey @vibhor98 ,\r\n\r\nI'll try to reimplement it again!\r\n\r\nQuick follow up question, when changing the options, is the `rule_editor` being called upon?\n\nHi @unit-00, yes, the `rule_editor` is called when we change the options in the dropdown as different rules in same interaction may have different rule editors as well.  \n\n@unit-00 are you still working on this?\n\nHey @jacobdavis11 ,\r\n\r\nI haven't been able to spend much time on it. If you want to take a go at it, please do. \n\nI'll de-assign you for now; please re-assign yourself if you'd like to resume work in the future.\n\n@aks681 @seanlip @unit-00 @nithusha21 @DubeySandeep @jacobdavis11 @vibhor98 \r\nHi, I am John Prince Mesape, and I am interested in contributing to Oppia for and after GSoC 2019.\r\n\r\nAfter having a look at this issue, \r\n\r\n- I have noticed that the modal is re-rendered after we change contents of the rule-editor directive, which in itself is a form.\r\n\r\n- Now if during the first render, there is no scroll problem; but subsequent select change cause this error, I am pretty sure that this has to do with some javascript or props that are not reset after the rule-edit content is changed.\r\n\r\n- After having a vague look at how the bootstrap modal does its scrolling, my guess is that it is done via javascript; and the interface confirms this, because there is no clearly visible scroll when the content of the modal is greater than the viewport.\r\n\r\nSo far, I can propose a temporal solution to this error using CSS, and the content of the modal will scrolls normally even after the rule-editor directive is changed, but this will imply setting a max-height on the modal content.\r\nIf you all are willing, I can do a pull request with this; while we keep investigating the javascript-related bug.\r\n\r\nHere is how it works:\r\n\r\n![ezgif com-optimize](https://user-images.githubusercontent.com/45537681/51086198-dc6eb000-1743-11e9-90a6-63f947d03a11.gif)\r\n\r\n\r\nPlease, anyone, feel free to work on this as well and share updates, because I do not think that we like oppia with this error.\n\nHi @mjprince, thank you for taking a detailed look at this! I like the solution you propose. If there is no interior scrollbar showing when the \"if the learner's answer\" section's content is not too tall, then I think it is a perfectly fine solution and will resolve this issue.\r\n\r\nSo, please feel free to go ahead and submit a PR that implements your approach. Thanks!\n\n@seanlip ok\r\n\n\nHi @mjprince, Any updates on this issue ? \r\n\r\nOr are you stuck anywhere ? Let us know, we'll be happy to help you out :).\n\nHi @bansalnitish.\r\nI have made a pull request on this issue, https://github.com/oppia/oppia/pull/6116\r\nAll my changes are clearly mentioned on that PR.\r\n\r\nAnd this pull request has been merged already.\r\nHowever, I am open to learning, so if there is anything I could do better, kindly mention it on the pull request.\r\n\r\nThanks.\r\n\n\nHi @mjprince, Oh great! Thanks for the same. Just don't forget to follow the checklist in the PR. Ideally, you should add Fixes #bugnum in the PR description. This would automatically close the issue once the PR is merged :).\r\n\r\nCould you take up an issue from the `To-do` list -- https://github.com/oppia/oppia/projects/27? These are user-facing bugs (and high-priority ones!) and we need to bring down the count of these. I think you could help us out here. Let me know if you want to work on any of these, I'll assign you one. \r\n\r\nThanks!\n\nClosing this one. This is fixed via PR #6116.\n\nHi Bansal,\n\nI would like to work on any of the following two issues:\n\n- https://github.com/oppia/oppia/issues/6325\n- https://github.com/oppia/oppia/issues/6285\n\nHowever, if there are any high priority issues which you would like me to\nwork on, please let me know.\n\nRegards,\n\nLe ven. 22 févr. 2019 à 15:09, Nitish Bansal <notifications@github.com> a\nécrit :\n\n> Closed #4231 <https://github.com/oppia/oppia/issues/4231>.\n>\n> —\n> You are receiving this because you were mentioned.\n> Reply to this email directly, view it on GitHub\n> <https://github.com/oppia/oppia/issues/4231#event-2157940509>, or mute\n> the thread\n> <https://github.com/notifications/unsubscribe-auth/ArbZkRmt4jqqQt6TWM2yHUSfEqi5VsM6ks5vP_oMgaJpZM4RFUgj>\n> .\n>\n\n\nHi @mjprince, \r\n\r\nAre you working on any issue? If not, could you take up one from the To do list that I mentioned in my above comment? Those are some high priority issues that we are looking to fix currently. \r\n\r\nThanks!\n\nOk. Just did.\n\nLe ven. 1 mars 2019 à 21:57, Nitish Bansal <notifications@github.com> a\nécrit :\n\n> Hi @mjprince <https://github.com/mjprince>,\n>\n> Are you working on any issue? If not, could you take up one from the To do\n> list that I mentioned in my above comment? Those are some high priority\n> issues that we are looking to fix currently.\n>\n> Thanks!\n>\n> —\n> You are receiving this because you were mentioned.\n> Reply to this email directly, view it on GitHub\n> <https://github.com/oppia/oppia/issues/4231#issuecomment-468809191>, or mute\n> the thread\n> <https://github.com/notifications/unsubscribe-auth/ArbZkVwZT8N_mEf9vIRfNnaR9eD-gPwZks5vSZRDgaJpZM4RFUgj>\n> .\n>\n",
+  "pr_link": "https://github.com/oppia/oppia/pull/6116",
+  "code_context": [
+    {
+      "filename": "core/templates/dev/head/components/rule_editor_directive.html",
+      "content": "<div style=\"position: relative;\">\n  <form class=\"form-inline protractor-test-rule-details\" role=\"form\" name=\"ruleEditForm.form\">\n    <div ng-if=\"rule.type != 'FuzzyMatches'\">\n      <rule-type-selector class=\"protractor-test-answer-description\" local-value=\"<[rule.type]>\" on-selection-change=\"onSelectNewRuleType\">\n      </rule-type-selector>\n\n      <span ng-repeat=\"item in ruleDescriptionFragments track by $index\" class=\"form-group protractor-test-answer-description-fragment\" style=\"margin-right: 5px; width: 100%;\">\n        <span ng-if=\"item.type == 'select'\" style=\"color: black;\">\n          <span ng-if=\"ruleDescriptionChoices.length === 1\">\n            \"<[ruleDescriptionChoices[0].val|convertToPlainText|truncate]>\"\n          </span>\n          <span ng-if=\"ruleDescriptionChoices.length !== 1\">\n            <html-select style=\"width: 250px;\" options=\"ruleDescriptionChoices\" selection=\"rule.inputs[item.varName]\">\n            </html-select>\n          </span>\n        </span>\n\n        <div style=\"max-height: 320px;\n        overflow-y: auto;\n        overflow-x: hidden;\n        text-overflow: ellipsis;\">\n          <span ng-if=\"item.type == 'checkboxes'\" style=\"color: black;\">\n            <object-editor obj-type=\"SetOfHtmlString\" init-args=\"{choices: ruleDescriptionChoices}\" value=\"rule.inputs[item.varName]\"></object-editor>\n          </span>\n          <span ng-if=\"item.type == 'dropdown'\" style=\"color: black;\">\n            <object-editor obj-type=\"ListOfSetsOfHtmlStrings\" init-args=\"{choices: ruleDescriptionChoices}\" value=\"rule.inputs[item.varName]\"></object-editor>\n          </span>\n          <span ng-if=\"item.type == 'dragAndDropHtmlStringSelect'\" style=\"color: black;\">\n            <object-editor obj-type=\"DragAndDropHtmlString\" init-args=\"{choices: ruleDescriptionChoices}\" value=\"rule.inputs[item.varName]\"></object-editor>\n          </span>\n          <span ng-if=\"item.type == 'dragAndDropPositiveIntSelect'\" style=\"color: black;\">\n            <object-editor obj-type=\"DragAndDropPositiveInt\" init-args=\"{choices: ruleDescriptionChoices}\" value=\"rule.inputs[item.varName]\"></object-editor>\n          </span>\n          <span ng-if=\"item.type != 'select' && item.type != 'noneditable'\">\n            <object-editor obj-type=\"<[item.type]>\" is-editable=\"isEditable\" always-editable=\"true\" value=\"rule.inputs[item.varName]\" style=\"color: black;\"></object-editor>\n          </span>\n          <span ng-if=\"item.type == 'noneditable'\">\n            <[item.text]>\n          </span>\n        </div>\n      </span>\n    </div>\n  </form>\n\n  <div class=\"oppia-rule-save-cancel-buttons\" ng-if=\"isEditingRuleInline()\">\n    <div class=\"pull-right\">\n      <button type=\"button\" class=\"btn btn-default\" ng-click=\"cancelThisEdit()\">Cancel</button>\n      <button type=\"button\" class=\"btn btn-success protractor-test-save-answer\" ng-disabled=\"ruleEditForm.form.$invalid\" ng-click=\"saveThisRule()\">Save Answer</button>\n    </div>\n\n    <div style=\"clear: both;\"></div>\n  </div>\n</div>\n"
+    }
+  ]
+}

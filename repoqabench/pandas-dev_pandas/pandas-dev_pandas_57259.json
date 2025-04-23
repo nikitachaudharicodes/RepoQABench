@@ -1,0 +1,70 @@
+{
+  "repo_name": "pandas-dev_pandas",
+  "issue_id": "57259",
+  "issue_description": "# DOC: `CategoricalDtype` equality semantics aren't completely described\n\n### Pandas version checks\r\n\r\n- [X] I have checked that the issue still exists on the latest versions of the docs on `main` [here](https://pandas.pydata.org/docs/dev/)\r\n\r\n\r\n### Location of the documentation\r\n\r\nhttps://pandas.pydata.org/docs/user_guide/categorical.html#equality-semantics\r\n\r\nhttps://github.com/pandas-dev/pandas/blob/main/pandas/core/dtypes/dtypes.py#L407\r\n\r\n### Documentation problem\r\n\r\nProblematic [statement 1](https://pandas.pydata.org/docs/user_guide/categorical.html#equality-semantics\r\n):\r\n\r\n> Two instances of `CategoricalDtype` compare equal whenever they have the same categories and order.\r\n\r\n\r\nProblematic [statement 2](https://github.com/pandas-dev/pandas/blob/main/pandas/core/dtypes/dtypes.py#L407):\r\n\r\n> 5) A CDT with ordered={False, None} is only equal to another CDT with\r\n           ordered={False, None} and identical categories.\r\n\r\n\r\nCounter-example:\r\n\r\n```py\r\n>>> a = pd.Categorical(np.full(2, np.nan, dtype=object))\r\n>>> b = pd.Categorical(np.full(2, np.nan))\r\n\r\n>>> a, b\r\n([NaN, NaN]\r\n Categories (0, object): [],\r\n [NaN, NaN]\r\n Categories (0, float64): [])\r\n\r\n>>> a.dtype, b.dtype\r\n(CategoricalDtype(categories=[], ordered=False, categories_dtype=object),\r\n CategoricalDtype(categories=[], ordered=False, categories_dtype=float64))\r\n\r\n>>> a.dtype == b.dtype\r\nFalse\r\n```\r\n\r\nAs we can see, they both have `ordered=False`, and their `categories` are same.\r\nFollowing the documentation, they should be equal.\r\n\r\n\r\n### Suggested fix for documentation\r\n\r\nto have accurate and exhaustive descriptions",
+  "issue_comments": [
+    {
+      "id": 1928213436,
+      "user": "rhshadrach",
+      "body": "Thanks for the report.\r\n\r\n> As we can see, they both have ordered=False, and their categories are same.\r\n\r\nThough both empty, two arrays of different dtypes are not the same.\r\n\r\nI suppose \"including their dtypes\" would be okay to add."
+    },
+    {
+      "id": 1928657697,
+      "user": "luke396",
+      "body": "take"
+    },
+    {
+      "id": 1929082871,
+      "user": "VladimirFokow",
+      "body": "thanks @rhshadrach !\r\nI don't think this is a good first issue, because someone with an accurate and full conceptual understanding of `Categorical` and `CategoricalDtype` should help edit these descriptions.\r\nI expand on this in [PR #57273](https://github.com/pandas-dev/pandas/pull/57273#issuecomment-1929049214)\r\n(but on the other hand, maybe it is good - for people to figure this out and then write their findings)"
+    },
+    {
+      "id": 1929163564,
+      "user": "dvl-mehnaz",
+      "body": "![Capture2](https://github.com/pandas-dev/pandas/assets/140050845/9e0bf589-52bc-4c78-a7eb-2b43b14d4e9f)\r\n#57259"
+    },
+    {
+      "id": 1929166617,
+      "user": "VladimirFokow",
+      "body": "@Mehnaz02 \r\ndtype in `b` in my example is `float64`\r\n(the whole point is `a` and `b` having different `dtype`s in their `CategoricalDtype`s):\r\n```py\r\n# when\r\na.categories.dtype\r\n# is different from:\r\nb.categories.dtype\r\n```\r\n\r\n(btw, in the latest pandas version `a.dtype` also prints the `categories_dtype` at the end)"
+    },
+    {
+      "id": 1930100255,
+      "user": "VladimirFokow",
+      "body": "I can try starting to fix it, but definitely much later.. \r\nand would need a technical check for accuracy."
+    },
+    {
+      "id": 1931153458,
+      "user": "rhshadrach",
+      "body": "> I don't think this is a good first issue, because someone with an accurate and full conceptual understanding of `Categorical` and `CategoricalDtype` should help edit these descriptions.\r\n\r\nI disagree with this assessment. I believe one just needs to modify the documentation to state that the categories must be the equal as indexes, and that in particular includes their dtype. Am I missing something?\r\n\r\nIn addition, all PRs are reviewed, and so help can be given as part of that review."
+    },
+    {
+      "id": 1931247359,
+      "user": "luke396",
+      "body": ">  all PRs are reviewed, and so help can be given as part of that review.\r\n\r\nAs a regular contributor with little experience in the pandas community, I've observed that the label 'good first issue' extends beyond mere simplicity in solving a problem. Typically, it's assigned to documentation-related tasks, serving as a helpful starting point for newcomers eager to engage with the community. \r\n\r\nHowever, this doesn't diminish the significance of documentation enhancements in the community's eyes. Every pull request, regardless of its nature, undergoes review and suggestions. Nevertheless, complex documentation improvements might demand more effort from reviewers, particularly as they often originate from contributors unfamiliar with the pandas community.\r\n\r\n> I believe one just needs to modify the documentation to state that the categories must be the equal as indexes, and that in particular includes their dtype.\r\n\r\nIn issues #57273 and #57281, I believe @VladimirFokow intended to convey that not only this specific aspect of the documentation, but the documentation as a whole, seems somewhat perplexing to him."
+    },
+    {
+      "id": 1931342953,
+      "user": "VladimirFokow",
+      "body": "thank you so much @luke396 !!\r\nOkay, help on the review sounds good👍"
+    },
+    {
+      "id": 1932138597,
+      "user": "eaedk",
+      "body": "Hey, I hope you're doing well team.\r\nLooking for an interesting issue to contribute, any reco please?\r\n"
+    },
+    {
+      "id": 1932149649,
+      "user": "VladimirFokow",
+      "body": "Hello @eaedk !\r\nHow about this one?"
+    },
+    {
+      "id": 1937759594,
+      "user": "eaedk",
+      "body": "Hello @VladimirFokow, oh I thought it was solved. \r\nI would like to, of course I will ask questions for guidance."
+    }
+  ],
+  "text_context": "# DOC: `CategoricalDtype` equality semantics aren't completely described\n\n### Pandas version checks\r\n\r\n- [X] I have checked that the issue still exists on the latest versions of the docs on `main` [here](https://pandas.pydata.org/docs/dev/)\r\n\r\n\r\n### Location of the documentation\r\n\r\nhttps://pandas.pydata.org/docs/user_guide/categorical.html#equality-semantics\r\n\r\nhttps://github.com/pandas-dev/pandas/blob/main/pandas/core/dtypes/dtypes.py#L407\r\n\r\n### Documentation problem\r\n\r\nProblematic [statement 1](https://pandas.pydata.org/docs/user_guide/categorical.html#equality-semantics\r\n):\r\n\r\n> Two instances of `CategoricalDtype` compare equal whenever they have the same categories and order.\r\n\r\n\r\nProblematic [statement 2](https://github.com/pandas-dev/pandas/blob/main/pandas/core/dtypes/dtypes.py#L407):\r\n\r\n> 5) A CDT with ordered={False, None} is only equal to another CDT with\r\n           ordered={False, None} and identical categories.\r\n\r\n\r\nCounter-example:\r\n\r\n```py\r\n>>> a = pd.Categorical(np.full(2, np.nan, dtype=object))\r\n>>> b = pd.Categorical(np.full(2, np.nan))\r\n\r\n>>> a, b\r\n([NaN, NaN]\r\n Categories (0, object): [],\r\n [NaN, NaN]\r\n Categories (0, float64): [])\r\n\r\n>>> a.dtype, b.dtype\r\n(CategoricalDtype(categories=[], ordered=False, categories_dtype=object),\r\n CategoricalDtype(categories=[], ordered=False, categories_dtype=float64))\r\n\r\n>>> a.dtype == b.dtype\r\nFalse\r\n```\r\n\r\nAs we can see, they both have `ordered=False`, and their `categories` are same.\r\nFollowing the documentation, they should be equal.\r\n\r\n\r\n### Suggested fix for documentation\r\n\r\nto have accurate and exhaustive descriptions\n\nThanks for the report.\r\n\r\n> As we can see, they both have ordered=False, and their categories are same.\r\n\r\nThough both empty, two arrays of different dtypes are not the same.\r\n\r\nI suppose \"including their dtypes\" would be okay to add.\n\ntake\n\nthanks @rhshadrach !\r\nI don't think this is a good first issue, because someone with an accurate and full conceptual understanding of `Categorical` and `CategoricalDtype` should help edit these descriptions.\r\nI expand on this in [PR #57273](https://github.com/pandas-dev/pandas/pull/57273#issuecomment-1929049214)\r\n(but on the other hand, maybe it is good - for people to figure this out and then write their findings)\n\n![Capture2](https://github.com/pandas-dev/pandas/assets/140050845/9e0bf589-52bc-4c78-a7eb-2b43b14d4e9f)\r\n#57259\n\n@Mehnaz02 \r\ndtype in `b` in my example is `float64`\r\n(the whole point is `a` and `b` having different `dtype`s in their `CategoricalDtype`s):\r\n```py\r\n# when\r\na.categories.dtype\r\n# is different from:\r\nb.categories.dtype\r\n```\r\n\r\n(btw, in the latest pandas version `a.dtype` also prints the `categories_dtype` at the end)\n\nI can try starting to fix it, but definitely much later.. \r\nand would need a technical check for accuracy.\n\n> I don't think this is a good first issue, because someone with an accurate and full conceptual understanding of `Categorical` and `CategoricalDtype` should help edit these descriptions.\r\n\r\nI disagree with this assessment. I believe one just needs to modify the documentation to state that the categories must be the equal as indexes, and that in particular includes their dtype. Am I missing something?\r\n\r\nIn addition, all PRs are reviewed, and so help can be given as part of that review.\n\n>  all PRs are reviewed, and so help can be given as part of that review.\r\n\r\nAs a regular contributor with little experience in the pandas community, I've observed that the label 'good first issue' extends beyond mere simplicity in solving a problem. Typically, it's assigned to documentation-related tasks, serving as a helpful starting point for newcomers eager to engage with the community. \r\n\r\nHowever, this doesn't diminish the significance of documentation enhancements in the community's eyes. Every pull request, regardless of its nature, undergoes review and suggestions. Nevertheless, complex documentation improvements might demand more effort from reviewers, particularly as they often originate from contributors unfamiliar with the pandas community.\r\n\r\n> I believe one just needs to modify the documentation to state that the categories must be the equal as indexes, and that in particular includes their dtype.\r\n\r\nIn issues #57273 and #57281, I believe @VladimirFokow intended to convey that not only this specific aspect of the documentation, but the documentation as a whole, seems somewhat perplexing to him.\n\nthank you so much @luke396 !!\r\nOkay, help on the review sounds good👍\n\nHey, I hope you're doing well team.\r\nLooking for an interesting issue to contribute, any reco please?\r\n\n\nHello @eaedk !\r\nHow about this one?\n\nHello @VladimirFokow, oh I thought it was solved. \r\nI would like to, of course I will ask questions for guidance.",
+  "pr_link": "https://github.com/pandas-dev/pandas/pull/57273",
+  "code_context": []
+}

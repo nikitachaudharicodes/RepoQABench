@@ -1,0 +1,8 @@
+https://github.com/mindsdb/mindsdb/issues/6693
+https://github.com/mindsdb/mindsdb/issues/5925
+https://github.com/mindsdb/mindsdb/issues/5688
+https://github.com/mindsdb/mindsdb/issues/5274
+https://github.com/mindsdb/mindsdb/issues/3180
+https://github.com/mindsdb/mindsdb/issues/2425
+https://github.com/mindsdb/mindsdb/issues/2357
+https://github.com/mindsdb/mindsdb/issues/1848

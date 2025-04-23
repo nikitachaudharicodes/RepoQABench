@@ -1,3 +1,4 @@
 .venv/
 .env
 CodeRetrieval/.env
+run_logs

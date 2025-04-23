@@ -1,0 +1,60 @@
+{
+  "repo_name": "mindsdb_mindsdb",
+  "issue_id": "6693",
+  "issue_description": "# [Docs] Update instructions for MonetDB\n\n## Instructions\r\n\r\n1. Go to the `docs/data-integrations/monetdb.mdx` file.\r\n\r\n2. At the end of the `Implementation` chapter, add the following content:\r\n\r\n```\r\n<Tip>\r\nIf you installed MindsDB locally via pip, you need to install all handler dependencies manually. To do so, go to the handler's folder (mindsdb/integrations/handlers/monetdb_handler) and run this command: `pip install -r requirements.txt`.\r\n</Tip>\r\n```\r\n\r\n3. Save your changes and create a PR.\r\n\r\n## The https://github.com/mindsdb/mindsdb/labels/first-timers-only Label\r\n\r\nWe are happy to welcome you on board! Please take a look at the rules below for first-time contributors.\r\n\r\n1. You can solve only one issue labeled as https://github.com/mindsdb/mindsdb/labels/first-timers-only. After that, please look at other issues labeled as https://github.com/mindsdb/mindsdb/labels/good%20first%20issue, https://github.com/mindsdb/mindsdb/labels/help%20wanted, or https://github.com/mindsdb/mindsdb/labels/integration.\r\n\r\n2. Please leave a comment on this issue and wait until you are assigned. Then you can create a PR.\r\n\r\n3. After you create your first PR in the MindsDB repository, please sign our CLA to become a MindsDB contributor. You can do that by leaving a comment that contains the following: `I have read the CLA Document and I hereby sign the CLA`\r\n\r\n**Thank you for contributing to MindsDB!**\r\n\r\n**If you enjoy using MindsDB, we'd be happy if you could show your support by giving us a :star: on GitHub.**",
+  "issue_comments": [
+    {
+      "id": 1610115974,
+      "user": "michaeldacanay",
+      "body": "I will work on this issue and submit PR later. Can you put me as assignee?"
+    },
+    {
+      "id": 1611084575,
+      "user": "martyna-mindsdb",
+      "body": "@MichaelDacanay \r\nYou can start working on it."
+    },
+    {
+      "id": 1620246426,
+      "user": "martyna-mindsdb",
+      "body": "@MichaelDacanay \r\nAre you still working on it?"
+    },
+    {
+      "id": 1620406982,
+      "user": "michaeldacanay",
+      "body": "Hi @martyna-mindsdb, yes sorry for the delay. I am still working on it; I will try to make the PR by tomorrow."
+    },
+    {
+      "id": 1622506752,
+      "user": "michaeldacanay",
+      "body": "Update: hi @martyna-mindsdb, this is my first time contributing from a corporate account and it's currently in internal approvals. I will submit a PR once I get the needed approval, but it might take around a week (people are busy due to the July 4th weekend). Apologies for the inconvenience!"
+    },
+    {
+      "id": 1628615131,
+      "user": "SapnilPatel",
+      "body": "MichaelDecanay are you still working on this issue?\r\nor else\r\n@martyna-mindsdb can you please assign me this issue?"
+    },
+    {
+      "id": 1628617131,
+      "user": "martyna-mindsdb",
+      "body": "@SAPNILPATEL \r\nThis issue is already assigned to another contributor."
+    },
+    {
+      "id": 1628815689,
+      "user": "michaeldacanay",
+      "body": "Hi @SAPNILPATEL, yes I’m just awaiting an internal approval at my company. One of the required approvals took PTO until July 11, so unfortunately cannot yet merge the PR."
+    },
+    {
+      "id": 1633199691,
+      "user": "michaeldacanay",
+      "body": "Hi @martyna-mindsdb, just created the PR! https://github.com/mindsdb/mindsdb/pull/6820"
+    },
+    {
+      "id": 1633856658,
+      "user": "martyna-mindsdb",
+      "body": "Hi @MichaelDacanay \r\nPlease sign our CLA by leaving a comment on your PR, so we can merge it."
+    }
+  ],
+  "text_context": "# [Docs] Update instructions for MonetDB\n\n## Instructions\r\n\r\n1. Go to the `docs/data-integrations/monetdb.mdx` file.\r\n\r\n2. At the end of the `Implementation` chapter, add the following content:\r\n\r\n```\r\n<Tip>\r\nIf you installed MindsDB locally via pip, you need to install all handler dependencies manually. To do so, go to the handler's folder (mindsdb/integrations/handlers/monetdb_handler) and run this command: `pip install -r requirements.txt`.\r\n</Tip>\r\n```\r\n\r\n3. Save your changes and create a PR.\r\n\r\n## The https://github.com/mindsdb/mindsdb/labels/first-timers-only Label\r\n\r\nWe are happy to welcome you on board! Please take a look at the rules below for first-time contributors.\r\n\r\n1. You can solve only one issue labeled as https://github.com/mindsdb/mindsdb/labels/first-timers-only. After that, please look at other issues labeled as https://github.com/mindsdb/mindsdb/labels/good%20first%20issue, https://github.com/mindsdb/mindsdb/labels/help%20wanted, or https://github.com/mindsdb/mindsdb/labels/integration.\r\n\r\n2. Please leave a comment on this issue and wait until you are assigned. Then you can create a PR.\r\n\r\n3. After you create your first PR in the MindsDB repository, please sign our CLA to become a MindsDB contributor. You can do that by leaving a comment that contains the following: `I have read the CLA Document and I hereby sign the CLA`\r\n\r\n**Thank you for contributing to MindsDB!**\r\n\r\n**If you enjoy using MindsDB, we'd be happy if you could show your support by giving us a :star: on GitHub.**\n\nI will work on this issue and submit PR later. Can you put me as assignee?\n\n@MichaelDacanay \r\nYou can start working on it.\n\n@MichaelDacanay \r\nAre you still working on it?\n\nHi @martyna-mindsdb, yes sorry for the delay. I am still working on it; I will try to make the PR by tomorrow.\n\nUpdate: hi @martyna-mindsdb, this is my first time contributing from a corporate account and it's currently in internal approvals. I will submit a PR once I get the needed approval, but it might take around a week (people are busy due to the July 4th weekend). Apologies for the inconvenience!\n\nMichaelDecanay are you still working on this issue?\r\nor else\r\n@martyna-mindsdb can you please assign me this issue?\n\n@SAPNILPATEL \r\nThis issue is already assigned to another contributor.\n\nHi @SAPNILPATEL, yes I’m just awaiting an internal approval at my company. One of the required approvals took PTO until July 11, so unfortunately cannot yet merge the PR.\n\nHi @martyna-mindsdb, just created the PR! https://github.com/mindsdb/mindsdb/pull/6820\n\nHi @MichaelDacanay \r\nPlease sign our CLA by leaving a comment on your PR, so we can merge it.",
+  "pr_link": "https://github.com/mindsdb/mindsdb/pull/6820",
+  "code_context": []
+}

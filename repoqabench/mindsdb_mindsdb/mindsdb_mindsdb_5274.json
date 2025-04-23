@@ -1,0 +1,60 @@
+{
+  "repo_name": "mindsdb_mindsdb",
+  "issue_id": "5274",
+  "issue_description": "# [Docs] Add the `elasticsearch.mdx` file to docs navigation\n\n## Instructions :page_facing_up:\r\n\r\nHere are the step-by-step instructions:\r\n\r\n1. Go to the `/docs/mint.json` file.\r\n\r\n2. Go to the `\"navigation\"` item (at line 48). This `\"navigation\"` item stores the navigation structure of the [MindsDB docs](https://docs.mindsdb.com/).\r\n\r\n3. Find the `\"Data Integrations\"` group (at line 291).\r\n\r\n4. Add the `elasticsearch.mdx` file to the `\"pages\"`, like this:\r\n\r\n```\r\n\t{\r\n          \"group\": \"Data Integrations\",\r\n          \"pages\": [\r\n            \"data-integrations/all-data-integrations\",\r\n            \"...\",\r\n            \"data-integrations/elasticsearch\"\r\n          ]\r\n        }\r\n```\r\n\r\n3. Save the changes and create a PR.\r\n\r\n## Hackathon Issue :loudspeaker:\r\n\r\nMindsDB has organized a hackathon to let in more contributors to the in-database ML world.\r\n\r\nEach hackathon issue is worth a certain amount of credits that will bring you prizes by the end of the MindsDB Hackathon.\r\n\r\nCheck out the [MindsDB Hackathon rules](https://mindsdb.com/mindsdb-hackathon)!\r\n\r\n## The https://github.com/mindsdb/mindsdb/labels/first-timers-only Label\r\n\r\nWe are happy to welcome you on board! Please take a look at the rules below for first-time contributors.\r\n\r\n1. You can solve only one issue labeled as https://github.com/mindsdb/mindsdb/labels/first-timers-only. After that, please look at other issues labeled as https://github.com/mindsdb/mindsdb/labels/good%20first%20issue, https://github.com/mindsdb/mindsdb/labels/help%20wanted, or https://github.com/mindsdb/mindsdb/labels/integration.\r\n\r\n2. After you create your first PR in the MindsDB repository, please sign our CLA to become a MindsDB contributor. You can do that by leaving a comment that contains the following: `I have read the CLA Document and I hereby sign the CLA`\r\n\r\nThank you for contributing to MindsDB!\r\n",
+  "issue_comments": [
+    {
+      "id": 1488455322,
+      "user": "ashish-lgtm",
+      "body": "I want to contribute to this.\r\nIts my first time contributing.\r\n"
+    },
+    {
+      "id": 1488464641,
+      "user": "martyna-mindsdb",
+      "body": "@munnokd \r\nPlease note that one user can solve only one issue labeled as first-timers-only. You can look at other help-wanted issues. And before creating a PR, make sure to get assigned to an issue."
+    },
+    {
+      "id": 1488466007,
+      "user": "martyna-mindsdb",
+      "body": "@ashish-lgtm \r\nI assigned you this issue. You can start working on it now."
+    },
+    {
+      "id": 1488469709,
+      "user": "ashish-lgtm",
+      "body": "I have created a pull request."
+    },
+    {
+      "id": 1488482956,
+      "user": "martyna-mindsdb",
+      "body": "@ashish-lgtm \r\nPlease link the issue in the PR description."
+    },
+    {
+      "id": 1488511135,
+      "user": "ashish-lgtm",
+      "body": "Updated mint.json #5284"
+    },
+    {
+      "id": 1488512343,
+      "user": "ashish-lgtm",
+      "body": "https://github.com/mindsdb/mindsdb/pull/5284"
+    },
+    {
+      "id": 1488513299,
+      "user": "martyna-mindsdb",
+      "body": "@ashish-lgtm \r\nPlease sign our CLA by leaving a comment on the PR."
+    },
+    {
+      "id": 1488525650,
+      "user": "ashish-lgtm",
+      "body": "I want to make more contributions.\r\nMost of the issues here are for first timers only.\r\nWhat should i do now?"
+    },
+    {
+      "id": 1488535858,
+      "user": "martyna-mindsdb",
+      "body": "@ashish-lgtm \r\nPlease note that one user can solve only one issue labeled as first-timers-only.\r\n\r\nNow you can have a look at other help-wanted issues to contribute."
+    }
+  ],
+  "text_context": "# [Docs] Add the `elasticsearch.mdx` file to docs navigation\n\n## Instructions :page_facing_up:\r\n\r\nHere are the step-by-step instructions:\r\n\r\n1. Go to the `/docs/mint.json` file.\r\n\r\n2. Go to the `\"navigation\"` item (at line 48). This `\"navigation\"` item stores the navigation structure of the [MindsDB docs](https://docs.mindsdb.com/).\r\n\r\n3. Find the `\"Data Integrations\"` group (at line 291).\r\n\r\n4. Add the `elasticsearch.mdx` file to the `\"pages\"`, like this:\r\n\r\n```\r\n\t{\r\n          \"group\": \"Data Integrations\",\r\n          \"pages\": [\r\n            \"data-integrations/all-data-integrations\",\r\n            \"...\",\r\n            \"data-integrations/elasticsearch\"\r\n          ]\r\n        }\r\n```\r\n\r\n3. Save the changes and create a PR.\r\n\r\n## Hackathon Issue :loudspeaker:\r\n\r\nMindsDB has organized a hackathon to let in more contributors to the in-database ML world.\r\n\r\nEach hackathon issue is worth a certain amount of credits that will bring you prizes by the end of the MindsDB Hackathon.\r\n\r\nCheck out the [MindsDB Hackathon rules](https://mindsdb.com/mindsdb-hackathon)!\r\n\r\n## The https://github.com/mindsdb/mindsdb/labels/first-timers-only Label\r\n\r\nWe are happy to welcome you on board! Please take a look at the rules below for first-time contributors.\r\n\r\n1. You can solve only one issue labeled as https://github.com/mindsdb/mindsdb/labels/first-timers-only. After that, please look at other issues labeled as https://github.com/mindsdb/mindsdb/labels/good%20first%20issue, https://github.com/mindsdb/mindsdb/labels/help%20wanted, or https://github.com/mindsdb/mindsdb/labels/integration.\r\n\r\n2. After you create your first PR in the MindsDB repository, please sign our CLA to become a MindsDB contributor. You can do that by leaving a comment that contains the following: `I have read the CLA Document and I hereby sign the CLA`\r\n\r\nThank you for contributing to MindsDB!\r\n\n\nI want to contribute to this.\r\nIts my first time contributing.\r\n\n\n@munnokd \r\nPlease note that one user can solve only one issue labeled as first-timers-only. You can look at other help-wanted issues. And before creating a PR, make sure to get assigned to an issue.\n\n@ashish-lgtm \r\nI assigned you this issue. You can start working on it now.\n\nI have created a pull request.\n\n@ashish-lgtm \r\nPlease link the issue in the PR description.\n\nUpdated mint.json #5284\n\nhttps://github.com/mindsdb/mindsdb/pull/5284\n\n@ashish-lgtm \r\nPlease sign our CLA by leaving a comment on the PR.\n\nI want to make more contributions.\r\nMost of the issues here are for first timers only.\r\nWhat should i do now?\n\n@ashish-lgtm \r\nPlease note that one user can solve only one issue labeled as first-timers-only.\r\n\r\nNow you can have a look at other help-wanted issues to contribute.",
+  "pr_link": "https://github.com/mindsdb/mindsdb/pull/5284",
+  "code_context": []
+}
