@@ -24,7 +24,7 @@ def run_qa_model(model_name, questions, context):
     model.to(device)
 
     answers = []
-    for question in questions:
+    for question in tqdm(questions, desc=f"Answering ({model_name})"):
         try:
             inputs = tokenizer.encode_plus(
                 question,
@@ -53,7 +53,6 @@ def run_qa_model(model_name, questions, context):
             answers.append("<error>")
     return answers
 
-
 def evaluate_model_on_jsons(path, model_key):
     model_name = SUPPORTED_MODELS[model_key]
 
@@ -61,10 +60,8 @@ def evaluate_model_on_jsons(path, model_key):
     generated_rows = []
 
     for root, _, files in os.walk(path):
-        for file in files:
-            if not file.endswith(".json"):
-                continue
-
+        files = [f for f in files if f.endswith(".json")]
+        for file in tqdm(files, desc=f"Evaluating {model_key}"):
             filepath = os.path.join(root, file)
             with open(filepath, "r") as f:
                 data = json.load(f)
@@ -79,7 +76,7 @@ def evaluate_model_on_jsons(path, model_key):
             if not questions_generated or not golden_answers_generated or len(questions_generated) != len(golden_answers_generated):
                 continue
 
-            context = " ".join(questions + golden_answers)
+            context = " ".join(questions + golden_answers)[:1000]
 
             pred_benchmark = run_qa_model(model_name, questions, context)
             pred_generated = run_qa_model(model_name, questions_generated, context)
@@ -91,7 +88,6 @@ def evaluate_model_on_jsons(path, model_key):
 
     return pd.DataFrame(benchmark_rows), pd.DataFrame(generated_rows)
 
-
 def plot_scores(df, title, filename):
     pivot = df.pivot_table(index="model", aggfunc="count", values="question")
     plt.figure(figsize=(8, 4))
@@ -101,7 +97,6 @@ def plot_scores(df, title, filename):
     plt.ylabel("Number of QA Pairs Evaluated")
     plt.savefig(filename)
     plt.close()
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -122,3 +117,4 @@ if __name__ == "__main__":
 
     plot_scores(all_benchmark_df, "Benchmark Questions Coverage per Model", "benchmark_plot.png")
     plot_scores(all_generated_df, "Generated Questions Coverage per Model", "generated_plot.png")
+    print("Evaluation completed. Results saved to CSV files and plots generated.")
