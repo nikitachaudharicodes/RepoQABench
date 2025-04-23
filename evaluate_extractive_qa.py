@@ -220,7 +220,7 @@ def main():
     os.makedirs('results_ex', exist_ok=True)
     metrics_summary = []
 
-    for m in args.models:\>
+    for m in args.models:
         df = evaluate_model_on_jsons(args.path, m, code_index)
         if df.empty:
             print(f'No data for {m}')
