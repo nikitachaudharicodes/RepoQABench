@@ -87,7 +87,7 @@ def compute_metrics(preds, refs):
 
     return {
         "BLEU": bleu_score,
-        "ROUGE-L": rouge_score.mid.fmeasure,
+        "ROUGE-L": rouge_score["rougeLsum"].fmeasure if isinstance(rouge_score["rougeLsum"], object) and hasattr(rouge_score["rougeLsum"], "fmeasure") else float(rouge_score["rougeLsum"]),
         "BERTScore": avg_bert_score
     }
 
