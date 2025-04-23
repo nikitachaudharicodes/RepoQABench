@@ -10,6 +10,7 @@ import evaluate
 from functools import lru_cache
 import ast
 import re
+import subprocess
 
 # ---------------------- Configuration ----------------------
 SUPPORTED_MODELS = {
@@ -23,8 +24,31 @@ CODE_EMBED_MODEL = "microsoft/codebert-base"
 # Number of top code snippets to retrieve per question
 TOP_K = 3
 
+# Sample GitHub repositories to evaluate (owner, repo)
+SAMPLE_REPOS = [
+    ("oppia", "oppia"),
+    ("astropy", "astropy"),
+    ("CiviWiki", "OpenCiviWiki")
+]
+
 # Device setup
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+# ---------------------- Utility: clone/fetch repos ----------------------
+def clone_sample_repos(base_path: str):
+    """
+    Clone or update each sample GitHub repository into base_path.
+    """
+    os.makedirs(base_path, exist_ok=True)
+    for owner, repo in SAMPLE_REPOS:
+        local_dir = os.path.join(base_path, f"{owner}_{repo}")
+        repo_url = f"https://github.com/{owner}/{repo}.git"
+        if not os.path.isdir(local_dir):
+            print(f"Cloning {owner}/{repo} into {local_dir}...")
+            subprocess.run(["git", "clone", repo_url, local_dir], check=True)
+        else:
+            print(f"Updating {owner}/{repo} in {local_dir}...")
+            subprocess.run(["git", "-C", local_dir, "pull"], check=True)
 
 # ---------------------- Embedding Setup ----------------------
 embed_tokenizer = AutoTokenizer.from_pretrained(CODE_EMBED_MODEL)
@@ -178,22 +202,25 @@ def compute_metrics(df: pd.DataFrame) -> dict:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--path', required=True, help='Root dir containing sample repos')
+    parser.add_argument('--path', required=True, help='Root dir for sample repos')
     parser.add_argument('--models', nargs='+', default=list(SUPPORTED_MODELS.keys()))
     args = parser.parse_args()
 
+    # Clone or update sample repos
+    clone_sample_repos(args.path)
+
     # Precompute code snippets for each repo
     code_index = {}
-    for name in os.listdir(args.path):
-        repo_dir = os.path.join(args.path, name)
+    for dirpath in os.listdir(args.path):
+        repo_dir = os.path.join(args.path, dirpath)
         if os.path.isdir(repo_dir):
-            print(f"Indexing code snippets for {name}...")
+            print(f"Indexing code snippets for {dirpath}...")
             code_index[repo_dir] = extract_code_snippets_from_repo(repo_dir)
 
     os.makedirs('results_ex', exist_ok=True)
     metrics_summary = []
 
-    for m in args.models:
+    for m in args.models:\>
         df = evaluate_model_on_jsons(args.path, m, code_index)
         if df.empty:
             print(f'No data for {m}')
@@ -213,4 +240,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
